@@ -21,7 +21,9 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   public isError = false;
   public user:any={};
-  public card:any={};
+  public card:any={
+
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -66,7 +68,8 @@ export class RegisterComponent implements OnInit {
           this.card.images=["assets/images/default.jpg"];
           this._butler.userd=this.card.userd;  
           this.AuthRESTService.setToken(token);
-          this.dataApiService.saveCard(this.card).subscribe(card =>{
+          this.dataApiService.saveCard(this.card).subscribe(response =>{
+          this._butler.userId=''+response.id;
             this.ngxService.stop("loader-01");
             localStorage.setItem('isLoggedin', 'true');
             if (localStorage.getItem('isLoggedin')) {

@@ -87,6 +87,7 @@ export class ProfileComponent implements OnInit {
     this.profile.userType="member";
     this.profile.profileStatus="complete";
     this.profile.images=this._butler.memberImages;
+    console.log(this._butler.userId);
     this.dataApiService.memberUpdate(this.profile,this._butler.userId)
     .subscribe(response=>{
         this._butler.profileStatus="complete";

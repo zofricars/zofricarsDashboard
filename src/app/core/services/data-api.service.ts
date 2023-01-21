@@ -8,12 +8,12 @@ export interface PartInterface {
 
 }
 export interface CarInterface {
-
 }
 export interface MemberInterface {
 
 }
 export interface CardInterface {
+	id?:string;
 
 }
 export interface TicketInterface {
