@@ -1,0 +1,63 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink=".">Miembros</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Solicitudes de registro</li>
+  </ol>
+</nav>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombre o razon social</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Fecha</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let card of cards$; let i = index'    [hidden]=" card.status!='pending'" >
+                <td>{{card.name}}</td>
+                <td>{{card.email}}</td>
+                <td>{{card.status}}</td>
+                <td>{{card.createdAt | date:'dd/MM/yyyy'}}</td>
+                <td>
+                <!--   <button type="button" class="btn btn-primary btn-icon btn-xs" style="margin-right:10%;" (click)="memberActivate(i)">
+                    <i class="feather icon-check-square"></i>
+                  </button> -->
+
+                <button [swal]="
+                {title: '<strong>Solicitud de registro <u></u></strong>', icon: 'info',
+                html: 'Indique la accion a realizar para esta solicitud de registro ',
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText:'<i class=\'feather icon-thumbs-up\'></i> Aprobar!',
+                confirmButtonAriaLabel: 'Thumbs up, great!',
+                cancelButtonText: '<i class=\'feather icon-thumbs-down\'> Denegar</i>',
+                cancelButtonAriaLabel: 'Thumbs down'
+                }"
+
+ (confirm)="memberActivate(i)"
+                 class="btn btn-primary btn-xs" style="margin-right:10%;">
+                <i class="feather icon-check-square"></i>
+                </button>
+
+                 <!--  <button type="button" class="btn btn-danger btn-xs btn-icon">
+                    <i class="feather icon-x-square
+"></i>
+                  </button> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

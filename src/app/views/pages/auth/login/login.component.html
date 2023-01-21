@@ -1,0 +1,51 @@
+<ngx-ui-loader [bgsColor]="'#0d4497'"[fgsColor]="'#0d4497'"></ngx-ui-loader>    
+<div class="row w-100 mx-0 auth-page">
+  <div class="col-md-8 col-xl-6 mx-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-4 pe-md-0">
+          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(assets/images/login.jpg)' }">
+          </div>
+        </div>
+        <div class="col-md-8 ps-md-0">
+          <div class="auth-form-wrapper px-4 py-5">
+            <a routerLink="." class="nobleui-logo d-block mb-2">Zofri<span> Cars</span></a>
+            <h5 class="text-muted fw-normal mb-4">Bienvenido! Ingrese a su cuenta.</h5>
+            <form class="forms-sample" class="form"[formGroup]="ngFormLogin" (ngSubmit) ="onLogin()">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email </label>
+                <input type="email" class="form-control"  id="email" placeholder="Email" formControlName="email" [(ngModel)]="user.email"required [ngClass]="{ 'is-invalid': submitted && fval.email.errors }">
+                              <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+                              <div *ngIf="fval.email.errors.required">El email es requerido</div>
+                      <div *ngIf="fval.email.errors.email">Ingrese un email válido</div>
+                      </div>              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="*******" formControlName="password" [(ngModel)]="user.password" [ngClass]="{ 'is-invalid': submitted && fval.password.errors}"  required>
+                      <div *ngIf="submitted && fval.password.errors"class="invalid-feedback">
+                              <div ngClass="fval.password.errors.required">
+                              contraseña requerida.
+                              </div>
+
+                          </div>
+
+              </div>
+              <div [hidden]="!isError">
+              <span style="color:red;">
+                
+              {{message}}
+              </span> 
+              </div>
+              <div>
+                <!-- <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onLoggedin($event)">Entrar</button> -->
+                          <button type="submit" class="btn btn-rounded btn-primary btn-block mt-2">Entrar</button>
+              </div>
+              
+              <a routerLink="/auth/register" class="d-block mt-3 text-muted">Aun no forma parte de ZOFRI? solicite su registro aqui</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

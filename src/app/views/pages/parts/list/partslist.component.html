@@ -1,0 +1,58 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink=".">Autopartes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Inventario</li>
+  </ol>
+</nav>
+
+<div _ngcontent-iec-c96="" class="d-flex justify-content-between align-items-center flex-wrap grid-margin" [hidden]="_butler.type!='member'">
+  <div _ngcontent-iec-c96="">
+    <h4 _ngcontent-iec-c96="" class="mb-3 mb-md-0"></h4>
+  </div>
+  <div _ngcontent-iec-c96="" class="d-flex align-items-center flex-wrap text-nowrap">
+    
+    
+    <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']" [hidden]="_butler.type!='member'">
+     <i class="feather icon-plus"></i>
+
+
+      Agregar autoparte
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+    
+                <th>Stock</th>
+                <!-- <th>Fecha</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let product of products$; let i = index'   >
+                 <td class="py-1" sty>
+                  <img src="{{product.images[0]}}" alt="image">
+                </td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+
+                <td>{{product.price}}</td>
+                <td>{{product.stock}}</td>
+                <!-- <td>{{product.createdAt | date:'dd/MM/yyyy'}}</td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

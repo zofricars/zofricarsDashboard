@@ -1,0 +1,61 @@
+<ngx-ui-loader [bgsColor]="'#0d4497'"[fgsColor]="'#0d4497'"></ngx-ui-loader>    
+<div class="row w-100 mx-0 auth-page">
+  <div class="col-md-8 col-xl-6 mx-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-4 pe-md-0">
+          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(assets/images/register.jpg)' }">
+
+          </div>
+        </div>
+        <div class="col-md-8 ps-md-0">
+          <div class="auth-form-wrapper px-4 py-5">
+            <a routerLink="." class="nobleui-logo d-block mb-2">Zofri<span> Cars</span></a>
+            <h5 class="text-muted fw-normal mb-4">Solicitud de registro.</h5>
+            <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="exampleInputUsername1" class="form-label">Nombre o Razon social</label>
+                <input type="text" class="form-control" ype="text" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                                        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['name'].errors['required']">Campo requerido
+                                            </div>
+                                        </div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email </label>
+                <input type="email" class="form-control" type="text" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Campo requerido
+                    </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control"  id="password" formControlName="password" placeholder="*******"  [(ngModel)]="user.password" 
+                    [ngClass]="{ 'is-invalid': submitted && f['password'].errors}" required>
+                <div *ngIf="submitted && f['password'].errors"class="invalid-feedback">
+                    <div ngClass="f['password'].errors.required">
+                    La contraseña es requerida.
+                    </div>
+                </div>
+              </div>
+        
+              <div>
+                <!-- <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onRegister($event)">Solicitar registro</button>  -->
+                <button  class="btn btn-primary me-2 mb-2 mb-md-0"type="submit" 
+style="cursor: pointer;">Solicitar registro</button>
+
+              </div>
+              <a routerLink="/auth/login" class="d-block mt-3 text-muted">ya tiene cuenta? Entra aqui</a>
+            </form>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
