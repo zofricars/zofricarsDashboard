@@ -45,7 +45,7 @@ export const MENU: MenuItem[] = [
   {
     label: 'Clientes',
     icon: 'award',
-    link: '/cars/carslist',
+    link: 'this.categories[selected]',
   },
   {
     label: 'Ordenes de compra',
