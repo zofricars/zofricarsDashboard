@@ -90,6 +90,7 @@ export class ProfileComponent implements OnInit {
     console.log(this._butler.userId);
     this.dataApiService.memberUpdate(this.profile,this._butler.userId)
     .subscribe(response=>{
+        this._butler.memberImages=[];
         this._butler.profileStatus="complete";
         this.ngxService.stop("loader-01");
         this.router.navigate(['dashboard']);
