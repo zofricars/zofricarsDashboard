@@ -75,14 +75,14 @@ export class NewpartComponent implements OnInit, AfterViewInit {
     }
     this.partImages=this._butler.partImages; 
     this.newPart=this.form.value; 
-    this.newPart.category=
+    this.newPart.category=this.category;
     // this.newPart.category=this.form.value; 
     this.newPart.images=this.partImages;; 
     this.newPart.userId=this._butler.userd; 
     this.savePart();
   }
   setCategory(selected:any){
-    this.category=selected;
+    this.category=this.categories[selected];
     console.log("selected: "+this.categories[selected].name);
   }
   getCards(){
