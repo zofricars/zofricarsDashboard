@@ -45,7 +45,7 @@ export const MENU: MenuItem[] = [
   {
     label: 'Clientes',
     icon: 'award',
-    link: '/apps/chat',
+    link: '/cars/carslist',
   },
   {
     label: 'Ordenes de compra',
