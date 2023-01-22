@@ -15,7 +15,7 @@
                           <li class="chat-item pe-1"  *ngFor='let card of cards$; let i = index'    [hidden]=" card.status!='activated' || card.userType=='admin'">
                             <a (click)="loadPartsById(card)" class="d-flex align-items-center">
                               <figure class="mb-0 me-2">
-                                <img src="https://via.placeholder.com/37x37" class="img-xs rounded-circle" alt="user">
+                                <img src="{{card.images[0]}}" class="img-xs rounded-circle" alt="user">
                               </figure>
                               <div class="d-flex justify-content-between flex-grow-1 border-bottom">
                                 <div>
@@ -44,7 +44,7 @@
                 <div class="d-flex align-items-center">
                   <i (click)="backToChatList()" class="feather icon-corner-up-left icon-md me-2 ms-n2 text-muted d-lg-none"></i>
                   <figure class="mb-0 me-2">
-                    <img src="https://via.placeholder.com/43x43" class="img-sm rounded-circle" alt="image">
+                    <img src="{{cardToSee.image}}" class="img-sm rounded-circle" alt="image">
                     <div class="status online"></div>
                     <div class="status online"></div>
                   </figure>

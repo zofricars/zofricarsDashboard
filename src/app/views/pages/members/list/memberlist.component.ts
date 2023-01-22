@@ -26,6 +26,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
   loadPartsById(card:any){
     let id=card.userd;
     this.cardToSee=card;
+    this.cardToSee.image=card.images[0];
     this.dataApiService.getPartsById(id).subscribe(response =>{
       this.parts$=response;
     this.show=true;
