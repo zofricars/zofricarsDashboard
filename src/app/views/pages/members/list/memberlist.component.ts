@@ -7,11 +7,12 @@ import { DataApiService } from '@services/data-api.service';
   styleUrls: ['./memberlist.component.scss']
 })
 export class MemberlistComponent implements OnInit, AfterViewInit {
-  
+  idSelected:any;
   show:any=false;
   cards$:any=[];
   cardToSee:any={};
   parts$:any=[];
+  cars$:any=[];
   defaultNavActiveId = 1;
 
   constructor(
@@ -24,6 +25,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     });
   }
   loadPartsById(card:any){
+    this.idSelected=card.userd;
     let id=card.userd;
     this.cardToSee=card;
     this.cardToSee.image=card.images[0];
@@ -32,10 +34,17 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     this.show=true;
     });
   }
+  loadCarsById(){
+    this.dataApiService.getCarsById(this.idSelected).subscribe(response =>{
+      this.cars$=response;
+    this.show=true;
+    });
+  }
   ngOnInit(): void { 
     this.getCards();
   }
   setCars(){
+    this.loadCarsById();
     console.log("seteado a cars");
     this._butler.carsSelected=true;
     this._butler.partsSelected=false;}
