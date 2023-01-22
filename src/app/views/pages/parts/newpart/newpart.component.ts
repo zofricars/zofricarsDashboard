@@ -19,14 +19,14 @@ export class NewpartComponent implements OnInit, AfterViewInit {
   categories: any;
    category="Seleccione una!";
   form: FormGroup = new FormGroup({
+    // category: new FormControl(''),
+    cod: new FormControl(''),
     brand: new FormControl(''),
+    description: new FormControl(''),
     model: new FormControl(''),
+    name: new FormControl(''),
     price: new FormControl(''),
     stock: new FormControl(''),
-    name: new FormControl(''),
-    description: new FormControl(''),
-    category: new FormControl(''),
-    cod: new FormControl(''),
   });
   submitted = false;
   public isError = false;
@@ -75,12 +75,14 @@ export class NewpartComponent implements OnInit, AfterViewInit {
     }
     this.partImages=this._butler.partImages; 
     this.newPart=this.form.value; 
+    this.newPart.category=
     // this.newPart.category=this.form.value; 
     this.newPart.images=this.partImages;; 
     this.newPart.userId=this._butler.userd; 
     this.savePart();
   }
   setCategory(selected:any){
+    this.category=selected;
     console.log("selected: "+this.categories[selected].name);
   }
   getCards(){
@@ -94,14 +96,14 @@ export class NewpartComponent implements OnInit, AfterViewInit {
     this.form = this.formBuilder.group(
       {        
         brand: ['', Validators.required],
-        model: ['', Validators.required],
-        carType: ['', Validators.required],
-        name: ['', Validators.required],
-        category: ['', Validators.required],
-        description: ['', Validators.required],
+        // category: ['', Validators.required],
         cod: ['', Validators.required],
+        description: ['', Validators.required],
+        model: ['', Validators.required],
+        name: ['', Validators.required],
         price: [0, Validators.required],
         stock: [0, Validators.required],
+        // carType: ['', Validators.required],
       }    
     );
     this.getCards();

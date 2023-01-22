@@ -36,7 +36,17 @@
                       </div>
                   </div>   
                 </div>
-                <div class="col-md-6">            
+                <div class="col-md-3">
+                  <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label">COD</label>
+                    <input type="text" class="form-control"  formControlName="cod" [ngClass]="{ 'is-invalid': submitted && f['cod'].errors }">
+                      <div *ngIf="submitted && f['cod'].errors" class="invalid-feedback">
+                        <div *ngIf="f['cod'].errors['required']">Campo requerido
+                        </div>
+                      </div>
+                  </div>   
+                </div>
+                <div class="col-md-3">            
                   <div class="mb-3">
                     <label  class="form-label">Categoria</label>
                     <select id="district" class="form-control wide"[(ngModel)]="category" (ngModelChange)="setCategory(category)" [ngModelOptions]="{standalone: true}">
@@ -49,7 +59,7 @@
               <div class="mb-3">
                 <label  class="form-label">Descripcion</label>
                 <!-- <input type="text" class="form-control" > -->
-                <textarea class="form-control" placeholder="Comment" rows="5"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+                <textarea class="form-control" placeholder="Comment" rows="3"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
 
                 <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
                   <div *ngIf="f['description'].errors['required']">Campo requerido
