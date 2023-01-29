@@ -3,6 +3,7 @@ import {Vehicle} from '@interfaces/vehicle';
 export const VEHICLES: Vehicle[] = [
   {
     name:'camion',
+    
     idVehicle:'ca000001'
   }, 
   {

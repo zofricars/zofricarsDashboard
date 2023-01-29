@@ -10,7 +10,7 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 export class ChartjsComponent implements OnInit {
 
   obj = {
-    primary        : "#0d4497",
+    primary        : "#101554",
     secondary      : "#7987a1",
     success        : "#05a34a",
     info           : "#66d1d1",
