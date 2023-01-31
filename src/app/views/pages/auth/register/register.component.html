@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-8 ps-md-0">
           <div class="auth-form-wrapper px-4 py-5">
-            <a routerLink="." class="nobleui-logo d-block mb-2">Registrate en ZOFRI<span> CARS</span></a>
+            <a routerLink="." class="nobleui-logo d-block mb-2">Registre su empresa en ZOFRI<span> CARS</span></a>
 
             <h5 class="text-muted fw-normal mb-4">.</h5>
             <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -31,7 +31,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                   <input type="password" class="form-control"  id="password" formControlName="password" placeholder="*******"  [(ngModel)]="user.password" 
                     [ngClass]="{ 'is-invalid': submitted && f['password'].errors}" required>
                 <div *ngIf="submitted && f['password'].errors"class="invalid-feedback">
