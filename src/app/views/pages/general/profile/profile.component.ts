@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   returnUrl: any;
   profile:any={};
 
+  infoProfile:any={};
   submitted = false;
   public isError = false;
   public user:any={};
@@ -48,9 +49,28 @@ export class ProfileComponent implements OnInit {
   onSubmit(){
 
   }
- 
+  getPartsById(){
+    this._butler.myProducts$=null;
+    setTimeout (() => {
+      this.dataApiService.getPartsById(this._butler.userd).subscribe(response => {
+        this._butler.myProducts$ = response;
+        this._butler.myPartsSize=this._butler.myProducts$.length;
+      });
+    }, 100);  
+  }
+  getCarsById(){
+    this._butler.myCars$=null;
+    setTimeout (() => {
+      this.dataApiService.getCarsById(this._butler.userd).subscribe(response => {
+        this._butler.myCars$ = response;
+        this._butler.myCarsSize=this._butler.myCars$.length;
+      });
+    }, 100);  
+  } 
   ngOnInit(): void {
-
+    this.infoProfile=this._butler.userActive[0];
+    this.getPartsById();
+    this.getCarsById();
     /**
      * form1 value validation
      */
