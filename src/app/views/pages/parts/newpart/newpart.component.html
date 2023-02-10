@@ -59,7 +59,7 @@
               <div class="mb-3">
                 <label  class="form-label">Descripcion</label>
                 <!-- <input type="text" class="form-control" > -->
-                <textarea class="form-control" placeholder="Comment" rows="3"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+                <textarea class="form-control" placeholder="Descripción" rows="3"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
 
                 <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
                   <div *ngIf="f['description'].errors['required']">Campo requerido

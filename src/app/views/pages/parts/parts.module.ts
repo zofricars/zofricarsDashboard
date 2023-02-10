@@ -14,7 +14,7 @@ import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PartsComponent } from './parts.component';
 import { PartslistComponent } from './list/partslist.component';
 import { NewpartComponent } from './newpart/newpart.component';
@@ -106,6 +106,7 @@ const routes: Routes = [
     NgbCollapseModule,
     NgSelectModule,
     QuillModule.forRoot(), // ngx-quill
+     SweetAlert2Module.forRoot(),
   ],
   providers: [
     {

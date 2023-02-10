@@ -1,19 +1,19 @@
 <ngx-ui-loader [pbColor]="'#101554'"  [bgsColor]="'#101554'"[fgsColor]="'#101554'" [text]="'Cargando...'"[fgsSize]="15"[fgsType]= "'cube-grid'"[textColor]="'#101554'"[overlayColor]="' rgba(255,255,255,0.8)'"></ngx-ui-loader>    
-<nav class="page-breadcrumb">
+<nav class="page-breadcrumb" [hidden]="showDetail">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink=".">Autopartes</a></li>
     <li class="breadcrumb-item active" aria-current="page">Inventario</li>
   </ol>
 </nav>
 
-<div _ngcontent-iec-c96="" class="d-flex justify-content-between align-items-center flex-wrap grid-margin" [hidden]="_butler.type!='member'">
+<div _ngcontent-iec-c96=""  [hidden]="showDetail" class="d-flex justify-content-between align-items-center flex-wrap grid-margin" [hidden]="_butler.type!='member'">
   <div _ngcontent-iec-c96="">
     <h4 _ngcontent-iec-c96="" class="mb-3 mb-md-0"></h4>
   </div>
   <div _ngcontent-iec-c96="" class="d-flex align-items-center flex-wrap text-nowrap">
     
     
-    <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']" [hidden]="_butler.type!='member'">
+    <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']" [hidden]="_butler.type!='member'|| showDetail">
      <i class="feather icon-plus"></i>
 
 
@@ -21,7 +21,7 @@
     </button>
   </div>
 </div>
-<div class="row">
+<div class="row"  [hidden]="showDetail">
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -39,7 +39,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor='let product of products$; let i = index'   >
+              <tr *ngFor='let product of products$; let i = index' (click)="detail(product)" style="cursor: pointer;" >
                  <td class="py-1" sty>
                   <img src="{{product.images[0]}}" alt="image">
                 </td>
@@ -57,3 +57,277 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+<nav class="page-breadcrumb" [hidden]="!showDetail">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a (click)="noShowDetail()" style="cursor: pointer;">Autopartes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Detalle de autoparte </li>
+  </ol>
+</nav>
+<div _ngcontent-iec-c96=""  [hidden]="!showDetail" class="d-flex justify-content-between align-items-center flex-wrap grid-margin" [hidden]="_butler.type!='member'">
+  <div _ngcontent-iec-c96="">
+    <h4 _ngcontent-iec-c96="" class="mb-3 mb-md-0"></h4>
+  </div>
+  <div _ngcontent-iec-c96="" class="d-flex align-items-center  text-nowrap" [hidden]="editing" >
+    
+    
+    <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" style="margin-right:10%;"(click)="setEditing()" [hidden]="_butler.type!='member'|| !showDetail || editing">
+      <i class="feather icon-edit"></i>
+ 
+ 
+       Editar
+     </button>
+    <!-- <button _ngcontent-iec-c96="" type="button" class="btn btn-danger btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']"style="margin-right:10%;" [hidden]="_butler.type!='member'|| !showDetail || editing">
+     <i class="feather icon-trash"></i>
+
+
+      Borrar
+    </button> -->
+
+    <button [hidden]="_butler.type!='member'|| !showDetail || editing" [swal]="
+    {title: '<strong>Borrar autoparte <u></u></strong>', icon: 'error',
+    html: 'Confirma que desea eliminar este producto ?',
+    showCloseButton: true,
+    showCancelButton: true,
+
+    cancelButtonColor: '#101554',
+    confirmButtonColor: '#ff3366',
+    focusConfirm: true,
+    confirmButtonText:' Borrar',
+    confirmButtonAriaLabel: 'Thumbs up, great!',
+    cancelButtonText: ' Cancelar',
+    cancelButtonAriaLabel: 'Thumbs down'
+    }"
+    (confirm)="delete()"
+
+    (dismiss)="cancelDelete()"
+     class="btn btn-danger " style="margin-right:10%;">
+    <i class="feather icon-trash"></i>Borrar
+    </button>
+
+    <button _ngcontent-iec-c96="" type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0"style="margin-right:10%;"  (click)="cancel()" [hidden]="_butler.type!='member'|| !showDetail || !editing ">
+     
+ 
+ 
+       Cancelar
+     </button>
+    <button _ngcontent-iec-c96="" type="button" class="btn btn-success btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']" style="margin-right:10%;" [hidden]="_butler.type!='member'|| !showDetail || !editing">
+     <i class="feather icon-check"></i>
+
+
+      Guardar
+    </button>
+ 
+
+
+  </div>
+ 
+</div>
+<div class="row" [hidden]="!showDetail">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row position-relative">
+           <div class="col-lg-3 chat-aside border-end-lg">
+            <div class="aside-content">
+              <div class="aside-body">
+               <img src="{{images[0]}}" class="img-lg rounded-circle" style="width: 100%; height: 100%;" *ngIf="showDetail">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 chat-content">
+            <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()" [hidden]="editing">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Nombre: </span> {{partToSee.name}}</label>
+                    <!--<input  type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                       <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['name'].errors['required']">Campo requerido
+                        </div>
+                      </div> -->
+                  </div>   
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">COD: </span> {{partToSee.cod}}</label>
+                    <!-- <input type="text" class="form-control"  formControlName="cod" [ngClass]="{ 'is-invalid': submitted && f['cod'].errors }">
+                      <div *ngIf="submitted && f['cod'].errors" class="invalid-feedback">
+                        <div *ngIf="f['cod'].errors['required']">Campo requerido
+                        </div>
+                      </div> -->
+                  </div>   
+                </div>
+                <div class="col-md-12">            
+                  <div class="mb-3">
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Categoria: </span> {{partToSee.category}}</label>
+                    <!-- <select id="district" class="form-control wide"[(ngModel)]="category" (ngModelChange)="setCategory(category)" [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let category of categories, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{category.name}}</span></option>
+                    </select> -->
+                  </div>                  
+                </div>
+              </div>
+                        
+              <div class="mb-3">
+                <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Descripcion: </span>{{partToSee.description}} </label>
+                <!-- <input type="text" class="form-control" > -->
+                <!-- <textarea class="form-control" placeholder="Comment" rows="3"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+
+                <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                  <div *ngIf="f['description'].errors['required']">Campo requerido
+                  </div>
+                </div> -->
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Marca: </span>{{partToSee.brand}}</label>
+                    <!-- <input type="text" class="form-control" formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f['brand'].errors }">
+                      <div *ngIf="submitted && f['brand'].errors" class="invalid-feedback">
+                        <div *ngIf="f['brand'].errors['required']">Campo requerido
+                        </div>
+                      </div> -->
+                  </div>   
+                </div>
+                <div class="col-md-12">            
+                  <div class="mb-3">
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Modelo: </span> {{partToSee.model}}</label>
+                    <!-- <input type="text" class="form-control"  formControlName="model" [ngClass]="{ 'is-invalid': submitted && f['model'].errors }">
+                      <div *ngIf="submitted && f['model'].errors" class="invalid-feedback">
+                        <div *ngIf="f['model'].errors['required']">Campo requerido
+                        </div>
+                      </div> -->
+                  </div>                  
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">             
+                  <div class="mb-3">
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Precio: </span> {{partToSee.price}}</label>
+                    <!-- <input type="number" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }">
+                      <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+                        <div *ngIf="f['price'].errors['required']">Campo requerido
+                        </div>
+                      </div> -->
+                  </div>
+                </div>
+                <div class="col-md-12">             
+                  <div class="mb-3">
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Existencia (Nivel de stock): </span> {{partToSee.stock}}</label>
+                    <!-- <input type="number" class="form-control" formControlName="stock" [ngClass]="{ 'is-invalid': submitted && f['stock'].errors }">
+                      <div *ngIf="submitted && f['stock'].errors" class="invalid-feedback">
+                        <div *ngIf="f['stock'].errors['required']">Campo requerido
+                        </div>
+                      </div> -->
+                  </div>
+                </div>
+              </div>  
+              <div style="text-align:right;" [hidden]="!_butler.newPartImage">
+                <button  class="btn btn-primary me-2 mb-2 mb-md-0"type="submit" style="cursor: pointer;">Aceptar</button>
+              </div>
+             
+            </form>
+            <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()" [hidden]="!editing">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Nombre: </span> </label>
+                    <input  type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                       <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['name'].errors['required']">Campo requerido
+                        </div>
+                      </div>
+                  </div>   
+                </div>
+                <div class="col-md-3">
+                  <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">COD: </span> </label>
+                    <input type="text" class="form-control"  formControlName="cod" [ngClass]="{ 'is-invalid': submitted && f['cod'].errors }">
+                      <div *ngIf="submitted && f['cod'].errors" class="invalid-feedback">
+                        <div *ngIf="f['cod'].errors['required']">Campo requerido
+                        </div>
+                      </div>
+                  </div>   
+                </div>
+                <div class="col-md-3">            
+                  <div class="mb-3">
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Categoria: </span> </label>
+                    <select id="district" class="form-control wide"[(ngModel)]="category" (ngModelChange)="setCategory(category)" [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let category of categories, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{category.name}}</span></option>
+                    </select>
+                  </div>                  
+                </div>
+              </div>
+                        
+              <div class="mb-3">
+                <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Descripcion: </span> </label>
+                <!-- <input type="text" class="form-control" > -->
+                <textarea class="form-control" placeholder="Comment" rows="3"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+
+                <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                  <div *ngIf="f['description'].errors['required']">Campo requerido
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Marca: </span></label>
+                    <input type="text" class="form-control" formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f['brand'].errors }">
+                      <div *ngIf="submitted && f['brand'].errors" class="invalid-feedback">
+                        <div *ngIf="f['brand'].errors['required']">Campo requerido
+                        </div>
+                      </div>
+                  </div>   
+                </div>
+                <div class="col-md-6">            
+                  <div class="mb-3">
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Modelo: </span> </label>
+                    <input type="text" class="form-control"  formControlName="model" [ngClass]="{ 'is-invalid': submitted && f['model'].errors }">
+                      <div *ngIf="submitted && f['model'].errors" class="invalid-feedback">
+                        <div *ngIf="f['model'].errors['required']">Campo requerido
+                        </div>
+                      </div>
+                  </div>                  
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">             
+                  <div class="mb-3">
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Precio: </span> </label>
+                    <input type="number" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }">
+                      <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+                        <div *ngIf="f['price'].errors['required']">Campo requerido
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-md-6">             
+                  <div class="mb-3">
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Existencia (Nivel de stock): </span> </label>
+                    <input type="number" class="form-control" formControlName="stock" [ngClass]="{ 'is-invalid': submitted && f['stock'].errors }">
+                      <div *ngIf="submitted && f['stock'].errors" class="invalid-feedback">
+                        <div *ngIf="f['stock'].errors['required']">Campo requerido
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>  
+              <div style="text-align:right;" [hidden]="!_butler.newPartImage">
+                <button  class="btn btn-primary me-2 mb-2 mb-md-0"type="submit" style="cursor: pointer;">Aceptar</button>
+              </div>
+             
+            </form>
+            
+          </div>         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

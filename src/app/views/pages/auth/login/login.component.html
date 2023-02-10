@@ -1,4 +1,4 @@
-<ngx-ui-loader [pbColor]="'#101554'"  [bgsColor]="'#101554'"[fgsColor]="'#101554'"[text]="'Validando ingreso'"
+<ngx-ui-loader [pbColor]="'#101554'"  [bgsColor]="'#101554'"[fgsColor]="'#101554'"[text]="'Validando ingreso, por favor espere...'"
 [fgsSize]="15"[fgsType]= "'cube-grid'"[textColor]="'#101554'"[overlayColor]="' rgba(255,255,255,0.8)'" 
 
 
@@ -40,9 +40,9 @@
               {{message}}
               </span> 
               </div>
-              <div>
+              <div  class="d-grid gap-2">
                 <!-- <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onLoggedin($event)">Entrar</button> -->
-                          <button type="submit" class="btn btn-rounded btn-primary btn-block mt-2">Entrar</button>
+                          <button type="submit" class="btn btn-primary ">Entrar</button>
               </div>
               
               <a routerLink="/auth/register" class="d-block mt-3 text-muted">Aun no forma parte de ZOFRICARS? solicite su registro <span style="color: blue;">AQUI</span></a>
