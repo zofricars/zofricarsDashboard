@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit {
   products$:any=[];
   myProducts$:any=[];
   cards$:any=[];
+
+ productsProv$:any=[];
   partsSize:number=0;
   myPartsSize:number=0;
   newMembersSize:number=0;
@@ -59,10 +61,18 @@ export class DashboardComponent implements OnInit {
   }
  getProducts(){
     this.products$=[];
+    this.productsProv$=[];
     setTimeout (() => {
       this.dataApiService.getAllProducts().subscribe(response => {
         this.products$ = response;
         this.partsSize=this.products$.length;
+        for (let i =0;i<this.partsSize;i++){
+          if(i<6){
+            this.productsProv$.push(this.products$[i]);
+          }
+        }
+        this.products$=[];
+        this.products$=this.productsProv$;
       });
     }, 1000);
    

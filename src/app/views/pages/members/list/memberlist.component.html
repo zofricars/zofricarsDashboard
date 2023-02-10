@@ -1,4 +1,4 @@
-<ngx-ui-loader [bgsColor]="'#101554'"[fgsColor]="'#101554'"></ngx-ui-loader>
+<ngx-ui-loader [bgsColor]="'#101554'"[fgsColor]="'#101554'" [pbColor]="'#101554'" [fgsSize]="15"[fgsType]= "'cube-grid'"[textColor]="'#101554'"[overlayColor]="' rgba(255,255,255,0.5)'" [text]="'cargando...'"></ngx-ui-loader>
 
 <div class="row chat-wrapper">
   <div class="col-md-12">
@@ -10,7 +10,7 @@
               <div class="aside-body">
                 <ul ngbNav #defaultNav="ngbNav" [(activeId)]="defaultNavActiveId" class="nav-tabs nav-fill mt-3">
                   <li [ngbNavItem]="1">
-                    <ng-template ngbNavContent>
+                    <ng-template ngbNavContent >
                       <div class="ps" [perfectScrollbar]>
                         <p class="text-muted mb-1">Miembros activos</p>
                         <ul class="list-unstyled chat-list px-1">

@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 grid-margin stretch-card">
+      <div class="col-md-3 grid-margin stretch-card"  >
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-baseline">
@@ -86,7 +86,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 grid-margin stretch-card">
+      <div class="col-md-3 grid-margin stretch-card" [routerLink]="['/parts/partslist']" style="cursor:pointer;">
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-baseline">
@@ -125,7 +125,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 grid-margin stretch-card">
+      <div class="col-md-3 grid-margin stretch-card" [routerLink]="['/cars/carslist']" style="cursor:pointer;">
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-baseline">
@@ -224,13 +224,13 @@
           </div>
         </div>
         <div class="d-flex flex-column">
-          <a  (click)="false" class="d-flex align-items-center border-bottom pb-3" *ngFor='let product of products$; let i = index' [hidden]="i>10" >
+          <a  (click)="false" class="d-flex align-items-center border-bottom pb-3" [hidden]="i>7"*ngFor='let product of products$; let i = index' [hidden]="i>10" >
            
            
-            <div class="me-3" [hidden]="i>10">
+            <div class="me-3" [hidden]="i>7">
               <img src="{{product.images[0]}}" class="rounded-circle wd-35" alt="user">
             </div>
-            <div class="w-100" [hidden]="i>10">
+            <div class="w-100" [hidden]="i>7">
               <div class="d-flex justify-content-between">
                 <h6 class="text-body mb-2">{{product.name}} </h6>
                 <p class="text-muted tx-12">12.30 PM</p>

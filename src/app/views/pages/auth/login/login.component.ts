@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     if (this.ngFormLogin.invalid) {
       return;
     } 
-    this.ngxService.start("loader-01");
+    this.ngxService.start("loader-02");
     return this.AuthRESTService.loginUser(
       this.ngFormLogin.value.email, 
       this.ngFormLogin.value.password
@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
           });       
         this._butler.name=data.name;
         this.isError = false;
-        this.ngxService.stop("loader-01");
+        this.ngxService.stop("loader-02");
         localStorage.setItem('isLoggedin', 'true');
         console.log("profile status: "+this._butler.profileStatus);
         
@@ -155,7 +155,7 @@ export class LoginComponent implements OnInit {
   }  
 
   onIsError(): void {
-      this.ngxService.stop("loader-01");
+      this.ngxService.stop("loader-02");
     this.isError = true;
 
     setTimeout(() => {
