@@ -1,4 +1,8 @@
-<ngx-ui-loader [bgsColor]="'#101554'"[fgsColor]="'#101554'"></ngx-ui-loader>    
+<ngx-ui-loader [pbColor]="'#101554'"  [bgsColor]="'#101554'"[fgsColor]="'#101554'"[text]="'Validando solicitud'"
+[fgsSize]="15"[fgsType]= "'cube-grid'"[textColor]="'#101554'"[overlayColor]="' rgba(255,255,255,0.8)'" 
+
+
+></ngx-ui-loader>       
 <div class="row w-100 mx-0 auth-page">
   <div class="col-md-8 col-xl-6 mx-auto">
     <div class="card">
@@ -40,7 +44,12 @@
                     </div>
                 </div>
               </div>
-        
+              <div [hidden]="!isError">
+                <span style="color:red;">
+                  
+                {{message}}
+                </span> 
+                </div>
               <div>
                 <!-- <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onRegister($event)">Solicitar registro</button>  -->
                 <button  class="btn btn-primary me-2 mb-2 mb-md-0"type="submit" 

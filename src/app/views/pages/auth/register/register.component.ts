@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit {
     name: new FormControl(''),
   });
   submitted = false;
+
+  message:any="Ocurrio un error, vuelva a intentarlo"; 
   public isError = false;
   public user:any={};
   public card:any={
