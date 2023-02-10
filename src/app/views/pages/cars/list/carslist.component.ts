@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
+import{NgxUiLoaderService} from 'ngx-ui-loader';
 @Component({
   selector: 'app-carslist',
   templateUrl: './carslist.component.html',
@@ -13,21 +14,26 @@ export class CarslistComponent implements OnInit, AfterViewInit {
 
 
   constructor(
+
+    private ngxService: NgxUiLoaderService,
     public _butler:Butler,
     public dataApiService: DataApiService,
     ) { }
    getCards(){
       this.dataApiService.getAllCards().subscribe(response => {
+        this.ngxService.stop("loader-01");
       this.cards$ = response
       });
    }
    getCars(){
       this.dataApiService.getAllCars().subscribe(response => {
+        this.ngxService.stop("loader-01");
       this.cars$ = response
       });
    }
    getMyCars(){
       this.dataApiService.getCarsById(this._butler.userd).subscribe(response => {
+        this.ngxService.stop("loader-01");
       this.cars$ = response
       });
    }
@@ -37,9 +43,11 @@ export class CarslistComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this._butler.type=='admin'){  
+      this.ngxService.start("loader-01");
       this.getCars();
     }
     if (this._butler.type=='member'){  
+      this.ngxService.start("loader-01");
       this.getMyCars();
     }
     // Show chat-content when clicking on chat-item for tablet and mobile devices

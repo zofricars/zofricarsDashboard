@@ -11,6 +11,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { NgbDropdownModule, NgbTooltipModule, NgbNavModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { MembersComponent } from './members.component';
@@ -89,6 +90,8 @@ const routes: Routes = [
   declarations: [MemberlistComponent,MembersComponent, RequestComponent],
   imports: [
     CommonModule,
+
+  NgxUiLoaderModule,
     RouterModule.forChild(routes),
     FormsModule,
     FullCalendarModule, // import the FullCalendar module! will make the FullCalendar component available

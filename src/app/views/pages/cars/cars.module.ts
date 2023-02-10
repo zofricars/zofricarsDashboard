@@ -13,6 +13,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 import { CarsComponent } from './cars.component';
 import { CarslistComponent } from './list/carslist.component';
@@ -92,6 +93,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [CarslistComponent,NewcarComponent, CarsComponent],
   imports: [
+
+  NgxUiLoaderModule,
   FilePickerModule,
     CommonModule,
     RouterModule.forChild(routes),

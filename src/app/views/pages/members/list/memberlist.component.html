@@ -1,3 +1,5 @@
+<ngx-ui-loader [bgsColor]="'#101554'"[fgsColor]="'#101554'"></ngx-ui-loader>
+
 <div class="row chat-wrapper">
   <div class="col-md-12">
     <div class="card">
@@ -76,6 +78,7 @@
             </div>
             <div class="chat-body" [perfectScrollbar] [hidden]="!_butler.partsSelected">
               <div class="row">
+                <div [hidden]="partsSize!=0 " style="font-size: large;">Esta empresa aun no ha cargado autopartes</div>
                 <div class="col-md-4 grid-margin stretch-card" *ngFor='let part of parts$; let i = index' >
                   <div class="card">
                     <div class="card-body">
@@ -115,6 +118,8 @@
             </div>
             <div class="chat-body" [perfectScrollbar] [hidden]="_butler.partsSelected">
               <div class="row">
+
+                <div [hidden]="carsSize!=0 " style="font-size: large;">Esta empresa aun no ha cargado automóviles</div>
                 <div class="col-md-4 grid-margin stretch-card" *ngFor='let car of cars$; let i = index' >
                   <div class="card">
                     <div class="card-body">

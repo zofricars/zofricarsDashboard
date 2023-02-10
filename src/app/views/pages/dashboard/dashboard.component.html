@@ -7,7 +7,7 @@
 <div class="row"  [hidden]="_butler.type!='admin'">
   <div class="col-12 col-xl-12 stretch-card">
     <div class="row flex-grow-1">
-      <div class="col-md-3 grid-margin stretch-card">
+      <div class="col-md-3 grid-margin stretch-card"  [routerLink]="['/members/memberlist']" style="cursor: pointer;">
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-baseline">
@@ -427,7 +427,7 @@
           </div>
         </div>
         <div class="col-md-6 ">
-          <div class="card"  [routerLink]="['../cars/carslist']">
+          <div class="card"  [routerLink]="['../cars/carslist']" style="cursor:pointer;">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-baseline">
                 <h6 class="card-title mb-0">Autos</h6> <i class="feather icon-truck icon-lg text-muted" ngbTooltip="Automoviles"></i>

@@ -10,6 +10,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { NgbDropdownModule, NgbTooltipModule, NgbNavModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -92,6 +93,7 @@ const routes: Routes = [
   declarations: [PartslistComponent,NewpartComponent, PartsComponent],
   imports: [
   FilePickerModule,
+  NgxUiLoaderModule,
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
