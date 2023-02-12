@@ -11,12 +11,8 @@
     <h4 _ngcontent-iec-c96="" class="mb-3 mb-md-0"></h4>
   </div>
   <div _ngcontent-iec-c96="" class="d-flex align-items-center flex-wrap text-nowrap">
-    
-    
     <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']" [hidden]="_butler.type!='member'|| showDetail">
      <i class="feather icon-plus"></i>
-
-
       Agregar autoparte
     </button>
   </div>
@@ -33,9 +29,7 @@
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Precio</th>
-    
                 <th>Stock</th>
-                <!-- <th>Fecha</th> -->
               </tr>
             </thead>
             <tbody>
@@ -45,10 +39,8 @@
                 </td>
                 <td>{{product.name}}</td>
                 <td>{{product.description}}</td>
-
                 <td>{{product.price}}</td>
                 <td>{{product.stock}}</td>
-                <!-- <td>{{product.createdAt | date:'dd/MM/yyyy'}}</td> -->
               </tr>
             </tbody>
           </table>
@@ -57,11 +49,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
 
 <nav class="page-breadcrumb" [hidden]="!showDetail">
   <ol class="breadcrumb">
@@ -74,21 +61,10 @@
     <h4 _ngcontent-iec-c96="" class="mb-3 mb-md-0"></h4>
   </div>
   <div _ngcontent-iec-c96="" class="d-flex align-items-center  text-nowrap" [hidden]="editing" >
-    
-    
     <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" style="margin-right:10%;"(click)="setEditing()" [hidden]="_butler.type!='member'|| !showDetail || editing">
       <i class="feather icon-edit"></i>
- 
- 
        Editar
-     </button>
-    <!-- <button _ngcontent-iec-c96="" type="button" class="btn btn-danger btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']"style="margin-right:10%;" [hidden]="_butler.type!='member'|| !showDetail || editing">
-     <i class="feather icon-trash"></i>
-
-
-      Borrar
-    </button> -->
-
+    </button>
     <button [hidden]="_butler.type!='member'|| !showDetail || editing" [swal]="
     {title: '<strong>Borrar autoparte <u></u></strong>', icon: 'error',
     html: 'Confirma que desea eliminar este producto ?',
@@ -107,19 +83,13 @@
      class="btn btn-danger " style="margin-right:10%;">
     <i class="feather icon-trash"></i>Borrar
     </button>
-
     <button _ngcontent-iec-c96="" type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0"style="margin-right:10%;"  (click)="cancel()" [hidden]="_butler.type!='member'|| !showDetail || !editing ">
        Cancelar
      </button>
     <button _ngcontent-iec-c96="" type="button" (click)="save()" class="btn btn-success btn-icon-text mb-2 mb-md-0"  style="margin-right:10%;" [hidden]="_butler.type!='member'|| !showDetail || !editing">
      <i class="feather icon-check"></i>
-
-
       Guardar
     </button>
- 
-
-
   </div>
  
 </div>
@@ -136,67 +106,36 @@
             </div>
           </div>
           <div class="col-lg-7 chat-content">
-            <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()" [hidden]="editing">
+            <form class="forms-sample" [hidden]="editing">
               <div class="row">
                 <div class="col-md-12">
                   <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Nombre: </span> {{partToSee.name}}</label>
-                    <!--<input  type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
-                       <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
-                        <div *ngIf="f['name'].errors['required']">Campo requerido
-                        </div>
-                      </div> -->
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Nombre: </span> {{partToSee.name}}</label>                  
                   </div>   
                 </div>
                 <div class="col-md-12">
                   <div class="mb-3">
                     <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">COD: </span> {{partToSee.cod}}</label>
-                    <!-- <input type="text" class="form-control"  formControlName="cod" [ngClass]="{ 'is-invalid': submitted && f['cod'].errors }">
-                      <div *ngIf="submitted && f['cod'].errors" class="invalid-feedback">
-                        <div *ngIf="f['cod'].errors['required']">Campo requerido
-                        </div>
-                      </div> -->
                   </div>   
                 </div>
                 <div class="col-md-12">            
                   <div class="mb-3">
                     <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Categoria: </span> {{partToSee.category}}</label>
-                    <!-- <select id="district" class="form-control wide"[(ngModel)]="category" (ngModelChange)="setCategory(category)" [ngModelOptions]="{standalone: true}">
-                        <option *ngFor="let category of categories, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{category.name}}</span></option>
-                    </select> -->
                   </div>                  
                 </div>
-              </div>
-                        
+              </div>                        
               <div class="mb-3">
-                <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Descripcion: </span>{{partToSee.description}} </label>
-                <!-- <input type="text" class="form-control" > -->
-                <!-- <textarea class="form-control" placeholder="Comment" rows="3"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
-
-                <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
-                  <div *ngIf="f['description'].errors['required']">Campo requerido
-                  </div>
-                </div> -->
+                <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Descripcion: </span>{{partToSee.description}} </label>               
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="mb-3">
                     <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Marca: </span>{{partToSee.brand}}</label>
-                    <!-- <input type="text" class="form-control" formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f['brand'].errors }">
-                      <div *ngIf="submitted && f['brand'].errors" class="invalid-feedback">
-                        <div *ngIf="f['brand'].errors['required']">Campo requerido
-                        </div>
-                      </div> -->
                   </div>   
                 </div>
                 <div class="col-md-12">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Modelo: </span> {{partToSee.model}}</label>
-                    <!-- <input type="text" class="form-control"  formControlName="model" [ngClass]="{ 'is-invalid': submitted && f['model'].errors }">
-                      <div *ngIf="submitted && f['model'].errors" class="invalid-feedback">
-                        <div *ngIf="f['model'].errors['required']">Campo requerido
-                        </div>
-                      </div> -->
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Modelo: </span> {{partToSee.model}}</label>00                   
                   </div>                  
                 </div>
               </div>
@@ -204,29 +143,16 @@
                 <div class="col-md-12">             
                   <div class="mb-3">
                     <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Precio: </span> {{partToSee.price}}</label>
-                    <!-- <input type="number" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }">
-                      <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
-                        <div *ngIf="f['price'].errors['required']">Campo requerido
-                        </div>
-                      </div> -->
                   </div>
                 </div>
                 <div class="col-md-12">             
                   <div class="mb-3">
                     <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Existencia (Nivel de stock): </span> {{partToSee.stock}}</label>
-                    <!-- <input type="number" class="form-control" formControlName="stock" [ngClass]="{ 'is-invalid': submitted && f['stock'].errors }">
-                      <div *ngIf="submitted && f['stock'].errors" class="invalid-feedback">
-                        <div *ngIf="f['stock'].errors['required']">Campo requerido
-                        </div>
-                      </div> -->
                   </div>
                 </div>
-              </div>  
-              <div style="text-align:right;" [hidden]="!_butler.newPartImage">
-                <button  class="btn btn-primary me-2 mb-2 mb-md-0"type="submit" style="cursor: pointer;">Aceptar</button>
-              </div>
-             
+              </div>              
             </form>
+
             <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()" [hidden]="!editing">
               <div class="row">
                 <div class="col-md-6">
@@ -258,12 +184,9 @@
                   </div>                  
                 </div>
               </div>
-                        
               <div class="mb-3">
                 <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Descripcion: </span> </label>
-                <!-- <input type="text" class="form-control" > -->
                 <textarea class="form-control" placeholder="Comment" rows="3"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
-
                 <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
                   <div *ngIf="f['description'].errors['required']">Campo requerido
                   </div>
@@ -316,7 +239,6 @@
               <div style="text-align:right;" [hidden]="!_butler.newPartImage">
                 <button  class="btn btn-primary me-2 mb-2 mb-md-0"type="submit" style="cursor: pointer;">Aceptar</button>
               </div>
-             
             </form>
             
           </div>         

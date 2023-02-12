@@ -3,12 +3,10 @@ import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
 import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from  '@angular/common/http';
-
 import { DemoFilePickerAdapter } from  './file-picker.adapter';
 import {CATEGORIES} from '@services/categories.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import{NgxUiLoaderService} from 'ngx-ui-loader';
-
 import Swal from 'sweetalert2'
 
 @Component({
@@ -31,7 +29,6 @@ export class PartslistComponent implements OnInit, AfterViewInit {
   defaultNavActiveId = 1;
   submitted = false;
   form: FormGroup = new FormGroup({
-    // category: new FormControl(''),
     cod: new FormControl(''),
     brand: new FormControl(''),
     description: new FormControl(''),
@@ -55,6 +52,9 @@ export class PartslistComponent implements OnInit, AfterViewInit {
     public _butler:Butler,
     public dataApiService: DataApiService,
     ) { this.categories=CATEGORIES }
+
+
+    
     public savePart(){  
       this.dataApiService.savePart(this.newPart).subscribe(respose=>{
         this._butler.partImages=[];
@@ -68,14 +68,13 @@ export class PartslistComponent implements OnInit, AfterViewInit {
         }
       );
     }
-delete(){
-  console.log("sen envio a la tumba");
-}
-cancelDelete(){
-  console.log("arrugaste");
-}
-cancel(){
-
+    delete(){
+      console.log("sen envio a la tumba");
+    }
+    cancelDelete(){
+      console.log("arrugaste");
+    }
+    cancel(){
       this.editing=false;
     }
     setEditing(){
@@ -113,14 +112,12 @@ cancel(){
       this.form = this.formBuilder.group(
         {        
           brand: [part.brand, Validators.required],
-          // category: ['', Validators.required],
           cod: [part.cod, Validators.required],
           description: [part.description, Validators.required],
           model: [part.model, Validators.required],
           name: [part.name, Validators.required],
           price: [part.price, Validators.required],
-          stock: [part.stock, Validators.required],
-          // carType: ['', Validators.required],
+          stock: [part.stock, Validators.required]
         }    
       );
     }
@@ -142,7 +139,6 @@ cancel(){
     console.log("id to update:" +id);
     this.dataApiService.partUpdate(this.toUpdate,id).subscribe(response=>{
         this.ngxService.stop("loader-01");
-
         this.editing=false;
         this.showDetail=false;
         this.getMyParts();
@@ -172,16 +168,12 @@ cancel(){
   }
 
   ngAfterViewInit(): void {
-   
-
     if (this._butler.type=='admin'){  
-
-    this.ngxService.start("loader-01");
+      this.ngxService.start("loader-01");
       this.getParts();
     }
     if (this._butler.type=='member'){  
-
-    this.ngxService.start("loader-01");
+      this.ngxService.start("loader-01");
       this.getMyParts();
     }
     // Show chat-content when clicking on chat-item for tablet and mobile devices
@@ -190,14 +182,10 @@ cancel(){
         document.querySelector('.chat-content')!.classList.toggle('show');
       })
     });
-
   }
 
   // back to chat-list for tablet and mobile devices
   backToChatList() {
     document.querySelector('.chat-content')!.classList.toggle('show');
   }
-
-
-
 }

@@ -75,6 +75,13 @@ export class DataApiService {
 	}
 
 
+	carUpdate(car :CarInterface, id: string){
+		// let token = this.authService.getToken();
+		const url_api=`https://db.buckapi.us:9001/api/cars/${id}`;
+		return this.http
+		.put<CarInterface>(url_api, car)
+		.pipe(map(data => data));
+	}
 	partUpdate(part :PartInterface, id: string){
 		// let token = this.authService.getToken();
 		const url_api=`https://db.buckapi.us:9001/api/products/${id}`;

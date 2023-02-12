@@ -92,8 +92,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [PartslistComponent,NewpartComponent, PartsComponent],
   imports: [
-  FilePickerModule,
-  NgxUiLoaderModule,
+    FilePickerModule,
+    NgxUiLoaderModule,
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
@@ -106,7 +106,7 @@ const routes: Routes = [
     NgbCollapseModule,
     NgSelectModule,
     QuillModule.forRoot(), // ngx-quill
-     SweetAlert2Module.forRoot(),
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     {

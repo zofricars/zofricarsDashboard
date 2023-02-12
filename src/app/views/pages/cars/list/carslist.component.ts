@@ -1,7 +1,13 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
+import { Router,ActivatedRoute } from '@angular/router';
+import { HttpClient } from  '@angular/common/http';
+import { DemoFilePickerAdapter } from  './file-picker.adapter';
+import {VEHICLES} from '@services/vehicles.service';
+import { AbstractControl, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import{NgxUiLoaderService} from 'ngx-ui-loader';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-carslist',
   templateUrl: './carslist.component.html',
@@ -10,35 +16,153 @@ import{NgxUiLoaderService} from 'ngx-ui-loader';
 export class CarslistComponent implements OnInit, AfterViewInit {
   cards$:any=[];
   cars$:any=[];
-  defaultNavActiveId = 1;
+  editing=false;
+  defaultNavActiveId = 1;  
+  public carToSee:any={};
+ vehicleBackup:any;
+ images:any;
+ showDetail=false;
+  returnUrl: any;
+  vehiclePreview:any=[];
+  vehicles: any;
+  fuelTypes:any=[
+    {name:"Bencina",idFuelType:"0001"},
+    {name:"Diesel",idFuelType:"0002"}
+    ];  
+  transmisionTypes:any=[
+    {name:"Manual",idTransmisionType:"0001"},
+    {name:"Automatica",idTransmisionType:"0002"}
+    ];  
+  vehicleStatusArray:any=[
+    {name:"Nuevo",vehicleStatus:"0001"},
+    {name:"Usado",vehicleStatus:"0002"}
+    ];
+   carType="Seleccione una!";
+   fuelType="Seleccione una!";
+   transmision="Seleccione una!";
+   vehicleStatus="Seleccione una!";
 
+  form: FormGroup = new FormGroup({
+    brand: new FormControl(''),
+    carType: new FormControl(''),
+    cod: new FormControl(''),
+    description: new FormControl(''),
+    displacement: new FormControl(''),
+    fuelType: new FormControl(''),
+    mileage: new FormControl(''),
+    name: new FormControl(''),
+    vehicleStatus: new FormControl(''),
+    model: new FormControl(''),
+    price: new FormControl(''),
+    transmision: new FormControl(''),
+    year: new FormControl(''),
+  });
 
+  submitted = false;
+  public isError = false;
+  public user:any={};
+  public newCar:any={};
+
+  carImages:any[]=[];
+
+  adapter = new  DemoFilePickerAdapter(this.http,this._butler);
   constructor(
-
+    private http: HttpClient,
+    private router: Router,
+    private formBuilder: FormBuilder,
     private ngxService: NgxUiLoaderService,
     public _butler:Butler,
     public dataApiService: DataApiService,
-    ) { }
-   getCards(){
-      this.dataApiService.getAllCards().subscribe(response => {
-        this.ngxService.stop("loader-01");
-      this.cards$ = response
-      });
-   }
-   getCars(){
-      this.dataApiService.getAllCars().subscribe(response => {
-        this.ngxService.stop("loader-01");
-      this.cars$ = response
-      });
-   }
-   getMyCars(){
+    ) {  this.vehicles=VEHICLES }
+   
+  get f(): { [key: string]: AbstractControl } {
+      return this.form.controls;
+    }
+    noShowDetail(){
+      this.showDetail=false;
+    }
+    setVehicle(selected:any){
+      this.vehiclePreview.carType=this.vehicles[selected];
+      console.log("selected: "+this.vehiclePreview.carType.name);
+    }
+    setFuelType(selected:any){
+      this.vehiclePreview.fuelType=this.fuelTypes[selected];
+      console.log("selected: "+this.vehiclePreview.fuelType.name);
+    }
+    setTransmisionType(selected:any){
+      this.vehiclePreview.transmision=this.transmisionTypes[selected];
+      console.log("selected: "+this.vehiclePreview.transmision.name);
+    }
+    setVehicleStatus(selected:any){
+      this.vehiclePreview.vehicleStatus=this.vehicleStatusArray[selected];
+      console.log("selected: "+this.vehiclePreview.vehicleStatus.name);
+    }
+    detail(car:any){
+      this.carToSee=car;
+      this.vehicleBackup=car.vehicle;
+      this.carToSee.carType=car.carType.name;
+      this.carToSee.vehicleStatus=car.vehicleStatus.name;
+      this.carToSee.fuelType=car.fuelType.name;
+      this.carToSee.transmision=car.transmision.name;
+      this.images=car.images;
+      this.showDetail=true;
+      this.form = this.formBuilder.group(
+        {        
+          brand: [car.brand, Validators.required],
+          name: [car.name, Validators.required],
+          description: [car.description, Validators.required],
+          price: [car.price, Validators.required],
+          year: [car.year, Validators.required],
+          displacement: [car.displacement, Validators.required]
+        }    
+      );
+    }
+    delete(){
+      console.log("sen envio a la tumba");
+    }
+    cancelDelete(){
+      console.log("arrugaste");
+    }
+    cancel(){
+      this.editing=false;
+    }
+    setEditing(){
+      this.editing=true;
+    }
+    public onSubmit(): void {
+      this.submitted = true;
+      if (this.form.invalid) {
+        return;
+      }
+      // this.carImages=this._butler.carImages; 
+      // this.newCar=this.form.value; 
+      // this.newCar.transmision=this.vehiclePreview.transmision;
+      // this.newCar.fuelType=this.vehiclePreview.fuelType;
+      // this.newCar.carType=this.vehiclePreview.carType;
+      // this.newCar.vehicleStatus=this.vehiclePreview.vehicleStatus;
+      // this.newCar.images=this.carImages;; 
+      // this.newCar.userId=this._butler.userd; 
+    }
+
+  getCards(){
+    this.dataApiService.getAllCards().subscribe(response => {
+      this.ngxService.stop("loader-01");
+    this.cards$ = response
+    });
+  }
+  getCars(){
+    this.dataApiService.getAllCars().subscribe(response => {
+      this.ngxService.stop("loader-01");
+    this.cars$ = response
+    });
+  }
+  getMyCars(){
       this.dataApiService.getCarsById(this._butler.userd).subscribe(response => {
         this.ngxService.stop("loader-01");
       this.cars$ = response
       });
-   }
-  ngOnInit(): void { 
-    
+  }
+  ngOnInit(): void {   
   }
 
   ngAfterViewInit(): void {
