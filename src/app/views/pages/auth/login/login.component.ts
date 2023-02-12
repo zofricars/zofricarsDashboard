@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit {
           data =>{
             this._butler.userActive=data;
             this._butler.userId=this._butler.userActive[0].id;
+            this._butler.infoProfile=this._butler.userActive[0];
             this._butler.type=this._butler.userActive[0].userType;
             this._butler.images=this._butler.userActive[0].images;
             this._butler.name=this._butler.userActive[0].name;

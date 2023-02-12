@@ -11,7 +11,7 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-              <tr>
+              <tr >
                 <th>Nombre o razon social</th>
                 <th>Email</th>
                 <th>Status</th>
@@ -21,10 +21,10 @@
             </thead>
             <tbody>
               <tr *ngFor='let card of cards$; let i = index'    [hidden]=" card.status!='pending'" >
-                <td>{{card.name}}</td>
-                <td>{{card.email}}</td>
-                <td>{{card.status}}</td>
-                <td>{{card.createdAt | date:'dd/MM/yyyy'}}</td>
+                <td ><span class="text-info" style="font-weight: bolder;">{{card.name}}</span></td>
+                <td ><span class="text-info" style="font-weight: bolder;">{{card.email}}</span></td>
+                <td ><span class="text-info" style="font-weight:bolder;">{{card.status}}</span></td>
+                <td ><span class="text-info" style="font-weight: bolder;">{{card.createdAt | date:'dd/MM/yyyy'}}</span></td>
                 <td>
                 <!--   <button type="button" class="btn btn-primary btn-icon btn-xs" style="margin-right:10%;" (click)="memberActivate(i)">
                     <i class="feather icon-check-square"></i>

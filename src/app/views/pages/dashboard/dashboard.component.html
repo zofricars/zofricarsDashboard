@@ -29,7 +29,7 @@
               <div class="col-6 col-md-12 col-xl-5">
                 <h3 class="mb-2">{{_butler.activatedMembersSize}}</h3>
                 <div class="d-flex align-items-baseline">
-                  <p class="text-success">
+                  <p class="text-info">
 
                     <span [routerLink]="['/members/request']" style="cursor:pointer;">+ {{_butler.newMembersSize}}</span>
                     <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
@@ -69,7 +69,7 @@
               <div class="col-6 col-md-12 col-xl-5">
                 <h3 class="mb-2">0</h3>
                 <div class="d-flex align-items-baseline">
-                  <p class="text-success">
+                  <p class="text-info">
                     <span>+ 0</span>
                     <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
                   </p>
@@ -108,7 +108,7 @@
               <div class="col-6 col-md-12 col-xl-5">
                 <h3 class="mb-2">{{_butler.partsSize}}</h3>
                 <div class="d-flex align-items-baseline">
-                  <!-- <p class="text-success">
+                  <!-- <p class="text-info">
                     <span>+ 28 </span>
                     <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
                   </p> -->
@@ -147,7 +147,7 @@
               <div class="col-6 col-md-12 col-xl-5">
                 <h3 class="mb-2">{{_butler.carsSize}}</h3>
                 <div class="d-flex align-items-baseline">
-                  <p class="text-success">
+                  <p class="text-info">
                     <span>+ 12</span>
                     <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
                   </p>
@@ -224,6 +224,7 @@
           </div>
         </div>
         <div class="d-flex flex-column">
+          <span [hidden]="!loading">Cargando ... </span>
           <a  (click)="false" class="d-flex align-items-center border-bottom pb-3" [hidden]="i>7"*ngFor='let product of products$; let i = index' [hidden]="i>10" >
            
            
@@ -267,7 +268,7 @@
               <div class="col-6 col-md-12 col-xl-5">
                 <h3 class="mb-2">350</h3>
                 <div class="d-flex align-items-baseline">
-                  <p class="text-success">
+                  <p class="text-info">
                     <span>+ 4</span>
                     <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
                   </p>
@@ -306,7 +307,7 @@
               <div class="col-6 col-md-12 col-xl-5">
                 <h3 class="mb-2">8987</h3>
                 <div class="d-flex align-items-baseline">
-                  <p class="text-success">
+                  <p class="text-info">
                     <span>+ 28 </span>
                     <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
                   </p>
@@ -345,7 +346,7 @@
               <div class="col-6 col-md-12 col-xl-5">
                 <h3 class="mb-2">600</h3>
                 <div class="d-flex align-items-baseline">
-                  <p class="text-success">
+                  <p class="text-info">
                     <span>+ 12</span>
                     <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
                   </p>

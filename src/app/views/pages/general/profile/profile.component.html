@@ -18,9 +18,9 @@
     </div>
   </div>
 </div>
-<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin" [hidden]="_butler.profileStatus!='complete'">
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin" [hidden]="_butler.profileStatus=='complete'">
   <div>
-    <h4 class="mb-3 mb-md-0">Bienvenido!</h4>
+    <h4 class="mb-3 mb-md-0">Bienvenido! a ZOFRICARS <span [hidden]="_butler.profileStatus=='complete'">, a continuación completaremos la información del perfil de su empresa</span></h4>
   </div>
 </div>
 <div class="row profile-body"  [hidden]="_butler.profileStatus!='complete'">

@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
     }, 100);  
   } 
   ngOnInit(): void {
-    this.infoProfile=this._butler.userActive[0];
+this.infoProfile=this._butler.infoProfile;
     this.getPartsById();
     this.getCarsById();
     /**
@@ -103,7 +103,7 @@ export class ProfileComponent implements OnInit {
     this.profile.name=this._butler.name;
     this.profile.userd=this._butler.userd;
     this.profile.email=this._butler.email;
-    this.profile.status="activated";
+    this.profile.status="pending";
     this.profile.userType="member";
     this.profile.profileStatus="complete";
     this.profile.images=this._butler.memberImages;

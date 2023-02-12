@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   products$:any=[];
   myProducts$:any=[];
   cards$:any=[];
+  loading:boolean=true;
 
  productsProv$:any=[];
   partsSize:number=0;
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit {
 
   // colors and font variables for apex chart 
   obj = {
-    primary        : "#101554",
+    primary        : "#66d1d1",
     secondary      : "#7987a1",
     success        : "#05a34a",
     info           : "#66d1d1",
@@ -62,6 +63,7 @@ export class DashboardComponent implements OnInit {
  getProducts(){
     this.products$=[];
     this.productsProv$=[];
+    
     setTimeout (() => {
       this.dataApiService.getAllProducts().subscribe(response => {
         this.products$ = response;
@@ -70,7 +72,8 @@ export class DashboardComponent implements OnInit {
           if(i<6){
             this.productsProv$.push(this.products$[i]);
           }
-        }
+        }      
+        this.loading=false;
         this.products$=[];
         this.products$=this.productsProv$;
       });
@@ -82,6 +85,7 @@ export class DashboardComponent implements OnInit {
   setTimeout (() => {
     this.dataApiService.getPartsById(this._butler.userd).subscribe(response => {
       this.myProducts$ = response;
+      this.loading=false;
       this.myPartsSize=this.myProducts$.length;
       });
     }, 1000);  
@@ -154,7 +158,7 @@ function getCustomerseChartOptions(obj: any) {
     colors: [obj.primary],
     xaxis: {
       type: 'datetime',
-      categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Jan 10 2022", "Jan 11 2022",],
     },
     stroke: {
       width: 2,
@@ -193,7 +197,7 @@ function getOrdersChartOptions(obj: any) {
     },
     xaxis: {
       type: 'datetime',
-      categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Jan 10 2022", "Jan 11 2022",],
     }
   }
 };
@@ -219,7 +223,7 @@ function getGrowthChartOptions(obj: any) {
     colors: [obj.primary],
     xaxis: {
       type: 'datetime',
-      categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Jan 10 2022", "Jan 11 2022",],
     },
     stroke: {
       width: 2,
@@ -418,7 +422,7 @@ function getRevenueChartOptions(obj: any) {
     xaxis: {
       type: "datetime",
       categories: [
-        "Jan 01 2022", "Jan 02 2022", "jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022", "Jan 12 2022", "Jan 13 2022", "Jan 14 2022", "Jan 15 2022", "Jan 16 2022", "Jan 17 2022", "Jan 18 2022", "Jan 19 2022", "Jan 20 2022","Jan 21 2022", "Jan 22 2022", "Jan 23 2022", "Jan 24 2022", "Jan 25 2022", "Jan 26 2022", "Jan 27 2022", "Jan 28 2022", "Jan 29 2022", "Jan 30 2022", "Jan 31 2022",
+        "Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Jan 10 2022", "Jan 11 2022", "Jan 12 2022", "Jan 13 2022", "Jan 14 2022", "Jan 15 2022", "Jan 16 2022", "Jan 17 2022", "Jan 18 2022", "Jan 19 2022", "Jan 20 2022","Jan 21 2022", "Jan 22 2022", "Jan 23 2022", "Jan 24 2022", "Jan 25 2022", "Jan 26 2022", "Jan 27 2022", "Jan 28 2022", "Jan 29 2022", "Jan 30 2022", "Jan 31 2022",
         "Feb 01 2022", "Feb 02 2022", "Feb 03 2022", "Feb 04 2022", "Feb 05 2022", "Feb 06 2022", "Feb 07 2022", "Feb 08 2022", "Feb 09 2022", "Feb 10 2022", "Feb 11 2022", "Feb 12 2022", "Feb 13 2022", "Feb 14 2022", "Feb 15 2022", "Feb 16 2022", "Feb 17 2022", "Feb 18 2022", "Feb 19 2022", "Feb 20 2022","Feb 21 2022", "Feb 22 2022", "Feb 23 2022", "Feb 24 2022", "Feb 25 2022", "Feb 26 2022", "Feb 27 2022", "Feb 28 2022",
         "Mar 01 2022", "Mar 02 2022", "Mar 03 2022", "Mar 04 2022", "Mar 05 2022", "Mar 06 2022", "Mar 07 2022", "Mar 08 2022", "Mar 09 2022", "Mar 10 2022", "Mar 11 2022", "Mar 12 2022", "Mar 13 2022", "Mar 14 2022", "Mar 15 2022", "Mar 16 2022", "Mar 17 2022", "Mar 18 2022", "Mar 19 2022", "Mar 20 2022","Mar 21 2022", "Mar 22 2022", "Mar 23 2022", "Mar 24 2022", "Mar 25 2022", "Mar 26 2022", "Mar 27 2022", "Mar 28 2022", "Mar 29 2022", "Mar 30 2022", "Mar 31 2022",
         "Apr 01 2022", "Apr 02 2022", "Apr 03 2022", "Apr 04 2022", "Apr 05 2022", "Apr 06 2022", "Apr 07 2022", "Apr 08 2022", "Apr 09 2022", "Apr 10 2022", "Apr 11 2022", "Apr 12 2022", "Apr 13 2022", "Apr 14 2022", "Apr 15 2022", "Apr 16 2022", "Apr 17 2022", "Apr 18 2022", "Apr 19 2022", "Apr 20 2022","Apr 21 2022", "Apr 22 2022", "Apr 23 2022", "Apr 24 2022", "Apr 25 2022", "Apr 26 2022", "Apr 27 2022", "Apr 28 2022", "Apr 29 2022", "Apr 30 2022",
@@ -478,8 +482,8 @@ function getRevenueChartOptions(obj: any) {
 function getMonthlySalesChartOptions(obj: any) {
   return {
     series: [{
-      name: 'Sales',
-      data: [152,109,93,113,126,161,188,143,102,113,116,124]
+      name: 'Visitas',
+      data: [30,10,20,0,0,0,0,0,0,0,0,0]
     }],
     chart: {
       type: 'bar',

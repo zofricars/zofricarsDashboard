@@ -34,6 +34,7 @@ export class Butler {
     bramch:any={};
     deal:any={};
     userActive:any={};
+    infoProfile:any={};
     totalProducts:number=0;
     imagePreviewProduct:string="";
     profileStatus:string="";
