@@ -73,6 +73,16 @@ export class DataApiService {
 		this.cierre = this.http.get(url_api);
 		return ( this.http.get(url_api));		
 	}
+
+
+	partUpdate(part :PartInterface, id: string){
+		// let token = this.authService.getToken();
+		const url_api=`https://db.buckapi.us:9001/api/products/${id}`;
+		return this.http
+		.put<PartInterface>(url_api, part)
+		.pipe(map(data => data));
+	}
+
 	memberUpdate(member :MemberInterface, id: string){
 		// let token = this.authService.getToken();
 		const url_api=`https://db.buckapi.us:9001/api/cards/${id}`;

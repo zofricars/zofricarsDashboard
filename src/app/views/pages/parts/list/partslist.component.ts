@@ -8,6 +8,9 @@ import { DemoFilePickerAdapter } from  './file-picker.adapter';
 import {CATEGORIES} from '@services/categories.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import{NgxUiLoaderService} from 'ngx-ui-loader';
+
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-partslist',
   templateUrl: './partslist.component.html',
@@ -20,6 +23,8 @@ export class PartslistComponent implements OnInit, AfterViewInit {
 
   public isError = false;
   categories: any;
+  toUpdate:any;
+  categoryBackup:any;
   products$:any=[];
   showDetail=false;
   editing=false;
@@ -101,7 +106,7 @@ cancel(){
     }
     detail(part:any){
       this.partToSee=part;
-
+      this.categoryBackup=part.category;
       this.partToSee.category=part.category.name;
       this.images=part.images;
       this.showDetail=true;
@@ -119,6 +124,32 @@ cancel(){
         }    
       );
     }
+  save(){
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    this.ngxService.start("loader-01");
+    this.toUpdate=this.form.value; 
+    this.toUpdate.images=this.partToSee.images;
+    if (this.category!="Seleccione una!"){
+      this.toUpdate.category=this.category;
+    }else{
+      this.toUpdate.category=this.categoryBackup;
+    }
+    this.toUpdate.userId=this.partToSee.userId;
+    let id =this.partToSee.id;
+    console.log("id to update:" +id);
+    this.dataApiService.partUpdate(this.toUpdate,id).subscribe(response=>{
+        this.ngxService.stop("loader-01");
+
+        this.editing=false;
+        this.showDetail=false;
+        this.getMyParts();
+        Swal.fire('Autoparte editada con exito!');
+        this.router.navigate(['parts/partslist']);
+      });
+  }
  getCards(){
     this.dataApiService.getAllCards().subscribe(response => {
     this.cards$ = response
@@ -132,7 +163,7 @@ cancel(){
  }
  getMyParts(){
     this.dataApiService.getPartsById(this._butler.userd).subscribe(response => {
-      this.ngxService.stop("loader-01");
+    this.ngxService.stop("loader-01");
     this.products$ = response
     });
  }
@@ -167,9 +198,6 @@ cancel(){
     document.querySelector('.chat-content')!.classList.toggle('show');
   }
 
-  save() {
-    console.log('passs');
-    
-  }
+
 
 }

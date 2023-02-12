@@ -94,7 +94,6 @@
     html: 'Confirma que desea eliminar este producto ?',
     showCloseButton: true,
     showCancelButton: true,
-
     cancelButtonColor: '#101554',
     confirmButtonColor: '#ff3366',
     focusConfirm: true,
@@ -104,19 +103,15 @@
     cancelButtonAriaLabel: 'Thumbs down'
     }"
     (confirm)="delete()"
-
     (dismiss)="cancelDelete()"
      class="btn btn-danger " style="margin-right:10%;">
     <i class="feather icon-trash"></i>Borrar
     </button>
 
     <button _ngcontent-iec-c96="" type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0"style="margin-right:10%;"  (click)="cancel()" [hidden]="_butler.type!='member'|| !showDetail || !editing ">
-     
- 
- 
        Cancelar
      </button>
-    <button _ngcontent-iec-c96="" type="button" class="btn btn-success btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']" style="margin-right:10%;" [hidden]="_butler.type!='member'|| !showDetail || !editing">
+    <button _ngcontent-iec-c96="" type="button" (click)="save()" class="btn btn-success btn-icon-text mb-2 mb-md-0"  style="margin-right:10%;" [hidden]="_butler.type!='member'|| !showDetail || !editing">
      <i class="feather icon-check"></i>
 
 
@@ -256,7 +251,7 @@
                 </div>
                 <div class="col-md-3">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Categoria: </span> </label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Categoria ({{partToSee.category}})</span> </label>
                     <select id="district" class="form-control wide"[(ngModel)]="category" (ngModelChange)="setCategory(category)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let category of categories, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{category.name}}</span></option>
                     </select>
