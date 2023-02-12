@@ -146,7 +146,7 @@ cancel(){
         this.editing=false;
         this.showDetail=false;
         this.getMyParts();
-        Swal.fire('Autoparte editada con exito!');
+        Swal.fire('Autoparte editada con éxito','presione Ok para continuar','success');
         this.router.navigate(['parts/partslist']);
       });
   }
