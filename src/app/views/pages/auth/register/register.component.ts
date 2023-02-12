@@ -83,6 +83,7 @@ export class RegisterComponent implements OnInit {
             this._butler.type='member';
             this._butler.isLogged=true;
             this._butler.profileStatus="pending";
+            this._butler.infoProfile.status="pending",
             this.router.navigate(['general/profile']);
           });
         }, 

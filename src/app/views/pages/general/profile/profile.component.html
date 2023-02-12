@@ -1,3 +1,13 @@
+<ngx-ui-loader 
+  [pbColor]="'#101554'"  
+  [bgsColor]="'#101554'"
+  [fgsColor]="'#101554'"
+  [text]="'Guardando...'"
+  [fgsSize]="15"
+  [fgsType]= "'cube-grid'"
+  [textColor]="'#101554'"
+  [overlayColor]="' rgba(255,255,255,0.8)'" >
+</ngx-ui-loader>
 <div class="row"  [hidden]="_butler.profileStatus!='complete'">
   <div class="col-12 grid-margin">
     <div class="card">
@@ -236,12 +246,12 @@
           <aw-wizard-step stepTitle="Finalizar">
             <div class="text-center">
               <i data-feather="check-circle" appFeatherIcon class="text-success mt-4 mb-2 icon-xxl"></i>
-              <h3 class="text-muted mb-3">Gracias !</h3>
-              <p class="w-75 mx-auto mb-4 text-muted">El perfil de la empresa ha sido completado, presione finalizar para guardar la informacion </p>
+              <h3 class="text-muted mb-3">Listo !</h3>
+              <p class="w-75 mx-auto mb-4 text-muted">El perfil de la empresa ha sido completado, presione "Guardar" para finalizar</p>
             </div>
             <div class="d-flex justify-content-center mt-2">
               <button class="btn btn-secondary me-2" type="button" awPreviousStep>Atras</button>
-              <button class="btn btn-success" type="button" (click)="finishFunction()">Terminar</button>
+              <button class="btn btn-success" type="button" (click)="finishFunction()">Guardar</button>
             </div>
           </aw-wizard-step>
 

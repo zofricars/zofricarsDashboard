@@ -27,7 +27,7 @@
         <li class="nav-item nav-category" *ngIf="item.isTitle">{{ item.label }}</li>
     
         <li class="nav-item" *ngIf="!item.isTitle" >
-    
+       
           <a class="nav-link" *ngIf="hasItems(item)" href="javascript:void(0);">
             <i class="link-icon" [attr.data-feather]="item.icon" appFeatherIcon *ngIf="item.icon"></i>
             <span class="link-title"> {{ item.label }}</span>
@@ -68,8 +68,22 @@
             </li>
           </ul>
         </li>
+        
+
+
       </ng-container>
-     
+      <li class="nav-item nav-category">Anuncios</li>
+      <li class="nav-item"  > 
+      
+        <a class="nav-link nav-link-ref" [routerLink]="" 
+        >
+        <i data-feather="alert-triangle" class="text-info" appFeatherIcon style="margin-left: -2%;"></i>
+        <span class="badge bg-info fw-bolder ms-auto text-dark">NUEVO: Promocionar anuncio
+        </span>
+      </a>
+      
+      
+      </li>
     </ul>
 
     <!--- Sidemenu end -->
@@ -81,20 +95,20 @@
     <a href="" class="settings-sidebar-toggler" (click)="toggleSettingsSidebar($event)">
       <i class="icon feather icon-settings"></i>
     </a>
-    <h6 class="text-muted mb-2">Sidebar:</h6>
+    <h6 class="text-muted mb-2">Barra de menú:</h6>
     <div class="mb-3 pb-3 border-bottom" >
       <div class="form-check form-check-inline">
         <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="sidebarThemeSettings" (change)="onSidebarThemeChange($event)" id="sidebarLight" value="sidebar-light" checked>
+          <input type="radio" class="form-check-input" name="sidebarThemeSettings" (change)="onSidebarThemeChange($event)" id="sidebarLight" value="sidebar-light" >
           <i class="input-frame"></i>
-          Light
+          Clara
         </label>
       </div>
       <div class="form-check form-check-inline">
         <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="sidebarThemeSettings" (change)="onSidebarThemeChange($event)" id="sidebarDark" value="sidebar-dark">
+          <input type="radio" class="form-check-input" name="sidebarThemeSettings" (change)="onSidebarThemeChange($event)" id="sidebarDark" value="sidebar-dark" checked>
           <i class="input-frame"></i>
-          Dark
+          Oscura
         </label>
       </div>
     </div>

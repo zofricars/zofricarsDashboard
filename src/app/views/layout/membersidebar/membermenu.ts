@@ -41,7 +41,8 @@ export const MENU: MenuItem[] = [
     {
     label: 'Ventas',
     isTitle: true
-  },
+  }, 
+  
   {
     label: 'Clientes',
     icon: 'award',
@@ -51,6 +52,15 @@ export const MENU: MenuItem[] = [
     label: 'Ordenes de compra',
     icon: 'shopping-cart',
     link: '/orders/orderlist',
-  },  
+  }, 
+  // {
+  //   label: 'Anuncios',
+  //   isTitle: true
+  // }, 
+  // {
+  //   label: 'Promocionar publicación',
+  //   icon: 'alert-triangle',
+  //   link: '/',
+  // }, 
  
 ];

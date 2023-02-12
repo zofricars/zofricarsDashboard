@@ -158,7 +158,7 @@ function getCustomerseChartOptions(obj: any) {
     colors: [obj.primary],
     xaxis: {
       type: 'datetime',
-      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Jan 10 2022", "Jan 11 2022",],
+      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Ene 10 2022", "Ene 11 2022",],
     },
     stroke: {
       width: 2,
@@ -197,7 +197,7 @@ function getOrdersChartOptions(obj: any) {
     },
     xaxis: {
       type: 'datetime',
-      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Jan 10 2022", "Jan 11 2022",],
+      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Ene 10 2022", "Ene 11 2022",],
     }
   }
 };
@@ -223,7 +223,7 @@ function getGrowthChartOptions(obj: any) {
     colors: [obj.primary],
     xaxis: {
       type: 'datetime',
-      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Jan 10 2022", "Jan 11 2022",],
+      categories: ["Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Ene 10 2022", "Ene 11 2022",],
     },
     stroke: {
       width: 2,
@@ -422,7 +422,7 @@ function getRevenueChartOptions(obj: any) {
     xaxis: {
       type: "datetime",
       categories: [
-        "Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Jan 10 2022", "Jan 11 2022", "Jan 12 2022", "Jan 13 2022", "Jan 14 2022", "Jan 15 2022", "Jan 16 2022", "Jan 17 2022", "Jan 18 2022", "Jan 19 2022", "Jan 20 2022","Jan 21 2022", "Jan 22 2022", "Jan 23 2022", "Jan 24 2022", "Jan 25 2022", "Jan 26 2022", "Jan 27 2022", "Jan 28 2022", "Jan 29 2022", "Jan 30 2022", "Jan 31 2022",
+        "Ene 01 2022", "Ene 02 2022", "Ene 03 2022", "Ene 04 2022", "Ene 05 2022", "Ene 06 2022", "Ene 07 2022", "Ene 08 2022", "Ene 09 2022", "Ene 10 2022", "Ene 11 2022", "Ene 12 2022", "Ene 13 2022", "Ene 14 2022", "Ene 15 2022", "Ene 16 2022", "Ene 17 2022", "Ene 18 2022", "Ene 19 2022", "Ene 20 2022","Ene 21 2022", "Ene 22 2022", "Ene 23 2022", "Ene 24 2022", "Ene 25 2022", "Ene 26 2022", "Ene 27 2022", "Ene 28 2022", "Ene 29 2022", "Jan 30 2022", "Jan 31 2022",
         "Feb 01 2022", "Feb 02 2022", "Feb 03 2022", "Feb 04 2022", "Feb 05 2022", "Feb 06 2022", "Feb 07 2022", "Feb 08 2022", "Feb 09 2022", "Feb 10 2022", "Feb 11 2022", "Feb 12 2022", "Feb 13 2022", "Feb 14 2022", "Feb 15 2022", "Feb 16 2022", "Feb 17 2022", "Feb 18 2022", "Feb 19 2022", "Feb 20 2022","Feb 21 2022", "Feb 22 2022", "Feb 23 2022", "Feb 24 2022", "Feb 25 2022", "Feb 26 2022", "Feb 27 2022", "Feb 28 2022",
         "Mar 01 2022", "Mar 02 2022", "Mar 03 2022", "Mar 04 2022", "Mar 05 2022", "Mar 06 2022", "Mar 07 2022", "Mar 08 2022", "Mar 09 2022", "Mar 10 2022", "Mar 11 2022", "Mar 12 2022", "Mar 13 2022", "Mar 14 2022", "Mar 15 2022", "Mar 16 2022", "Mar 17 2022", "Mar 18 2022", "Mar 19 2022", "Mar 20 2022","Mar 21 2022", "Mar 22 2022", "Mar 23 2022", "Mar 24 2022", "Mar 25 2022", "Mar 26 2022", "Mar 27 2022", "Mar 28 2022", "Mar 29 2022", "Mar 30 2022", "Mar 31 2022",
         "Apr 01 2022", "Apr 02 2022", "Apr 03 2022", "Apr 04 2022", "Apr 05 2022", "Apr 06 2022", "Apr 07 2022", "Apr 08 2022", "Apr 09 2022", "Apr 10 2022", "Apr 11 2022", "Apr 12 2022", "Apr 13 2022", "Apr 14 2022", "Apr 15 2022", "Apr 16 2022", "Apr 17 2022", "Apr 18 2022", "Apr 19 2022", "Apr 20 2022","Apr 21 2022", "Apr 22 2022", "Apr 23 2022", "Apr 24 2022", "Apr 25 2022", "Apr 26 2022", "Apr 27 2022", "Apr 28 2022", "Apr 29 2022", "Apr 30 2022",
@@ -481,11 +481,21 @@ function getRevenueChartOptions(obj: any) {
  */
 function getMonthlySalesChartOptions(obj: any) {
   return {
+
+
     series: [{
       name: 'Visitas',
-      data: [30,10,20,0,0,0,0,0,0,0,0,0]
+      data: [30,10,0,0,0,0,0,0,0,0,0,0]
     }],
     chart: {
+      defaultLocale: 'es',
+      locales: [{
+        name: 'es',
+        options: {
+          months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Augosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+          shortMonths: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],    
+        }
+      }],
       type: 'bar',
       height: '318',
       parentHeightOffset: 0,
@@ -512,7 +522,7 @@ function getMonthlySalesChartOptions(obj: any) {
     },
     xaxis: {
       type: 'datetime',
-      categories: ['01/01/2022','02/01/2022','03/01/2022','04/01/2022','05/01/2022','06/01/2022','07/01/2022', '08/01/2022','09/01/2022','10/01/2022', '11/01/2022', '12/01/2022'],
+      categories: ['Jan 01 2023','02/01/2023','03/01/2023','04/01/2023','05/01/2023','06/01/2023','07/01/2023', '08/01/2023','09/01/2023','10/01/2023', '11/01/2023', '12/01/2023'],
       axisBorder: {
         color: obj.gridBorder,
       },

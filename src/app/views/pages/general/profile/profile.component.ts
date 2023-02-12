@@ -9,6 +9,7 @@ import { HttpClient } from  '@angular/common/http';
 import { DemoFilePickerAdapter } from  './file-picker.adapter';
 import { WizardComponent as BaseWizardComponent } from 'angular-archwizard';
 
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -108,11 +109,16 @@ this.infoProfile=this._butler.infoProfile;
     this.profile.profileStatus="complete";
     this.profile.images=this._butler.memberImages;
     console.log(this._butler.userId);
+
+    this.ngxService.start("loader-01");
     this.dataApiService.memberUpdate(this.profile,this._butler.userId)
     .subscribe(response=>{
+      this.ngxService.stop("loader-01");
         this._butler.memberImages=[];
         this._butler.profileStatus="complete";
         this.ngxService.stop("loader-01");
+
+        Swal.fire('Perfil actualizado con éxito','presione Ok para continuar','success');
         this.router.navigate(['dashboard']);
     });
 
