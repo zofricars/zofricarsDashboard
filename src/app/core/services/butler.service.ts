@@ -25,6 +25,7 @@ export class Butler {
     init:number=1;
     end:number=12;
     numProd:number=0;
+    uploadProgress:number=0;
     totalRequest:number=0;
     totalNotifications:number=0;
     subTotalGral:number=0;

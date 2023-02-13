@@ -9,13 +9,34 @@ import { HttpClient } from  '@angular/common/http';
 import { DemoFilePickerAdapter } from  './file-picker.adapter';
 import { WizardComponent as BaseWizardComponent } from 'angular-archwizard';
 
+import { UploaderCaptions } from 'ngx-awesome-uploader';
 import Swal from 'sweetalert2'
+import * as $ from 'jquery';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  public captions: UploaderCaptions = {
+    dropzone: {
+      title: 'Logo de la empresa',
+      or: '',
+      browse: 'Cargar logo',
+    },
+    cropper: {
+      crop: 'Cortar',
+      cancel: 'Cancelar',
+    },
+    previewCard: {
+      remove: 'borrar',
+      uploadError: 'error',
+    },
+  };
+  public cropperOptions = {
+    minContainerWidth: '300',
+    minContainerHeight: '300',
+  };
   returnUrl: any;
   profile:any={};
 
@@ -69,6 +90,9 @@ export class ProfileComponent implements OnInit {
     }, 100);  
   } 
   ngOnInit(): void {
+    if(this._butler.type=='member'&&this._butler.infoProfile.status=='pending'){
+      $('body').removeClass('sidebar-dark');
+    }
 this.infoProfile=this._butler.infoProfile;
     this.getPartsById();
     this.getCarsById();

@@ -149,7 +149,11 @@
 
 <div class="row">
   <div class="col-md-4 grid-margin" [hidden]="_butler.profileStatus=='complete' ">
-    <ngx-awesome-uploader [adapter]="adapter" [enableCropper]="true"
+    <ngx-awesome-uploader 
+    [adapter]="adapter"
+    [enableCropper]="true"
+    [captions]="captions"    
+    [cropperOptions]="cropperOptions"
     >
     </ngx-awesome-uploader>
   </div>

@@ -9,13 +9,32 @@ import { HttpClient } from  '@angular/common/http';
 import { DemoFilePickerAdapter } from  './file-picker.adapter';
 import {VEHICLES} from '@services/vehicles.service';
 
-
+import { UploaderCaptions } from 'ngx-awesome-uploader';
 @Component({
   selector: 'app-newcar',
   templateUrl: './newcar.component.html',
   styleUrls: ['./newcar.component.scss']
 })
 export class NewcarComponent implements OnInit, AfterViewInit {
+  public captions: UploaderCaptions = {
+    dropzone: {
+      title: 'Imágenes del vehículo',
+      or: 'ó',
+      browse: 'Buscar',
+    },
+    cropper: {
+      crop: 'Cortar',
+      cancel: 'Cancelar',
+    },
+    previewCard: {
+      remove: 'Sil',
+      uploadError: 'Fayl yüklənmədi',
+    },
+  };
+  public cropperOptions = {
+    minContainerWidth: '300',
+    minContainerHeight: '300',
+  };
   returnUrl: any;
   vehiclePreview:any=[];
   vehicles: any;

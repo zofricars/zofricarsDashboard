@@ -8,13 +8,32 @@ import{NgxUiLoaderService} from 'ngx-ui-loader';
 import { HttpClient } from  '@angular/common/http';
 import { DemoFilePickerAdapter } from  './file-picker.adapter';
 import {CATEGORIES} from '@services/categories.service';
-
+import { UploaderCaptions } from 'ngx-awesome-uploader';
 @Component({
   selector: 'app-newpart',
   templateUrl: './newpart.component.html',
   styleUrls: ['./newpart.component.scss']
 })
 export class NewpartComponent implements OnInit, AfterViewInit {
+  public captions: UploaderCaptions = {
+    dropzone: {
+      title: 'Imágenes del producto',
+      or: 'ó',
+      browse: 'Buscar',
+    },
+    cropper: {
+      crop: 'Cortar',
+      cancel: 'Cancelar',
+    },
+    previewCard: {
+      remove: 'Sil',
+      uploadError: 'Fayl yüklənmədi',
+    },
+  };
+  public cropperOptions = {
+    minContainerWidth: '300',
+    minContainerHeight: '300',
+  };
   returnUrl: any;
   categories: any;
    category="Seleccione una!";
