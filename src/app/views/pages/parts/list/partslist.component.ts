@@ -136,7 +136,7 @@ export class PartslistComponent implements OnInit, AfterViewInit {
     }
     this.toUpdate.userId=this.partToSee.userId;
     let id =this.partToSee.id;
-    console.log("id to update:" +id);
+    // console.log("id to update:" +id);
     this.dataApiService.partUpdate(this.toUpdate,id).subscribe(response=>{
         this.ngxService.stop("loader-01");
         this.editing=false;

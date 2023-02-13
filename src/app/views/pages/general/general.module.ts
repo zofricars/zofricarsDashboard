@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilePickerModule } from  'ngx-awesome-uploader';
 import { ArchwizardModule } from 'angular-archwizard';
 import { NgxUiLoaderModule } from "ngx-ui-loader";
+
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 const routes: Routes = [
   {
     path: '',
@@ -66,7 +68,8 @@ const routes: Routes = [
     FilePickerModule,
     NgbTooltipModule,
      NgxUiLoaderModule,
-    ArchwizardModule
+    ArchwizardModule,
+    SweetAlert2Module.forRoot(),
   ]
 })
 export class GeneralModule { }

@@ -39,7 +39,9 @@ export class ProfileComponent implements OnInit {
   };
   returnUrl: any;
   profile:any={};
-
+  loadedOne:boolean=false;
+  editing:boolean=false;
+  loadedTwo:boolean=false;
   infoProfile:any={};
   submitted = false;
   public isError = false;
@@ -52,6 +54,13 @@ export class ProfileComponent implements OnInit {
   tittle2:string="Datos de administrador";
   adapter = new  DemoFilePickerAdapter(this.http,this._butler);
   validationForm1: UntypedFormGroup;
+  
+  editForm: FormGroup = new FormGroup({
+    direction: new FormControl(''),
+    phone: new FormControl(''),
+    instagram: new FormControl(''),
+    facebook: new FormControl(''),
+  });
   validationForm2: UntypedFormGroup;
 
   isForm1Submitted: Boolean;
@@ -72,19 +81,47 @@ export class ProfileComponent implements OnInit {
 
   }
   getPartsById(){
+    this.loadedOne=false;
     this._butler.myProducts$=null;
     setTimeout (() => {
       this.dataApiService.getPartsById(this._butler.userd).subscribe(response => {
         this._butler.myProducts$ = response;
+        this.loadedOne=true;
         this._butler.myPartsSize=this._butler.myProducts$.length;
       });
     }, 100);  
   }
+  get f(): { [key: string]: AbstractControl } {
+    return this.editForm.controls;
+  }
+edit(){
+  this.editing=true;
+  this.editForm = this.formBuilder.group({
+    direction : [this._butler.infoProfile.direction, Validators.required],
+    phone : [this._butler.infoProfile.phone, Validators.required],
+    facebook : [this._butler.infoProfile.facebook, ],
+    instagram : [this._butler.infoProfile.instagram, ]
+  });
+
+}
+delete(){
+  console.log("sen envio a la tumba");
+}
+cancelDelete(){
+  console.log("arrugaste");
+}
+cancel(){
+  this.editing=false;
+}
+save(){}
+
   getCarsById(){
+    this.loadedTwo=false;
     this._butler.myCars$=null;
     setTimeout (() => {
       this.dataApiService.getCarsById(this._butler.userd).subscribe(response => {
         this._butler.myCars$ = response;
+        this.loadedTwo=true;
         this._butler.myCarsSize=this._butler.myCars$.length;
       });
     }, 100);  
