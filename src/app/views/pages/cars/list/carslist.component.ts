@@ -17,6 +17,13 @@ export class CarslistComponent implements OnInit, AfterViewInit {
   cards$:any=[];
   cars$:any=[];
   editing=false;
+
+  toUpdate:any;
+  fuelTypeBackup:any;
+  carTypeBackup:any; 
+   transmisionBackup:any;
+  vehicleStatusBackup:any;
+
   defaultNavActiveId = 1;  
   public carToSee:any={};
  vehicleBackup:any;
@@ -99,7 +106,10 @@ export class CarslistComponent implements OnInit, AfterViewInit {
     }
     detail(car:any){
       this.carToSee=car;
-      this.vehicleBackup=car.vehicle;
+      this.vehicleStatusBackup=car.vehicleStatus;
+      this.carTypeBackup=car.carType;
+      this.fuelTypeBackup=car.fuelType;
+      this.transmisionBackup=car.transmision;
       this.carToSee.carType=car.carType.name;
       this.carToSee.vehicleStatus=car.vehicleStatus.name;
       this.carToSee.fuelType=car.fuelType.name;
@@ -185,12 +195,48 @@ export class CarslistComponent implements OnInit, AfterViewInit {
 
   // back to chat-list for tablet and mobile devices
   backToChatList() {
-    document.querySelector('.chat-content')!.classList.toggle('show');
+   document.querySelector('.chat-content')!.classList.toggle('show');
   }
 
-  save() {
-    console.log('passs');
-    
+  save(){
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    this.ngxService.start("loader-01");
+    this.toUpdate=this.form.value; 
+    this.toUpdate.images=this.carToSee.images;
+    if (this.fuelType!="Seleccione una!"){
+      this.toUpdate.fuelType=this.fuelType;
+    }else{
+      this.toUpdate.fuelType=this.fuelTypeBackup;
+    } 
+    if (this.carType!="Seleccione una!"){
+      this.toUpdate.carType=this.carType;
+    }else{
+      this.toUpdate.carType=this.carTypeBackup;
+    }
+    if (this.vehicleStatus!="Seleccione una!"){
+      this.toUpdate.vehicleStatus=this.vehicleStatus;
+    }else{
+      this.toUpdate.vehicleStatus=this.vehicleStatusBackup;
+    }
+    if (this.transmision!="Seleccione una!"){
+      this.toUpdate.transmision=this.transmision;
+    }else{
+      this.toUpdate.transmision=this.transmisionBackup;
+    }
+    this.toUpdate.userId=this.carToSee.userId;
+    let id =this.carToSee.id;
+    // console.log("id to update:" +id);
+    this.dataApiService.carUpdate(this.toUpdate,id).subscribe(response=>{
+        this.ngxService.stop("loader-01");
+        this.editing=false;
+        this.showDetail=false;
+        this.getMyCars();
+        Swal.fire('Vehículo editado con éxito','presione Ok para continuar','success');
+        this.router.navigate(['cars/carslist']);
+      });
   }
 
 }
