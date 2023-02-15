@@ -10,6 +10,8 @@ import{NgxUiLoaderService} from 'ngx-ui-loader';
 export class MemberlistComponent implements OnInit, AfterViewInit {
   idSelected:any;
   show:any=false;
+  editing:any=false;
+  showDetail:any=false;
   cards$:any=[];
   cardToSee:any={};
   parts$:any=[];
@@ -32,26 +34,30 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     this.cards$ = response
     });
   }
-  loadPartsById(card:any){
-    
+  showDetailChange(){
+    this.showDetail=!this.showDetail;
+    this._butler.partsSelected=false;
     this._butler.carsSelected=false;
-    this._butler.partsSelected=true;
-    this.parts$=[];
+  }
+  loadPartsById(card:any){
     this.idSelected=card.userd;
     let id=card.userd;
     this.cardToSee=card;
     this.cardToSee.image=card.images[0];
-
-    this.ngxService.start("loader-01");
-    this.dataApiService.getPartsById(id).subscribe(response =>{
-
-      this.ngxService.stop("loader-01");
-      this.parts$=response;
-
-      this.partsSize=this.parts$.length;
-    this.show=true;
-    });
+    if(!this.showDetail){
+      this._butler.carsSelected=false;
+      this._butler.partsSelected=true;
+      this.parts$=[];
+      this.ngxService.start("loader-01");
+      this.dataApiService.getPartsById(id).subscribe(response =>{
+        this.ngxService.stop("loader-01");
+        this.parts$=response;  
+        this.partsSize=this.parts$.length;
+        this.show=true;
+      });
+    }
   }
+  setEditing(){}
   loadCarsById(){
 //    this.cards$=[];
 
@@ -69,6 +75,8 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     this.getCards();
   }
   setCars(){
+
+    this.showDetail=false;
     this.parts$=[];
     this.cars$=[];
     this.loadCarsById();
@@ -76,7 +84,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     this._butler.carsSelected=true;
     this._butler.partsSelected=false;}
   setParts(){
-
+    this.showDetail=false;
     this.parts$=[];
     this.cars$=[];
     this.loadPartsById(this.cardToSee);

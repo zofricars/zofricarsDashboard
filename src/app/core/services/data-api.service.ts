@@ -1,9 +1,10 @@
-	import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders }  from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { Butler } from "@services/butler.service";
 
+import { AuthRESTService } from '@services/authREST.service';
 export interface PartInterface {
 
 }
@@ -36,11 +37,34 @@ export class DataApiService {
 	transactions:any;
   constructor(
   	public butler:Butler, 
+
+  	private AuthRESTService:AuthRESTService,
  	 private http: HttpClient
   	) {}
   	headers : HttpHeaders = new HttpHeaders({  		
 		  "Content-Type":"application/json"	
 	});
+	deletePart(id: string){
+		const token = this.AuthRESTService.getToken();
+		const url_api=`https://db.buckapi.us:9001/api/parts/${id}/?access_token$={token}`;
+		return this.http
+		.delete<PartInterface>(url_api, {headers: this.headers})
+		.pipe(map(data => data));
+	}
+	deleteCar(id: string){
+		const token = this.AuthRESTService.getToken();
+		const url_api=`https://db.buckapi.us:9001/api/cars/${id}/?access_token$={token}`;
+		return this.http
+		.delete<CarInterface>(url_api, {headers: this.headers})
+		.pipe(map(data => data));
+	}
+	deleteMember(id: string){
+		const token = this.AuthRESTService.getToken();
+		const url_api=`https://db.buckapi.us:9001/api/members/${id}/?access_token$={token}`;
+		return this.http
+		.delete<MemberInterface>(url_api, {headers: this.headers})
+		.pipe(map(data => data));
+	}
 	getTransationByBranch(branch: string){
 		const url_api = `https://db.buckapi.us:9001/api/transactions?filter[where][idBranch]=${branch}`;
 		this.transactions = this.http.get(url_api);
