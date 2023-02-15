@@ -34,10 +34,22 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     this.cards$ = response
     });
   }
-  showDetailChange(){
-    this.showDetail=!this.showDetail;
+  showDetailChange(){   
     this._butler.partsSelected=false;
     this._butler.carsSelected=false;
+    if(this.showDetail){
+      this._butler.carsSelected=false;
+      this._butler.partsSelected=true;
+      this.parts$=[];
+      this.ngxService.start("loader-01");
+      this.dataApiService.getPartsById(this.cardToSee.userd).subscribe(response =>{
+        this.ngxService.stop("loader-01");
+        this.parts$=response;  
+        this.partsSize=this.parts$.length;
+        this.show=true;
+      });
+    }
+    this.showDetail=!this.showDetail;
   }
   loadPartsById(card:any){
     this.idSelected=card.userd;
