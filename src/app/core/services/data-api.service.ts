@@ -113,6 +113,13 @@ export class DataApiService {
 		.put<PartInterface>(url_api, part)
 		.pipe(map(data => data));
 	}
+	cardUpdate(card :CardInterface, id: string){
+		// let token = this.authService.getToken();
+		const url_api=`https://db.buckapi.us:9001/api/cards/${id}`;
+		return this.http
+		.put<CardInterface>(url_api, card)
+		.pipe(map(data => data));
+	}
 
 	memberUpdate(member :MemberInterface, id: string){
 		// let token = this.authService.getToken();
