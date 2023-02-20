@@ -26,31 +26,23 @@
                 <td ><span class="text-info" style="font-weight:bolder;">{{card.status}}</span></td>
                 <td ><span class="text-info" style="font-weight: bolder;">{{card.createdAt | date:'dd/MM/yyyy'}}</span></td>
                 <td>
-                <!--   <button type="button" class="btn btn-primary btn-icon btn-xs" style="margin-right:10%;" (click)="memberActivate(i)">
-                    <i class="feather icon-check-square"></i>
-                  </button> -->
-
                 <button [swal]="
-                {title: '<strong>Solicitud de registro <u></u></strong>', icon: 'info',
-                html: 'Indique la accion a realizar para esta solicitud de registro ',
-                showCloseButton: true,
-                showCancelButton: true,
-                focusConfirm: false,
-                confirmButtonText:'<i class=\'feather icon-thumbs-up\'></i> Aprobar!',
-                confirmButtonAriaLabel: 'Thumbs up, great!',
-                cancelButtonText: '<i class=\'feather icon-thumbs-down\'> Denegar</i>',
-                cancelButtonAriaLabel: 'Thumbs down'
+                {
+                  title: '<strong>Solicitud de registro <u></u></strong>', icon: 'info',
+                  html: 'Indique la accion a realizar para esta solicitud de registro ',
+                  showCloseButton: true,
+                  showCancelButton: true,
+                  focusConfirm: false,
+                  confirmButtonText:'<i class=\'feather icon-thumbs-up\'></i> Aprobar!',
+                  confirmButtonAriaLabel: 'Thumbs up, great!',
+                  cancelButtonText: '<i class=\'feather icon-thumbs-down\'> Denegar</i>',
+                  cancelButtonAriaLabel: 'Thumbs down'
                 }"
-
- (confirm)="memberActivate(i)"
+                (confirm)="memberActivate(i)"
+                (dismiss)="refuse(i)"
                  class="btn btn-primary btn-xs" style="margin-right:10%;">
                 <i class="feather icon-check-square"></i>
                 </button>
-
-                 <!--  <button type="button" class="btn btn-danger btn-xs btn-icon">
-                    <i class="feather icon-x-square
-"></i>
-                  </button> -->
                 </td>
               </tr>
             </tbody>

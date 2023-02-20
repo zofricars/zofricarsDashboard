@@ -59,6 +59,12 @@ export class RequestComponent implements OnInit, AfterViewInit {
     document.querySelector('.chat-content')!.classList.toggle('show');
   }
 
+refuse(i:any){
+  this.memberToUpdate=this.cards$[i];
+  this.memberToUpdate.status="activated";
+  let id = this.memberToUpdate.id;
+  this.dataApiService.deleteMember(id).subscribe()
+}
   save() {
     console.log('passs');
     

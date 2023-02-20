@@ -128,7 +128,21 @@ export class CarslistComponent implements OnInit, AfterViewInit {
       );
     }
     delete(){
-      console.log("sen envio a la tumba");
+
+      this.ngxService.start("loader-01");
+      this.dataApiService.deleteCar(this.carToSee.id).subscribe(responde=>{
+        if (this._butler.type=='admin'){  
+          this.ngxService.start("loader-01");
+          this.getCars();
+        }
+        if (this._butler.type=='member'){  
+          this.ngxService.start("loader-01");
+          this.getMyCars();
+        }
+        this.editing=false;
+        this.showDetail=false;
+        this.ngxService.stop("loader-01");
+      });
     }
     cancelDelete(){
       console.log("arrugaste");

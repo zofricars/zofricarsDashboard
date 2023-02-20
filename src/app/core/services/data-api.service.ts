@@ -46,7 +46,7 @@ export class DataApiService {
 	});
 	deletePart(id: string){
 		const token = this.AuthRESTService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/parts/${id}/?access_token$={token}`;
+		const url_api=`https://db.buckapi.us:9001/api/products/${id}/?access_token$={token}`;
 		return this.http
 		.delete<PartInterface>(url_api, {headers: this.headers})
 		.pipe(map(data => data));
@@ -60,7 +60,7 @@ export class DataApiService {
 	}
 	deleteMember(id: string){
 		const token = this.AuthRESTService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/members/${id}/?access_token$={token}`;
+		const url_api=`https://db.buckapi.us:9001/api/cards/${id}/?access_token$={token}`;
 		return this.http
 		.delete<MemberInterface>(url_api, {headers: this.headers})
 		.pipe(map(data => data));

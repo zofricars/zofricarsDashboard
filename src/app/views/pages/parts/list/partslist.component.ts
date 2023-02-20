@@ -68,8 +68,20 @@ export class PartslistComponent implements OnInit, AfterViewInit {
         }
       );
     }
-    delete(){
-      console.log("sen envio a la tumba");
+    delete(){   this.ngxService.start("loader-01");
+    this.dataApiService.deletePart(this.partToSee.id).subscribe(responde=>{
+      if (this._butler.type=='admin'){  
+        this.ngxService.start("loader-01");
+        this.getParts();
+      }
+      if (this._butler.type=='member'){  
+        this.ngxService.start("loader-01");
+        this.getMyParts();
+      }
+      this.editing=false;
+      this.showDetail=false;
+      this.ngxService.stop("loader-01");
+    });
     }
     cancelDelete(){
       console.log("arrugaste");
