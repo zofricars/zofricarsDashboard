@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
@@ -9,7 +9,7 @@ import { DataApiService } from '@services/data-api.service';
   styleUrls: ['./dashboard.component.scss'],
   preserveWhitespaces: true
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit,AfterViewInit {
   products$:any=[];
   myProducts$:any=[];
   cards$:any=[];
@@ -100,20 +100,14 @@ export class DashboardComponent implements OnInit {
         if(this.cards$[i].status=='pending'){
           this.newMembersSize=this.newMembersSize+1;
         }
-        if(this.cards$[i].status=='activated'){
+        if(this.cards$[i].status=='activated' && this.cards$[i].userType=='member'){
           this.activatedMembersSize=this.activatedMembersSize+1;
         }
       }
     });
  }
   ngOnInit(): void {
-    if(this._butler.type=='admin'){      
-      this.getCards();
-      this.getProducts();
-    }
-    if(this._butler.type=='member'){      
-      this.getPartsById();
-    }
+
     this.currentDate = this.calendar.getToday();
     this.customersChartOptions = getCustomerseChartOptions(this.obj);
     this.ordersChartOptions = getOrdersChartOptions(this.obj);
@@ -125,7 +119,15 @@ export class DashboardComponent implements OnInit {
       this.addRtlOptions();
     }
   }
-
+  ngAfterViewInit(): void {
+    if(this._butler.type=='admin'){      
+      this.getCards();
+      this.getProducts();
+    }
+    if(this._butler.type=='member'){      
+      this.getPartsById();
+    }
+  }
 
   addRtlOptions() {
     // Revenue chart

@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
         if(this._butler.cards$[i].status=='pending'){
           this._butler.newMembersSize=this._butler.newMembersSize+1;
         }
-        if(this._butler.cards$[i].status=='activated'){
+        if(this._butler.cards$[i].status=='activated' && this._butler.cards$[i].userType=='member'){
           this._butler.activatedMembersSize=this._butler.activatedMembersSize+1;
         }
       }

@@ -23,15 +23,17 @@ cards$:any=[];
     let size =this.cards$.length;
     console.log("size" +size);
     this._butler.totalRequest=0;
+    this._butler.totalNotifications=0;
     for (let i = 0;i<size;i++){
       if(this.cards$[i].status=='pending')
         {
           this._butler.totalRequest=this._butler.totalRequest+1;
+          if(this._butler.totalRequest>0){
+            this._butler.totalNotifications=this._butler.totalNotifications+1;
+          }
         }
       }
-      if(this._butler.totalRequest>0){
-        this._butler.totalNotifications=this._butler.totalNotifications+1;
-      }
+     
     });
  }
   ngAfterViewInit(): void {

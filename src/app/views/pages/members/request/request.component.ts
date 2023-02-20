@@ -37,7 +37,11 @@ export class RequestComponent implements OnInit, AfterViewInit {
     this.memberToUpdate=this.cards$[i];
     this.memberToUpdate.status="activated";
     let id = this.memberToUpdate.id;
-    this.dataApiService.memberUpdate(this.memberToUpdate , id).subscribe()
+    this.dataApiService.memberUpdate(this.memberToUpdate , id).subscribe(response=>{
+
+    this._butler.totalNotifications=this._butler.totalNotifications-1;
+    this._butler.totalRequest=this._butler.totalRequest-1;
+    })
   }
   getCards(){
     this.dataApiService.getAllCards().subscribe(response => {
@@ -60,10 +64,14 @@ export class RequestComponent implements OnInit, AfterViewInit {
   }
 
 refuse(i:any){
+  
   this.memberToUpdate=this.cards$[i];
   this.memberToUpdate.status="activated";
   let id = this.memberToUpdate.id;
-  this.dataApiService.deleteMember(id).subscribe()
+  this.dataApiService.deleteMember(id).subscribe(response=>{
+    this._butler.totalNotifications=this._butler.totalNotifications-1;
+    this._butler.totalRequest=this._butler.totalRequest-1;
+  })
 }
   save() {
     console.log('passs');

@@ -28,10 +28,10 @@
             <div class="row">
               <div class="col-6 col-md-12 col-xl-5">
                 <h3 class="mb-2">{{_butler.activatedMembersSize}}</h3>
-                <div class="d-flex align-items-baseline">
-                  <p class="text-info">
+                <div class="d-flex align-items-baseline" [hidden]="_butler.newMembersSize==0">
+                  <p class="text-info"  [hidden]="_butler.newMembersSize==0">
 
-                    <span [routerLink]="['/members/request']" style="cursor:pointer; color: red;">+ {{_butler.newMembersSize}}</span>
+                    <span [routerLink]="['/members/request']" style="cursor:pointer; color: red;"  [hidden]="_butler.newMembersSize==0">+ {{_butler.newMembersSize}}</span>
                     <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1 text-danger"></i>
                   </p>
                 </div>

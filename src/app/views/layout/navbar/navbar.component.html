@@ -37,16 +37,16 @@
         </div>
       </li>
       <li class="nav-item nav-notifications" ngbDropdown [hidden]="_butler.totalNotifications<1 || _butler.type=='member'">
-        <a class="nav-link" ngbDropdownToggle id="notificationDropdown">
-          <i class="link-icon feather icon-bell"></i>
+        <a class="nav-link" ngbDropdownToggle id="notificationDropdown"   [hidden]="_butler.totalNotifications<1">
+          <i class="link-icon feather icon-bell" [hidden]="_butler.totalNotifications<1"></i>{{_butler.totalNotifications}}
           <div class="indicator">
             <div class="circle"></div>
           </div>
         </a>
         <div ngbDropdownMenu class="px-0" aria-labelledby="notificationDropdown">
           <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-            <p>1 Nueva notificacion</p>
-            <a href="" (click)="false" class="text-muted">Limpiar</a>
+            <!-- <p>1 Nueva notificacion</p> -->
+            <!-- <a href="" (click)="false" class="text-muted">Limpiar</a> -->
           </div>
           <div class="p-1">
             <a [routerLink]="['/members/request']" (click)="false" class="dropdown-item d-flex align-items-center py-2">
