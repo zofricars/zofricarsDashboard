@@ -6,12 +6,12 @@
   </ol>
 </nav>
 
-<div _ngcontent-iec-c96=""  [hidden]="showDetail" class="d-flex justify-content-between align-items-center flex-wrap grid-margin" [hidden]="_butler.type!='member'">
+<div _ngcontent-iec-c96=""  [hidden]="showDetail" class="d-flex justify-content-between align-items-center flex-wrap grid-margin" >
   <div _ngcontent-iec-c96="">
     <h4 _ngcontent-iec-c96="" class="mb-3 mb-md-0"></h4>
   </div>
   <div _ngcontent-iec-c96="" class="d-flex align-items-center flex-wrap text-nowrap">
-    <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']" [hidden]="_butler.type!='member'|| showDetail">
+    <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" [routerLink]="['/parts/newpart']" [hidden]=" showDetail">
      <i class="feather icon-plus"></i>
       Agregar autoparte
     </button>
@@ -56,16 +56,16 @@
     <li class="breadcrumb-item active" aria-current="page">Detalle de autoparte </li>
   </ol>
 </nav>
-<div _ngcontent-iec-c96=""  [hidden]="!showDetail" class="d-flex justify-content-between align-items-center flex-wrap grid-margin" [hidden]="_butler.type!='member'">
+<div _ngcontent-iec-c96=""  [hidden]="!showDetail" class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
   <div _ngcontent-iec-c96="">
     <h4 _ngcontent-iec-c96="" class="mb-3 mb-md-0"></h4>
   </div>
   <div _ngcontent-iec-c96="" class="d-flex align-items-center  text-nowrap" [hidden]="editing" >
-    <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" style="margin-right:10%;"(click)="setEditing()" [hidden]="_butler.type!='member'|| !showDetail || editing">
+    <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" style="margin-right:10%;"(click)="setEditing()" [hidden]=" !showDetail || editing">
       <i class="feather icon-edit"></i>
        Editar
     </button>
-    <button [hidden]="_butler.type!='member'|| !showDetail || editing" [swal]="
+    <button [hidden]=" !showDetail || editing" [swal]="
     {title: '<strong>Borrar autoparte <u></u></strong>', icon: 'error',
     html: 'Confirma que desea eliminar este producto ?',
     showCloseButton: true,
@@ -83,10 +83,10 @@
      class="btn btn-danger " style="margin-right:10%;">
     <i class="feather icon-trash"></i>Borrar
     </button>
-    <button _ngcontent-iec-c96="" type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0"style="margin-right:10%;"  (click)="cancel()" [hidden]="_butler.type!='member'|| !showDetail || !editing ">
+    <button _ngcontent-iec-c96="" type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0"style="margin-right:10%;"  (click)="cancel()" [hidden]=" !showDetail || !editing ">
        Cancelar
      </button>
-    <button _ngcontent-iec-c96="" type="button" (click)="save()" class="btn btn-info btn-icon-text mb-2 mb-md-0"  style="margin-right:10%;" [hidden]="_butler.type!='member'|| !showDetail || !editing">
+    <button _ngcontent-iec-c96="" type="button" (click)="save()" class="btn btn-info btn-icon-text mb-2 mb-md-0"  style="margin-right:10%;" [hidden]=" !showDetail || !editing">
      <i class="feather icon-check"></i>
       Guardar
     </button>

@@ -233,7 +233,17 @@ export class CarslistComponent implements OnInit, AfterViewInit {
         this.ngxService.stop("loader-01");
         this.editing=false;
         this.showDetail=false;
-        this.getMyCars();
+        if (this._butler.type=='admin'){  
+          this.ngxService.start("loader-01");
+          this.getCars();
+        }
+        if (this._butler.type=='member'){  
+          this.ngxService.start("loader-01");
+          this.getMyCars();
+        }
+
+
+        // this.getMyCars();
         Swal.fire('Vehículo editado con éxito','presione Ok para continuar','success');
         this.router.navigate(['cars/carslist']);
       });

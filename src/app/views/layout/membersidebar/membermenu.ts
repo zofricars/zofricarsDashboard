@@ -30,7 +30,7 @@ export const MENU: MenuItem[] = [
     link: '/parts/partslist',
   },
   {
-    label: 'Autos',
+    label: 'Vehículos',
     isTitle: true
   },
   {

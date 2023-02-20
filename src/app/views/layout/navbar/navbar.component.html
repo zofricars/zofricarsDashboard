@@ -20,16 +20,17 @@
         </a>
         <div ngbDropdownMenu class="px-0" aria-labelledby="appsDropdown">
           <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-            <p class="mb-0 fw-bold">Zofri Cars</p>
+            <p class="mb-0 fw-bold">ZOFRICARS</p>
             <!-- <a href="javascript:;" class="text-muted">Edit</a> -->
           </div>
           <div class="row g-0 p-1" [hidden]="this._butler.profileStatus!='complete'">
             <div class="col-6 text-center">
-              <a routerLink="/cars/carslist" class="dropdown-item d-flex flex-column align-items-center justify-content-center wd-70 ht-70"><i class="feather icon-truck icon-lg mb-1"></i><p class="tx-12">Autos</p></a>
-            </div>
-            <div class="col-6 text-center">
               <a routerLink="/parts/partslist" class="dropdown-item d-flex flex-column align-items-center justify-content-center wd-70 ht-70"><i class="feather icon-package icon-lg mb-1"></i><p class="tx-12">Autopartes</p></a>
             </div>
+            <div class="col-6 text-center">
+              <a routerLink="/cars/carslist" class="dropdown-item d-flex flex-column align-items-center justify-content-center wd-70 ht-70"><i class="feather icon-truck icon-lg mb-1"></i><p class="tx-12">Vehículos</p></a>
+            </div>
+           
           </div>
           <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
           </div>

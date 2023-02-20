@@ -60,18 +60,18 @@
                 </div>
                 <div class="d-flex align-items-center me-n1" >
                   <a [hidden]="!_butler.partsSelected">
-                    <i class="feather icon-package icon-lg text-muted me-0 me-sm-3" ngbTooltip="Automoviles" style="color:blue !important;"></i>
+                    <i class="feather icon-package icon-lg text-muted me-0 me-sm-3" ngbTooltip="Autopartes" style="color:blue !important;"></i>
                   </a>  
 
                   <a    [hidden]="_butler.partsSelected" (click)="setParts()">
-                    <i  class="feather icon-package icon-lg text-muted me-0 me-sm-3" ngbTooltip="Automoviles" style="color:grey !important;"></i>
+                    <i  class="feather icon-package icon-lg text-muted me-0 me-sm-3" ngbTooltip="Autopartes" style="color:grey !important;"></i>
                   </a> 
                   <a  [hidden]="!_butler.carsSelected" >
-                    <i class="feather icon-truck icon-lg text-muted me-0 me-sm-3" ngbTooltip="Autopartes" style="color:blue !important;"></i>
+                    <i class="feather icon-truck icon-lg text-muted me-0 me-sm-3" ngbTooltip="Vehículos" style="color:blue !important;"></i>
                   </a>
 
                   <a [hidden]="_butler.carsSelected"  (click)="setCars()">
-                    <i class="feather icon-truck icon-lg text-muted me-0 me-sm-3" ngbTooltip="Autopartes" style="color:grey !important;"></i>
+                    <i class="feather icon-truck icon-lg text-muted me-0 me-sm-3" ngbTooltip="Vehículos" style="color:grey !important;"></i>
                   </a>                
               
                 </div>
@@ -120,7 +120,7 @@
             <div class="chat-body" [perfectScrollbar] [hidden]="_butler.partsSelected || showDetail">
               <div class="row">
 
-                <div [hidden]="carsSize!=0 " style="font-size: large;">Esta empresa aun no ha cargado automóviles</div>
+                <div [hidden]="carsSize!=0 " style="font-size: large;">Esta empresa aun no ha cargado vehículos</div>
                 <div class="col-md-4 grid-margin stretch-card" *ngFor='let car of cars$; let i = index' >
                   <div class="card">
                     <div class="card-body">

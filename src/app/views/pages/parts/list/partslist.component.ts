@@ -141,7 +141,15 @@ export class PartslistComponent implements OnInit, AfterViewInit {
         this.ngxService.stop("loader-01");
         this.editing=false;
         this.showDetail=false;
-        this.getMyParts();
+        // this.getMyParts();
+        if (this._butler.type=='admin'){  
+          this.ngxService.start("loader-01");
+          this.getParts();
+        }
+        if (this._butler.type=='member'){  
+          this.ngxService.start("loader-01");
+          this.getMyParts();
+        }
         Swal.fire('Autoparte editada con éxito','presione Ok para continuar','success');
         this.router.navigate(['parts/partslist']);
       });
