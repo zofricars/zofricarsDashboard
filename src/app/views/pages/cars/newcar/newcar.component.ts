@@ -157,6 +157,7 @@ export class NewcarComponent implements OnInit, AfterViewInit {
         price: [0, Validators.required],
         year: [0, Validators.required],
         displacement: [0, Validators.required],
+        mileage: [0, Validators.required],
       }    
     );
     this.getCards();

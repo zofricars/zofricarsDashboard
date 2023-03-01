@@ -161,7 +161,7 @@
                <div class="row">
                  <div class="col-md-12">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de combustible: </span> {{carToSee.fuleType}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de combustible: </span> {{carToSee.fuelType}}</label>
                    
                   </div>                 
                 </div>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="col-md-12">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Cilindrada: </span> ?</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Cilindrada: </span> {{carToSee.displacement}}</label>
                   
                   </div>                  
                 </div>
@@ -182,7 +182,7 @@
               <div class="row">
                 <div class="col-md-12">             
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Kilometraje: </span> {{carToSee.displacement}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Kilometraje: </span> {{carToSee.mileage}}</label>
                  
                   </div>
                 </div>
@@ -210,7 +210,7 @@
                 </div>
                  <div class="col-md-4">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Estado del vehiculo </span>({{carToSee.vehicleStatus}}) </label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Estado del vehiculo </span><span style="color:blue;">({{carToSee.vehicleStatus}}) </span></label>
                     <select id="vehicleStatus" class="form-control wide"[(ngModel)]="vehicleStatus" (ngModelChange)="setVehicleStatus(vehicleStatus)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let vehicleStatus of vehicleStatusArray, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicleStatus.name}}</span></option>
                     </select>
@@ -240,7 +240,7 @@
                 </div>
                 <div class="col-md-4">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Modelo </span>({{carToSee.carType}})</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Modelo </span><span style="color:blue;">({{carToSee.carType}})</span></label>
                     <select id="carType" class="form-control wide"[(ngModel)]="carType" (ngModelChange)="setVehicle(carType)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let vehicle of vehicles, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicle.name}}</span></option>
                     </select>
@@ -260,7 +260,7 @@
                <div class="row">
                  <div class="col-md-4">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de combustibles </span>({{carToSee.fuelType}}) </label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de combustibles </span><span style="color:blue;">({{carToSee.fuelType}}) </span></label>
                     <select id="fuelType" class="form-control wide"[(ngModel)]="fuelType" (ngModelChange)="setFuelType(fuelType)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let type of fuelTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
                     </select>
@@ -268,7 +268,7 @@
                 </div>
                 <div class="col-md-4">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de transmisión  </span>({{carToSee.transmision}})</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de transmisión  </span><span style="color:blue;">({{carToSee.transmision}})</span></label>
                     <select id="transmision" class="form-control wide"[(ngModel)]="transmision" (ngModelChange)="setTransmisionType(transmision)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let type of transmisionTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
                     </select>
@@ -292,9 +292,9 @@
                     <label  class="form-label">
                       <span style="font-weight: bold; font-size: 20px;">Kilometraje: </span>
                     </label>
-                    <input type="number" class="form-control" formControlName="displacement" [ngClass]="{ 'is-invalid': submitted && f['displacement'].errors }">
-                    <div *ngIf="submitted && f['displacement'].errors" class="invalid-feedback">
-                      <div *ngIf="f['displacement'].errors['required']">Campo requerido
+                    <input type="number" class="form-control" formControlName="mileage" [ngClass]="{ 'is-invalid': submitted && f['mileage'].errors }">
+                    <div *ngIf="submitted && f['mileage'].errors" class="invalid-feedback">
+                      <div *ngIf="f['mileage'].errors['required']">Campo requerido
                       </div>
                     </div>
                   </div>

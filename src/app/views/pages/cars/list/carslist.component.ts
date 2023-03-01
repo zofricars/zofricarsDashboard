@@ -106,6 +106,7 @@ export class CarslistComponent implements OnInit, AfterViewInit {
     }
     detail(car:any){
       this.carToSee=car;
+      
       this.vehicleStatusBackup=car.vehicleStatus;
       this.carTypeBackup=car.carType;
       this.fuelTypeBackup=car.fuelType;
@@ -123,7 +124,8 @@ export class CarslistComponent implements OnInit, AfterViewInit {
           description: [car.description, Validators.required],
           price: [car.price, Validators.required],
           year: [car.year, Validators.required],
-          displacement: [car.displacement, Validators.required]
+          displacement: [car.displacement, Validators.required],
+          mileage: [car.mileage, Validators.required]
         }    
       );
     }
@@ -221,22 +223,22 @@ export class CarslistComponent implements OnInit, AfterViewInit {
     this.toUpdate=this.form.value; 
     this.toUpdate.images=this.carToSee.images;
     if (this.fuelType!="Seleccione una!"){
-      this.toUpdate.fuelType=this.fuelType;
+      this.toUpdate.fuelType=this.vehiclePreview.fuelType;
     }else{
       this.toUpdate.fuelType=this.fuelTypeBackup;
     } 
     if (this.carType!="Seleccione una!"){
-      this.toUpdate.carType=this.carType;
+      this.toUpdate.carType=this.vehiclePreview.carType;
     }else{
       this.toUpdate.carType=this.carTypeBackup;
     }
     if (this.vehicleStatus!="Seleccione una!"){
-      this.toUpdate.vehicleStatus=this.vehicleStatus;
+      this.toUpdate.vehicleStatus=this.vehiclePreview.vehicleStatus;
     }else{
       this.toUpdate.vehicleStatus=this.vehicleStatusBackup;
     }
     if (this.transmision!="Seleccione una!"){
-      this.toUpdate.transmision=this.transmision;
+      this.toUpdate.transmision=this.vehiclePreview.transmision;
     }else{
       this.toUpdate.transmision=this.transmisionBackup;
     }
