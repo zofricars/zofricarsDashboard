@@ -30,16 +30,24 @@ export const VEHICLES: Vehicle[] = [
     name:'microbus / bus',
     idVehicle:'ca000007'
   },  
+  {
+    name:'motos',
+    idVehicle:'ca000008'
+  },
+  {
+    name:'motorhome',
+    idVehicle:'ca000009'
+  },
    {
     name:'pickup',
-    idVehicle:'ca000008'
+    idVehicle:'ca000010'
   },  
    {
     name:'station wagon',
-    idVehicle:'ca000009'
+    idVehicle:'ca000011'
   },  
    {
     name:'SUV',  
-    idVehicle:'ca000010'
+    idVehicle:'ca000012'
   }
 ];
