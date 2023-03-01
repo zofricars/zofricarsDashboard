@@ -71,6 +71,11 @@ export class NewcarComponent implements OnInit, AfterViewInit {
     year: new FormControl(''),
   });
 
+  fuelSeted=false;
+  carTypeSeted=false;
+  transmisionSeted=false;
+  statusSeted=false;
+
   submitted = false;
   public isError = false;
   public user:any={};
@@ -98,18 +103,22 @@ export class NewcarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void { 
   }
   setVehicle(selected:any){
+    this.carTypeSeted=true;
     this.vehiclePreview.carType=this.vehicles[selected];
     console.log("selected: "+this.vehiclePreview.carType.name);
   }
   setFuelType(selected:any){
+    this.fuelSeted=true;
     this.vehiclePreview.fuelType=this.fuelTypes[selected];
     console.log("selected: "+this.vehiclePreview.fuelType.name);
   }
   setTransmisionType(selected:any){
+    this.transmisionSeted=true;
     this.vehiclePreview.transmision=this.transmisionTypes[selected];
     console.log("selected: "+this.vehiclePreview.transmision.name);
   }
   setVehicleStatus(selected:any){
+    this.statusSeted=true;
     this.vehiclePreview.vehicleStatus=this.vehicleStatusArray[selected];
     console.log("selected: "+this.vehiclePreview.vehicleStatus.name);
   }
@@ -148,6 +157,10 @@ export class NewcarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.vehiclePreview.transmision={name:"",idTransmisionType:""},
+    this.vehiclePreview.vehicleStatus={name:"",idVehicleStatusType:""},
+    this.vehiclePreview.fuelType={name:"",idFuelTypeType:""},
+    this.vehiclePreview.carType={name:"",idCarTypeType:""},
     this._butler.newCarImage=true;
     this.form = this.formBuilder.group(
       {        
