@@ -31,6 +31,14 @@
           <div class="col-lg-7 chat-content">
             <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()">
               <div class="row">
+                <div class="col-md-12" [hidden]="_butler.userType!='admin'">            
+                  <div class="mb-3">
+                    <label  class="form-label">Empresa <span style="color: rgb(255, 0, 0);" [hidden]="memberSeted">*</span></label>
+                    <select id="card" class="form-control wide"[(ngModel)]="card" (ngModelChange)="setMember(card)" [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let card of cards$, let i = index " [ngValue]="card" [hidden]="card.status!='activated' || card.userType!='member'"> <span   style="cursor:pointer;">{{card.name}}</span></option>
+                    </select>
+                  </div>                 
+                </div>
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="exampleInputUsername1" class="form-label">Nombre</label>
@@ -143,7 +151,7 @@
                 </div>
                
               </div>  
-              <div style="text-align:right;" [hidden]="!_butler.newCarImage || !carTypeSeted || !fuelSeted || !transmisionSeted || !statusSeted">
+              <div style="text-align:right;" [hidden]="!_butler.newCarImage || !carTypeSeted || !fuelSeted || !transmisionSeted || !statusSeted || (_butler.type=='admin' && !memberSeted)">
                 <button  class="btn btn-primary me-2 mb-2 mb-md-0"type="submit" style="cursor: pointer;">Aceptar</button>
               </div>
              

@@ -19,8 +19,8 @@ export class NewcarComponent implements OnInit, AfterViewInit {
   public captions: UploaderCaptions = {
     dropzone: {
       title: 'Imágenes del vehículo',
-      or: 'ó',
-      browse: 'Buscar',
+      or: '.',
+      browse: 'Cargar',
     },
     cropper: {
       crop: 'Cortar',
@@ -35,6 +35,7 @@ export class NewcarComponent implements OnInit, AfterViewInit {
     minContainerWidth: '300',
     minContainerHeight: '300',
   };
+  userd="";
   returnUrl: any;
   vehiclePreview:any=[];
   vehicles: any;
@@ -65,6 +66,7 @@ export class NewcarComponent implements OnInit, AfterViewInit {
     mileage: new FormControl(''),
     name: new FormControl(''),
     vehicleStatus: new FormControl(''),
+    // userd: new FormControl(''),
     model: new FormControl(''),
     price: new FormControl(''),
     transmision: new FormControl(''),
@@ -75,11 +77,14 @@ export class NewcarComponent implements OnInit, AfterViewInit {
   carTypeSeted=false;
   transmisionSeted=false;
   statusSeted=false;
+memberSeted=false;
 
   submitted = false;
   public isError = false;
   public user:any={};
   public newCar:any={};
+  
+  card:any;
   cards$:any=[];
   defaultNavActiveId = 1;
   carImages:any[]=[];
@@ -117,6 +122,12 @@ export class NewcarComponent implements OnInit, AfterViewInit {
     this.vehiclePreview.transmision=this.transmisionTypes[selected];
     console.log("selected: "+this.vehiclePreview.transmision.name);
   }
+  setMember(selected:any){
+    let userd =selected.userd;
+    console.log("userd: "+userd);
+  this.vehiclePreview.userId=userd;
+this.memberSeted=true;
+  }
   setVehicleStatus(selected:any){
     this.statusSeted=true;
     this.vehiclePreview.vehicleStatus=this.vehicleStatusArray[selected];
@@ -146,8 +157,14 @@ export class NewcarComponent implements OnInit, AfterViewInit {
     this.newCar.fuelType=this.vehiclePreview.fuelType;
     this.newCar.carType=this.vehiclePreview.carType;
     this.newCar.vehicleStatus=this.vehiclePreview.vehicleStatus;
-    this.newCar.images=this.carImages;; 
+    this.newCar.images=this.carImages;
+    if (this.memberSeted){
+      console.log("seteando desde if");
+      this.newCar.userId=this.vehiclePreview.userId;
+    }
+    else {  
     this.newCar.userId=this._butler.userd; 
+    }
     this.saveCar();
   }
   getCards(){
