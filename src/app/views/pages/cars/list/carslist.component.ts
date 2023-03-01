@@ -87,6 +87,14 @@ export class CarslistComponent implements OnInit, AfterViewInit {
     }
     noShowDetail(){
       this.showDetail=false;
+      if (this._butler.type=='admin'){  
+        this.ngxService.start("loader-01");
+        this.getCars();
+      }
+      if (this._butler.type=='member'){  
+        this.ngxService.start("loader-01");
+        this.getMyCars();
+      }
     }
     setVehicle(selected:any){
       this.vehiclePreview.carType=this.vehicles[selected];

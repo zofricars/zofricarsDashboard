@@ -31,7 +31,7 @@
           <div class="col-lg-7 chat-content">
             <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()">
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                   <div class="mb-3">
                     <label for="exampleInputUsername1" class="form-label">Nombre</label>
                     <input type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
@@ -41,7 +41,7 @@
                     </div>
                   </div>   
                 </div>
-                 <div class="col-md-4">            
+                 <div class="col-md-3">            
                   <div class="mb-3">
                     <label  class="form-label">Estado del vehiculo</label>
                     <select id="vehicleStatus" class="form-control wide"[(ngModel)]="vehicleStatus" (ngModelChange)="setVehicleStatus(vehicleStatus)" [ngModelOptions]="{standalone: true}">
@@ -49,11 +49,21 @@
                     </select>
                   </div>                 
                 </div>
+                <div class="col-md-3">             
+                  <div class="mb-3">
+                    <label  class="form-label">Kilometraje</label>
+                    <input type="number" class="form-control" formControlName="mileage" [ngClass]="{ 'is-invalid': submitted && f['mileage'].errors }">
+                    <div *ngIf="submitted && f['mileage'].errors" class="invalid-feedback">
+                      <div *ngIf="f['mileage'].errors['required']">Campo requerido
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
                         
               <div class="mb-3">
                 <label  class="form-label">Descripcion</label>
-                <textarea class="form-control" placeholder="Descipcion larga del vehiculo" rows="2"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+                <textarea class="form-control" placeholder="Descipcion larga del vehiculo" rows="6"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
 
                 <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
                   <div *ngIf="f['description'].errors['required']">Campo requerido
@@ -120,16 +130,7 @@
                 
               </div>
               <div class="row">
-                <div class="col-md-6">             
-                  <div class="mb-3">
-                    <label  class="form-label">Kilometraje</label>
-                    <input type="number" class="form-control" formControlName="mileage" [ngClass]="{ 'is-invalid': submitted && f['mileage'].errors }">
-                    <div *ngIf="submitted && f['mileage'].errors" class="invalid-feedback">
-                      <div *ngIf="f['mileage'].errors['required']">Campo requerido
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              
                 <div class="col-md-6">             
                   <div class="mb-3">
                     <label  class="form-label">Precio</label>
