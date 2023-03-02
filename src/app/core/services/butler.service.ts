@@ -44,8 +44,8 @@ export class Butler {
     newPartImage:boolean=false;
     newCarImage:boolean=false;
     profileImageLoaded:boolean=false;
-    carsSelected:boolean=false;
-    partsSelected:boolean=true;
+    carsSelected:boolean=true;
+    partsSelected:boolean=false;
     vector:any={};       
     string:string=""; 
     distance:string="";

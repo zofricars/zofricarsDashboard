@@ -122,38 +122,38 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Nombre: </span> {{carToSee.name}}</label>
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Nombre: </span> {{carToSee.name}}</label>
                   
                   </div>   
                 </div>
                  <div class="col-md-12">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Estado del vehiculo: </span> {{carToSee.vehicleStatus}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Estado del vehiculo: </span> {{carToSee.vehicleStatus}}</label>
                  
                   </div>                 
                 </div>
               </div>
                         
               <div class="mb-12">
-                <label  class="form-label"> <span style="font-weight: bold; font-size: 20px;">Descripción: </span> {{carToSee.description}}</label>
+                <label  class="form-label"> <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Descripción: </span> {{carToSee.description}}</label>
               
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Marca: </span> {{carToSee.brand}}</label>
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Marca: </span> {{carToSee.brand}}</label>
                  
                   </div>   
-                </div>
+                </div>  
                 <div class="col-md-12">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Modelo: </span> {{carToSee.carType}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Modelo: </span> {{carToSee.carType}}</label>
                   
                   </div>                 
                 </div>
                 <div class="col-md-12">
                   <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Año: </span> {{carToSee.year}}</label>
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Año: </span> {{carToSee.year}}</label>
                  
                   </div>   
                 </div>
@@ -161,19 +161,19 @@
                <div class="row">
                  <div class="col-md-12">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de combustible: </span> {{carToSee.fuelType}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de combustible: </span> {{carToSee.fuelType}}</label>
                    
                   </div>                 
                 </div>
                 <div class="col-md-12">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Transmisión: </span> {{carToSee.transmision}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Transmisión: </span> {{carToSee.transmision}}</label>
                 
                   </div>                 
                 </div>
                 <div class="col-md-12">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Cilindrada: </span> {{carToSee.displacement}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Cilindrada: </span> {{carToSee.displacement}}</label>
                   
                   </div>                  
                 </div>
@@ -182,13 +182,13 @@
               <div class="row">
                 <div class="col-md-12">             
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Kilometraje: </span> {{carToSee.mileage}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Kilometraje: </span> {{carToSee.mileage}}</label>
                  
                   </div>
                 </div>
                 <div class="col-md-12">             
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Precio: </span> {{carToSee.price}}</label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Precio: </span> {{carToSee.price }}</label>
                    
                   </div>
                 </div>
@@ -200,7 +200,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Nombre: </span></label>
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Nombre: </span></label>
                     <input type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
                     <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
                       <div *ngIf="f['name'].errors['required']">Campo requerido
@@ -210,7 +210,7 @@
                 </div>
                 <div class="col-md-3">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Estado del vehiculo </span><span style="color:blue;">({{carToSee.vehicleStatus}}) </span></label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Estado del vehiculo </span><span style="color:blue;">({{carToSee.vehicleStatus}}) </span></label>
                     <select id="vehicleStatus" class="form-control wide"[(ngModel)]="vehicleStatus" (ngModelChange)="setVehicleStatus(vehicleStatus)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let vehicleStatus of vehicleStatusArray, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicleStatus.name}}</span></option>
                     </select>
@@ -219,7 +219,7 @@
                 <div class="col-md-3">             
                   <div class="mb-3">
                     <label  class="form-label">
-                      <span style="font-weight: bold; font-size: 20px;">Kilometraje: </span>
+                      <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Kilometraje: </span>
                     </label>
                     <input type="number" class="form-control" formControlName="mileage" [ngClass]="{ 'is-invalid': submitted && f['mileage'].errors }">
                     <div *ngIf="submitted && f['mileage'].errors" class="invalid-feedback">
@@ -231,7 +231,7 @@
               </div>
                         
               <div class="mb-3">
-                <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Descripción: </span></label>
+                <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Descripción: </span></label>
                 <textarea class="form-control" placeholder="Descipcion larga del vehiculo" rows="7"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
 
                 <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
@@ -242,7 +242,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Marca: </span></label>
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Marca: </span></label>
                     <input type="text" class="form-control" formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f['brand'].errors }">
                     <div *ngIf="submitted && f['brand'].errors" class="invalid-feedback">
                       <div *ngIf="f['brand'].errors['required']">Campo requerido
@@ -252,7 +252,7 @@
                 </div>
                 <div class="col-md-4">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Modelo </span><span style="color:blue;">({{carToSee.carType}})</span></label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Modelo </span><span style="color:blue;">({{carToSee.carType}})</span></label>
                     <select id="carType" class="form-control wide"[(ngModel)]="carType" (ngModelChange)="setVehicle(carType)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let vehicle of vehicles, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicle.name}}</span></option>
                     </select>
@@ -260,7 +260,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px;">Año: </span></label>
+                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Año: </span></label>
                     <input type="text" class="form-control" formControlName="year" [ngClass]="{ 'is-invalid': submitted && f['year'].errors }">
                     <div *ngIf="submitted && f['year'].errors" class="invalid-feedback">
                       <div *ngIf="f['year'].errors['required']">Campo requerido
@@ -272,7 +272,7 @@
                <div class="row">
                  <div class="col-md-4">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de combustibles </span><span style="color:blue;">({{carToSee.fuelType}}) </span></label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de combustibles </span><span style="color:blue;">({{carToSee.fuelType}}) </span></label>
                     <select id="fuelType" class="form-control wide"[(ngModel)]="fuelType" (ngModelChange)="setFuelType(fuelType)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let type of fuelTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
                     </select>
@@ -280,7 +280,7 @@
                 </div>
                 <div class="col-md-4">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Tipo de transmisión  </span><span style="color:blue;">({{carToSee.transmision}})</span></label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de transmisión  </span><span style="color:blue;">({{carToSee.transmision}})</span></label>
                     <select id="transmision" class="form-control wide"[(ngModel)]="transmision" (ngModelChange)="setTransmisionType(transmision)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let type of transmisionTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
                     </select>
@@ -288,7 +288,7 @@
                 </div>
                 <div class="col-md-4">            
                   <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px;">Cilindrada: </span></label>
+                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Cilindrada: </span></label>
                     <input type="text" class="form-control"  formControlName="displacement" [ngClass]="{ 'is-invalid': submitted && f['displacement'].errors }">
                     <div *ngIf="submitted && f['displacement'].errors" class="invalid-feedback">
                       <div *ngIf="f['displacement'].errors['required']">Campo requerido
@@ -302,7 +302,7 @@
                
                 <div class="col-md-6">             
                   <div class="mb-3">
-                    <label  class="form-label">  <span style="font-weight: bold; font-size: 20px;">Precio: </span></label>
+                    <label  class="form-label">  <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Precio: </span></label>
                     <input type="number" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }">
                     <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
                       <div *ngIf="f['price'].errors['required']">Campo requerido

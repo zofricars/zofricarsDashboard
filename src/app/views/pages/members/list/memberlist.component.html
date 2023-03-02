@@ -15,7 +15,7 @@
                         <p class="text-muted mb-1">Miembros activos</p>
                         <ul class="list-unstyled chat-list px-1">
                           <li class="chat-item pe-1"  *ngFor='let card of cards$; let i = index'    [hidden]=" card.status!='activated' || card.userType=='admin'">
-                            <a (click)="loadPartsById(card)" class="d-flex align-items-center">
+                            <a (click)="loadCarsById2(card)" class="d-flex align-items-center">
                               <figure class="mb-0 me-2">
                                 <img src="{{card.images[0]}}" class="img-xs rounded-circle" alt="user">
                               </figure>
@@ -144,12 +144,12 @@
                         
                           <div class="d-flex align-items-baseline">
                             <p class="text-success">
-                              <img src="{{car.images[0]}}" alt="image" style="max-width:100px;">
+                              <img src="{{car.images[0]}}" alt="image" style="max-width:100px; border-radius: 13px;">
                               <!-- <span>+ 4</span> -->
                               <!-- <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i> -->
                             </p>
                           </div>
-                          <h3 class="mb-2">Precio: ${{car.price}}</h3>
+                          <h3 class="mb-2"> ${{car.price  | number :'1.1-3' }}</h3>
                         </div>
                        
                       </div>
