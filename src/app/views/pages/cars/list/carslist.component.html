@@ -47,8 +47,8 @@
                   <img src="{{car.images[0]}}" alt="image">
                 </td>
                 <td>{{car.name}}</td>
-                <td>{{car.description}}</td>
-                <td>{{car.price}}</td>
+                <td>{{car.description | slice:0:30}} <span style="color:blue;font-weight: bold;">...</span></td>
+                <td>{{car.price | number:'1.2-2'}}</td>
                 <td>{{car.carType.name}}</td>
               </tr>
             </tbody>
@@ -135,7 +135,7 @@
               </div>
                         
               <div class="mb-12">
-                <label  class="form-label"> <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Descripción: </span> {{carToSee.description}}</label>
+                <label  class="form-label"> <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Descripción: </span> {{carToSee.description }}</label>
               
               </div>
               <div class="row">

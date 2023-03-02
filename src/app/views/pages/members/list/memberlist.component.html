@@ -46,7 +46,7 @@
                 <div class="d-flex align-items-center">
                   <i (click)="backToChatList()" class="feather icon-corner-up-left icon-md me-2 ms-n2 text-muted d-lg-none"></i>
                   <figure class="mb-0 me-2">
-                    <img src="{{cardToSee.image}}" class="img-lg rounded-circle" alt="image">
+                    <img src="{{cardToSee.image}}" class="img-lg rounded-circle" alt="image" >
                     <div class="status online"></div>
                     <div class="status online"></div>
                   </figure>
@@ -121,35 +121,24 @@
               <div class="row">
 
                 <div [hidden]="carsSize!=0 " style="font-size: large;">Esta empresa aun no ha cargado vehículos</div>
-                <div class="col-md-4 grid-margin stretch-card" *ngFor='let car of cars$; let i = index' >
+                <div class="col-md-3 grid-margin stretch-card" *ngFor='let car of cars$; let i = index' >
                   <div class="card">
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-baseline">
-                        <h6 class="card-title mb-0">{{car.name}}</h6>
-                        <div ngbDropdown class="mb-2">
-                          <button ngbDropdownToggle class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton1">
-                            <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal" appFeatherIcon></i>
-                          </button>
-                          <div ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-                            <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="eye" appFeatherIcon class="icon-sm me-2"></i> <span class="">View</span></a>
-                            <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="edit-2" appFeatherIcon class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                            <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="trash" appFeatherIcon class="icon-sm me-2"></i> <span class="">Delete</span></a>
-                            <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="printer" appFeatherIcon class="icon-sm me-2"></i> <span class="">Print</span></a>
-                            <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="download" appFeatherIcon class="icon-sm me-2"></i> <span class="">Download</span></a>
-                          </div>
-                        </div>
+                        <h3 class="card-title mb-0">{{car.name}}</h3>
+                        
                       </div>
                       <div class="row">
                         <div class="col-12 col-md-12 " [hidden]="!_butler.carsSelected">
                         
                           <div class="d-flex align-items-baseline">
                             <p class="text-success">
-                              <img src="{{car.images[0]}}" alt="image" style="max-width:100px; border-radius: 13px;">
+                              <img src="{{car.images[0]}}" alt="image" style="max-width:130px; border-radius: 13px;">
                               <!-- <span>+ 4</span> -->
                               <!-- <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i> -->
                             </p>
                           </div>
-                          <h3 class="mb-2"> ${{car.price  | number :'1.1-3' }}</h3>
+                          <h3 class="mb-2"> ${{car.price  | number :'1.2-2' }}</h3>
                         </div>
                        
                       </div>

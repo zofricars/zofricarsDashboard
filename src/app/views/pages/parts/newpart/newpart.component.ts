@@ -18,8 +18,8 @@ export class NewpartComponent implements OnInit, AfterViewInit {
   public captions: UploaderCaptions = {
     dropzone: {
       title: 'Imágenes del producto',
-      or: 'ó',
-      browse: 'Buscar',
+      or: '.',
+      browse: 'Cargar',
     },
     cropper: {
       crop: 'Cortar',
