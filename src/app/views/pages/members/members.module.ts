@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, UntypedFormGroup, UntypedFormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -89,6 +91,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [MemberlistComponent,MembersComponent, RequestComponent],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
 
   NgxUiLoaderModule,

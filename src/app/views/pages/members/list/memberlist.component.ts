@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
 import{NgxUiLoaderService} from 'ngx-ui-loader';
+import { AbstractControl, FormBuilder, UntypedFormGroup, UntypedFormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-memberlist',
   templateUrl: './memberlist.component.html',
@@ -9,23 +11,53 @@ import{NgxUiLoaderService} from 'ngx-ui-loader';
 })
 export class MemberlistComponent implements OnInit, AfterViewInit {
   idSelected:any;
+  looking:any=999999999;
   show:any=false;
+  editing2:boolean=false;
+  editingProduct:boolean=false;
   editing:any=false;
   showDetail:any=false;
+  showProductDetail:any=true;
   cards$:any=[];
   cardToSee:any={};
   parts$:any=[];
   cars$:any=[];
+  toUpdate:any={};
+  infoProfile:any={};
   partsSize:number=0;
   carsSize:number=0;
   defaultNavActiveId = 1;
-
+  mostrarDiv = false;
+  submitted = false;
+  editForm: FormGroup = new FormGroup({
+    name: new FormControl(''),
+    direction: new FormControl(''),
+    phone: new FormControl(''),
+    instagram: new FormControl(''),
+    facebook: new FormControl(''),
+  });
   constructor(
     private ngxService: NgxUiLoaderService,
     public _butler:Butler,
     public dataApiService: DataApiService,
+    public formBuilder: UntypedFormBuilder
     ) { }
+  
+delete(){}
+cancelDelete(){}
+  mostrar(indice:any) {
+    let i=indice;
+    this.looking=i;
+    this.mostrarDiv = true;
+  }
+
+  ocultar(indice:any) {
+    let i=indice;
+    this.looking=i;
+    this.mostrarDiv = false;
+  }
   getCards(){
+
 
     this.ngxService.start("loader-01");
     this.dataApiService.getAllCards().subscribe(response => {
@@ -34,6 +66,27 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     this.cards$ = response
     });
   }
+  get f(): { [key: string]: AbstractControl } {
+    return this.editForm.controls;
+  }
+  showProductDetailR(indice:any){
+    let i=indice;
+    this.looking=i;
+    // this.showProductDetail=!this.showProductDetail;
+  }
+  cancel(){}
+  memberEdit(){
+    this.editing=!this.editing;
+    this.infoProfile=this.cardToSee;
+    this.editForm = this.formBuilder.group({
+      name : [this.infoProfile.name, Validators.required],
+      direction : [this.infoProfile.direction, Validators.required],
+      phone : [this.infoProfile.phone, Validators.required],
+      facebook : [this.infoProfile.facebook, ],
+      instagram : [this.infoProfile.instagram, ]
+    });
+  }
+  guardar(){}
   showDetailChange(){   
     this._butler.partsSelected=false;
     this._butler.carsSelected=false;
@@ -144,5 +197,60 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     console.log('passs');
     
   }
+  saveInfo(){
+    this.submitted = true;
+    if (this.editForm.invalid) {
+      return;
+    }
+    this.ngxService.start("loader-01");
+    this.toUpdate=this.editForm.value; 
+    this.toUpdate.images=this.infoProfile.images;
+   
+    this.toUpdate.rut=this.infoProfile.rut;
+    this.toUpdate.adminName=this.infoProfile.adminName;
+    this.toUpdate.adminPhone=this.infoProfile.adminPhone;
+    this.toUpdate.userd=this.infoProfile.userd;
+    this.toUpdate.name=this.infoProfile.name;
+    this.toUpdate.email=this.infoProfile.email;
+    this.toUpdate.status=this.infoProfile.status;
+    this.toUpdate.userType=this.infoProfile.userType;
+    this.toUpdate.profileStatus=this.infoProfile.profileStatus;
+    let id =this.infoProfile.id;
+    // console.log("id to update:" +id);
+    this.dataApiService.cardUpdate(this.toUpdate,id).subscribe(response=>{
+        this.ngxService.stop("loader-01");
+        this.editing=false;
+        // Swal.fire('Información editada con éxito','presione Ok para continuar','success');
+        this.dataApiService.getCardByUserId(this._butler.userd).subscribe(
+          data =>{
+            this._butler.userActive=data;
+            this._butler.userId=this._butler.userActive[0].id;
+            this._butler.infoProfile=this._butler.userActive[0];
+            this._butler.type=this._butler.userActive[0].userType;
+            this._butler.images=this._butler.userActive[0].images;
+            this._butler.name=this._butler.userActive[0].name;
+            this._butler.email=this._butler.userActive[0].email;
+            this._butler.profileStatus=this._butler.userActive[0].profileStatus;
+            // if(this._butler.type=='member'){
+            //   this.getPartsById();
+            //   this.getCarsById();
+            // } 
+            // if(this._butler.type=='admin'){
+            //   this.getCards();
+            //   this.getProducts();
+            //   this.getCars();
+            // }
+            // if(this._butler.profileStatus==="pending" || this._butler.profileStatus==="medium"){
+            //   this.router.navigate(['general/profile']);
+            // }
+            // if(this._butler.profileStatus==="complete"){
+            //   // this.router.navigate(['general/profile']);
+            // this.router.navigate(['dashboard']);
+            // }
+          });    
+      });
+  }
+  
+  
 
 }

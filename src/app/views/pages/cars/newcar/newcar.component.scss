@@ -2,3 +2,14 @@
     background: aquamarine;
 
 }
+ .content-input input,
+ .content-select select{
+ 	appearance: none;
+ 	-webkit-appearance: none;
+ 	-moz-appearance: none;
+ }
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}

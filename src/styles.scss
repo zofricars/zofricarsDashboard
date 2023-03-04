@@ -29,3 +29,31 @@
 
 // NobleUI styles For RTL
 // @import "./assets/scss/style.rtl.css";
+.my-custom-select {
+    background-color: #c8d5ff86 !important;
+    border: 0px solid #c8d5ff86 !important;
+    border-radius: 12px !important;
+    
+    color: #333 !important;
+    font-size: 16px !important;
+    padding: 10px !important;
+  }
+.my-custom-select::after {
+    border-color: #333 transparent transparent transparent !important;
+    border-style: solid !important;
+    border-width: 5px 4px 0 4px !important;
+    content: "" !important;
+    height: 0 !important;
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 0 !important;
+  }
+  .my-custom-select option {
+    border: 0px solid !important;
+    background-color: #f5f5f5 !important; 
+    color: #101654 !important;
+    font-size: 16px !important;
+    padding: 10px !important;
+  }

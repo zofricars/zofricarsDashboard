@@ -33,7 +33,7 @@
                 <div class="col-md-12" [hidden]="_butler.userType!='admin'">            
                   <div class="mb-3">
                     <label  class="form-label">Empresa <span style="color: rgb(255, 0, 0);" [hidden]="memberSeted">*</span></label>
-                    <select id="card" class="form-control wide"[(ngModel)]="card" (ngModelChange)="setMember(card)" [ngModelOptions]="{standalone: true}">
+                    <select id="card" class="form-control wide my-custom-select"[(ngModel)]="card" (ngModelChange)="setMember(card)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let card of cards$, let i = index " [ngValue]="card" [hidden]="card.status!='activated' || card.userType!='member'"> <span   style="cursor:pointer;">{{card.name}}</span></option>
                     </select>
                   </div>                 
@@ -51,7 +51,7 @@
                  <div class="col-md-3">            
                   <div class="mb-3">
                     <label  class="form-label">Estado del vehiculo <span style="color: rgb(255, 0, 0);" [hidden]="statusSeted">*</span></label>
-                    <select id="vehicleStatus" class="form-control wide"[(ngModel)]="vehicleStatus" (ngModelChange)="setVehicleStatus(vehicleStatus)" [ngModelOptions]="{standalone: true}">
+                    <select id="vehicleStatus" class="form-control wide my-custom-select"[(ngModel)]="vehicleStatus" (ngModelChange)="setVehicleStatus(vehicleStatus)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let vehicleStatus of vehicleStatusArray, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicleStatus.name}}</span></option>
                     </select>
                   </div>                 
@@ -91,7 +91,7 @@
                 <div class="col-md-4">            
                   <div class="mb-3">
                     <label  class="form-label">Modelo <span style="color: rgb(255, 0, 0);" [hidden]="carTypeSeted">*</span></label>
-                    <select id="carType" class="form-control wide"[(ngModel)]="carType" (ngModelChange)="setVehicle(carType)" [ngModelOptions]="{standalone: true}">
+                    <select id="carType" class="form-control wide my-custom-select"[(ngModel)]="carType" (ngModelChange)="setVehicle(carType)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let vehicle of vehicles, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicle.name}}</span></option>
                     </select>
                   </div>                 
@@ -111,7 +111,7 @@
                  <div class="col-md-4">            
                   <div class="mb-3">
                     <label  class="form-label">Tipo de combustible <span style="color: rgb(255, 0, 0);" [hidden]="fuelSeted">*</span></label>
-                    <select id="fuelType" class="form-control wide"[(ngModel)]="fuelType" (ngModelChange)="setFuelType(fuelType)" [ngModelOptions]="{standalone: true}">
+                    <select id="fuelType" class="form-control wide my-custom-select"[(ngModel)]="fuelType" (ngModelChange)="setFuelType(fuelType)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let type of fuelTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
                     </select>
                   </div>                 
@@ -119,7 +119,7 @@
                 <div class="col-md-4">            
                   <div class="mb-3">
                     <label  class="form-label"> Tipo de transmision <span style="color: rgb(255, 0, 0);" [hidden]="transmisionSeted">*</span></label>
-                    <select id="transmision" class="form-control wide"[(ngModel)]="transmision" (ngModelChange)="setTransmisionType(transmision)" [ngModelOptions]="{standalone: true}">
+                    <select id="transmision" class="form-control wide my-custom-select"[(ngModel)]="transmision" (ngModelChange)="setTransmisionType(transmision)" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let type of transmisionTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
                     </select>
                   </div>                 
