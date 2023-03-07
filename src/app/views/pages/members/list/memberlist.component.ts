@@ -236,7 +236,7 @@ cancelDelete(){}
         data =>{
           this.cardToSee=this.toUpdate;
           this.cardToSee.image=this.toUpdate.images[0];
-      
+          this.editing=false;
           this._butler.userActive=data;
           // Swal.fire('Información editada con éxito','presione Ok para continuar','success');mages;
           this._butler.name=this._butler.userActive[0].name;
