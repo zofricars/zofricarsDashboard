@@ -38,6 +38,8 @@ export class Butler {
     infoProfile:any={};
     totalProducts:number=0;
     imagePreviewProduct:string="";
+    memberIdPrev:string="";
+    memberPrev:boolean=false;
     profileStatus:string="";
     subTotal:number=0;
     review:boolean=false;

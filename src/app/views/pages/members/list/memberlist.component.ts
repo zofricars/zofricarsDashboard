@@ -76,6 +76,7 @@ cancelDelete(){}
   }
   cancel(){}
   memberEdit(){
+  
     this.editing=!this.editing;
     this.infoProfile=this.cardToSee;
     this.editForm = this.formBuilder.group({
@@ -101,6 +102,8 @@ cancelDelete(){}
         this.carsSize=this.cars$.length;
         this.show=true;
       });
+
+      
     }
     this.showDetail=!this.showDetail;
   }
@@ -138,7 +141,9 @@ cancelDelete(){}
   }
 
 
-  loadCarsById2(card:any){
+  loadCarsById2(card:any){  
+    this._butler.memberPrev=false;
+
     this.idSelected=card.userd;
     let id=card.userd;
     this.cardToSee=card;
@@ -199,9 +204,13 @@ cancelDelete(){}
   }
   saveInfo(){
     this.submitted = true;
+
+    console.log("se ejecuta");
     if (this.editForm.invalid) {
+      console.log("error en el formulario");
       return;
     }
+   
     this.ngxService.start("loader-01");
     this.toUpdate=this.editForm.value; 
     this.toUpdate.images=this.infoProfile.images;
@@ -210,45 +219,59 @@ cancelDelete(){}
     this.toUpdate.adminName=this.infoProfile.adminName;
     this.toUpdate.adminPhone=this.infoProfile.adminPhone;
     this.toUpdate.userd=this.infoProfile.userd;
-    this.toUpdate.name=this.infoProfile.name;
+    // this.toUpdate.name=this.infoProfile.name;
     this.toUpdate.email=this.infoProfile.email;
     this.toUpdate.status=this.infoProfile.status;
     this.toUpdate.userType=this.infoProfile.userType;
     this.toUpdate.profileStatus=this.infoProfile.profileStatus;
     let id =this.infoProfile.id;
-    // console.log("id to update:" +id);
-    this.dataApiService.cardUpdate(this.toUpdate,id).subscribe(response=>{
-        this.ngxService.stop("loader-01");
-        this.editing=false;
-        // Swal.fire('Información editada con éxito','presione Ok para continuar','success');
-        this.dataApiService.getCardByUserId(this._butler.userd).subscribe(
-          data =>{
-            this._butler.userActive=data;
-            this._butler.userId=this._butler.userActive[0].id;
-            this._butler.infoProfile=this._butler.userActive[0];
-            this._butler.type=this._butler.userActive[0].userType;
-            this._butler.images=this._butler.userActive[0].images;
-            this._butler.name=this._butler.userActive[0].name;
-            this._butler.email=this._butler.userActive[0].email;
-            this._butler.profileStatus=this._butler.userActive[0].profileStatus;
-            // if(this._butler.type=='member'){
-            //   this.getPartsById();
-            //   this.getCarsById();
-            // } 
-            // if(this._butler.type=='admin'){
-            //   this.getCards();
-            //   this.getProducts();
-            //   this.getCars();
-            // }
-            // if(this._butler.profileStatus==="pending" || this._butler.profileStatus==="medium"){
-            //   this.router.navigate(['general/profile']);
-            // }
-            // if(this._butler.profileStatus==="complete"){
-            //   // this.router.navigate(['general/profile']);
-            // this.router.navigate(['dashboard']);
-            // }
-          });    
-      });
+    
+
+   if(this._butler.memberPrev==true){  
+    console.log("entra cuando hay una carga previa de member");
+    this.dataApiService.cardUpdate(this.toUpdate,this._butler.memberIdPrev).subscribe(response=>{
+    this.ngxService.stop("loader-01");
+      this.editing=false;
+      this.dataApiService.getCardByUserId(this._butler.userd).subscribe(
+        data =>{
+          this.cardToSee=this.toUpdate;
+          this.cardToSee.image=this.toUpdate.images[0];
+      
+          this._butler.userActive=data;
+          // Swal.fire('Información editada con éxito','presione Ok para continuar','success');mages;
+          this._butler.name=this._butler.userActive[0].name;
+          this._butler.email=this._butler.userActive[0].email;
+          this._butler.profileStatus=this._butler.userActive[0].profileStatus;
+          this.getCards();
+      
+        });    
+    });
+  }
+  if(this._butler.memberPrev==false){  
+    console.log("id to update:" +id);
+     this.dataApiService.cardUpdate(this.toUpdate,id).subscribe(response=>{
+      this._butler.memberIdPrev=id;
+      this._butler.memberPrev=true;
+      console.log("id de yeoman:" +this._butler.memberIdPrev +"flag:" +this._butler.memberPrev);
+    this.ngxService.stop("loader-01");
+    this.editing=false;
+    this.dataApiService.getCardByUserId(this._butler.userd).subscribe(
+      data =>{
+        this.cardToSee=this.toUpdate;
+        this.cardToSee.image=this.toUpdate.images[0];
+       
+        
+        this._butler.userActive=data;
+        // Swal.fire('Información editada con éxito','presione Ok para continuar','success');mages;
+        this._butler.name=this._butler.userActive[0].name;
+        this._butler.email=this._butler.userActive[0].email;
+        this._butler.profileStatus=this._butler.userActive[0].profileStatus;
+        this.getCards();
+    
+      });    
+  });}
+
+  
   }
   
   
