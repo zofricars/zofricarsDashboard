@@ -140,7 +140,8 @@ cancelDelete(){}
     });
   }
 
-
+  deleteMember(){};
+  cancelDeleteMember(){};
   loadCarsById2(card:any){  
     this._butler.memberPrev=false;
 

@@ -59,13 +59,37 @@
                  
                 </div>
                 <div class="d-flex align-items-center me-n1" >
-                  <a [hidden]="!showDetail || editing" (click)="memberEdit()">
+                  <!-- <a [hidden]="!showDetail || editing" (click)="memberEdit()">
                     <i class="feather icon-edit icon-lg text-muted me-0 me-sm-3" ngbTooltip="editar" style="color:rgb(255, 190, 10) !important;"></i>
-                  </a>
+                  </a> -->
+
+                  <button _ngcontent-iec-c96="" type="button"  class="btn btn-primary btn-icon-text btn-xs  mb-2 mb-md-0 text-white"  style="margin-right:10%;" [hidden]="!showDetail || editing" (click)="memberEdit()">
+                    <i class="feather icon-edit"></i>
+                      Editar
+                    </button>
+
                   
-                    <button _ngcontent-iec-c96="" type="button"  class="btn btn-info btn-icon-text btn-xs  mb-2 mb-md-0"  style="margin-right:10%;" [hidden]="(!showDetail && !editing) || (!showDetail || !editing)" (click)="saveInfo()">
+                    <button _ngcontent-iec-c96="" type="button"  class="btn btn-info btn-icon-text btn-xs  mb-2 mb-md-0 text-white"  style="margin-right:10%;" [hidden]="(!showDetail && !editing) || (!showDetail || !editing)" (click)="saveInfo()">
                       <i class="feather icon-check"></i>
                         Guardar
+                      </button>
+                      <button [hidden]="(!showDetail || editing) "  [swal]="
+                      {title: '<strong>Borrar empresa <u></u></strong>', icon: 'error',
+                      html: 'Confirma que desea eliminar esta empresa miembro de ZOFRICARS ?',
+                      showCloseButton: true,
+                      showCancelButton: true,
+                      cancelButtonColor: '#101554',
+                      confirmButtonColor: '#ff3366',
+                      focusConfirm: true,
+                      confirmButtonText:' Si, estoy seguro',
+                      confirmButtonAriaLabel: 'Thumbs up, great!',
+                      cancelButtonText: ' Cancelar',
+                      cancelButtonAriaLabel: 'Thumbs down'
+                      }"
+                      (confirm)="deleteMember()"
+                      (dismiss)="cancelDeleteMember()"
+                      class="btn btn-danger btn-xs" style="margin-right:10%;">
+                      <i class="feather icon-trash"></i>Borrar
                       </button>
                   <a [hidden]="!_butler.partsSelected">
                     <i class="feather icon-package icon-lg text-muted me-0 me-sm-3" ngbTooltip="Autopartes" style="color:blue !important;"></i>
@@ -164,7 +188,7 @@
                               <!-- <button [hidden]=" !showDetail || editing" [swal]=" -->
                               <button  [swal]="
                               {title: '<strong>Borrar vehículo <u></u></strong>', icon: 'error',
-                              html: '{{car.name}}] Confirma que desea eliminar este vehículo ?',
+                              html: 'Confirma que desea eliminar este vehículo ?',
                               showCloseButton: true,
                               showCancelButton: true,
                               cancelButtonColor: '#101554',
@@ -183,7 +207,7 @@
                               <button _ngcontent-iec-c96="" type="button" class="btn btn-outline-primary  btn-xs btn-icon-text mb-2 mb-md-0"style="margin-right:10%;"  (click)="cancel()" [hidden]="!editingProduct" >
                                 Cancelar
                               </button>
-                              <button _ngcontent-iec-c96="" type="button" (click)="save()" class="btn btn-info btn-icon-text btn-xs  mb-2 mb-md-0"  style="margin-right:10%;" [hidden]="!editingProduct">
+                              <button _ngcontent-iec-c96="" type="button" (click)="saveInfo()" class="btn btn-info btn-icon-text btn-xs  mb-2 mb-md-0"  style="margin-right:10%;" [hidden]="!editingProduct">
                               <i class="feather icon-check"></i>
                                 Guardar
                               </button>
