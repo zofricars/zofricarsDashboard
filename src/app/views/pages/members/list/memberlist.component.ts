@@ -58,6 +58,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
   defaultNavActiveId = 1;
   mostrarDiv = false;
   submitted = false;
+  submitted2 = false;
   editForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     direction: new FormControl(''),
@@ -88,6 +89,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     public dataApiService: DataApiService,
     public formBuilder: UntypedFormBuilder
     ) { this.vehicles=VEHICLES}
+    updateCar(){}
     public onSubmit(): void {
       this.submitted = true;
       if (this.form.invalid) {
@@ -162,7 +164,7 @@ cancelEditingCar(){
   cancel(){}
   memberEdit(){
     
-    this.editing=!this.editing;
+    this.editing=true;
     this.infoProfile=this.cardToSee;
     this.editForm = this.formBuilder.group({
       name : [this.infoProfile.name, Validators.required],
@@ -229,7 +231,6 @@ cancelEditingCar(){
     
     this.carToSee.vehicleStatus=this.cars$[i].vehicleStatus.name;
    
- 
     this.carToSee.fuelType=this.cars$[i].fuelType.name;
    
     this.carToSee.carType=this.cars$[i].carType.name;
@@ -381,6 +382,7 @@ cancelEditingCar(){
   if(this._butler.memberPrev==false){  
     console.log("id to update:" +id);
      this.dataApiService.cardUpdate(this.toUpdate,id).subscribe(response=>{
+             Swal.fire('Información editada con éxito','presione Ok para continuar','success')
       this._butler.memberIdPrev=id;
       this._butler.memberPrev=true;
       console.log("id de yeoman:" +this._butler.memberIdPrev +"flag:" +this._butler.memberPrev);
@@ -393,7 +395,7 @@ cancelEditingCar(){
        
         
         this._butler.userActive=data;
-        // Swal.fire('Información editada con éxito','presione Ok para continuar','success');mages;
+ 
         this._butler.name=this._butler.userActive[0].name;
         this._butler.email=this._butler.userActive[0].email;
         this._butler.profileStatus=this._butler.userActive[0].profileStatus;

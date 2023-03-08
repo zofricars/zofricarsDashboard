@@ -235,119 +235,119 @@
                 </div>
               </div>
 
-            <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()" [hidden]="!editingCar" *ngIf="editingCar">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Nombre: </span></label>
-                    <input type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
-                    <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
-                      <div *ngIf="f['name'].errors['required']">Campo requerido
+              <form class="forms-sample" [formGroup]="form" (ngSubmit)="updateCar()" [hidden]="!editingCar" *ngIf="editingCar">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Nombre: </span></label>
+                      <input type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted2 && f['name'].errors }">
+                      <div *ngIf="submitted2 && f['name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['name'].errors['required']">Campo requerido
+                        </div>
+                      </div>
+                    </div>   
+                  </div>
+                  <div class="col-md-3">            
+                    <div class="mb-3">
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Estado del vehiculo </span><span style="color:blue;">({{carToSee.vehicleStatus}}) </span></label>
+                      <select id="vehicleStatus" class="form-control wide"[(ngModel)]="vehicleStatus" (ngModelChange)="setVehicleStatus(vehicleStatus)" [ngModelOptions]="{standalone: true}">
+                          <option *ngFor="let vehicleStatus of vehicleStatusArray, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicleStatus.name}}</span></option>
+                      </select>
+                    </div>                 
+                  </div>
+                  <div class="col-md-3"  *ngIf="carToSee.mileage" >             
+                    <div class="mb-3">
+                      <label  class="form-label">
+                        <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Kilometraje: </span>
+                      </label>
+                      <input type="number"class="form-control" formControlName="mileage" [ngClass]="{ 'is-invalid': submitted2 && f['mileage'].errors }">
+                      <div *ngIf="submitted2 && f['mileage'].errors " class="invalid-feedback">
+                        <div *ngIf="f['mileage'].errors['required']">Campo requerido
+                        </div>
                       </div>
                     </div>
-                  </div>   
-                </div>
-                <div class="col-md-3">            
-                  <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Estado del vehiculo </span><span style="color:blue;">({{carToSee.vehicleStatus}}) </span></label>
-                    <select id="vehicleStatus" class="form-control wide"[(ngModel)]="vehicleStatus" (ngModelChange)="setVehicleStatus(vehicleStatus)" [ngModelOptions]="{standalone: true}">
-                        <option *ngFor="let vehicleStatus of vehicleStatusArray, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicleStatus.name}}</span></option>
-                    </select>
-                  </div>                 
-                </div>
-                <div class="col-md-3">             
-                  <div class="mb-3">
-                    <label  class="form-label">
-                      <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Kilometraje: </span>
-                    </label>
-                    <input type="number" class="form-control" formControlName="mileage" [ngClass]="{ 'is-invalid': submitted && f['mileage'].errors }">
-                    <div *ngIf="submitted && f['mileage'].errors" class="invalid-feedback">
-                      <div *ngIf="f['mileage'].errors['required']">Campo requerido
+                  </div>
+                  <div class="col-md-2">             
+                    <div class="mb-3">
+                      <label  class="form-label">  <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Precio: </span></label>
+                      <input type="number" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted2 && f['price'].errors }">
+                      <div *ngIf="submitted2 && f['price'].errors" class="invalid-feedback">
+                        <div *ngIf="f['price'].errors['required']">Campo requerido
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-2">             
-                  <div class="mb-3">
-                    <label  class="form-label">  <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Precio: </span></label>
-                    <input type="number" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }">
-                    <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
-                      <div *ngIf="f['price'].errors['required']">Campo requerido
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                        
-              <div class="mb-3">
-                <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Descripción: </span></label>
-                <textarea class="form-control" placeholder="Descipcion larga del vehiculo" rows="7"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+                          
+                <div class="mb-3">
+                  <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Descripción: </span></label>
+                  <textarea class="form-control" placeholder="Descipcion larga del vehiculo" rows="7"  formControlName="description" [ngClass]="{ 'is-invalid': submitted2 && f['description'].errors }"></textarea>
 
-                <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
-                  <div *ngIf="f['description'].errors['required']">Campo requerido
+                  <div *ngIf="submitted2 && f['description'].errors" class="invalid-feedback">
+                    <div *ngIf="f['description'].errors['required']">Campo requerido
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Marca: </span></label>
-                    <input type="text" class="form-control" formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f['brand'].errors }">
-                    <div *ngIf="submitted && f['brand'].errors" class="invalid-feedback">
-                      <div *ngIf="f['brand'].errors['required']">Campo requerido
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Marca: </span></label>
+                      <input type="text" class="form-control" formControlName="brand" [ngClass]="{ 'is-invalid': submitted2 && f['brand'].errors }">
+                      <div *ngIf="submitted2 && f['brand'].errors" class="invalid-feedback">
+                        <div *ngIf="f['brand'].errors['required']">Campo requerido
+                        </div>
                       </div>
-                    </div>
-                  </div>   
-                </div>
-                <div class="col-md-4">            
-                  <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Modelo </span><span style="color:blue;">({{carToSee.carType}})</span></label>
-                    <select id="carType" class="form-control wide"[(ngModel)]="carType" (ngModelChange)="setVehicle(carType)" [ngModelOptions]="{standalone: true}">
-                        <option *ngFor="let vehicle of vehicles, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicle.name}}</span></option>
-                    </select>
-                  </div>                 
-                </div>
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Año: </span></label>
-                    <input type="text" class="form-control" formControlName="year" [ngClass]="{ 'is-invalid': submitted && f['year'].errors }">
-                    <div *ngIf="submitted && f['year'].errors" class="invalid-feedback">
-                      <div *ngIf="f['year'].errors['required']">Campo requerido
+                    </div>   
+                  </div>
+                  <div class="col-md-4">            
+                    <div class="mb-3">
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Modelo </span><span style="color:blue;">({{carToSee.carType}})</span></label>
+                      <select id="carType" class="form-control wide"[(ngModel)]="carType" (ngModelChange)="setVehicle(carType)" [ngModelOptions]="{standalone: true}">
+                          <option *ngFor="let vehicle of vehicles, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicle.name}}</span></option>
+                      </select>
+                    </div>                 
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Año: </span></label>
+                      <input type="text" class="form-control" formControlName="year" [ngClass]="{ 'is-invalid': submitted2 && f['year'].errors }">
+                      <div *ngIf="submitted2 && f['year'].errors" class="invalid-feedback">
+                        <div *ngIf="f['year'].errors['required']">Campo requerido
+                        </div>
                       </div>
-                    </div>
-                  </div>   
+                    </div>   
+                  </div>
                 </div>
-              </div>
-               <div class="row">
-                 <div class="col-md-4">            
-                  <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de combustibles </span><span style="color:blue;">({{carToSee.fuelType}}) </span></label>
-                    <select id="fuelType" class="form-control wide"[(ngModel)]="fuelType" (ngModelChange)="setFuelType(fuelType)" [ngModelOptions]="{standalone: true}">
-                        <option *ngFor="let type of fuelTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
-                    </select>
-                  </div>                 
-                </div>
-                <div class="col-md-4">            
-                  <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de transmisión  </span><span style="color:blue;">({{carToSee.transmision}})</span></label>
-                    <select id="transmision" class="form-control wide"[(ngModel)]="transmision" (ngModelChange)="setTransmisionType(transmision)" [ngModelOptions]="{standalone: true}">
-                        <option *ngFor="let type of transmisionTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
-                    </select>
-                  </div>                 
-                </div>
-                <div class="col-md-4">            
-                  <div class="mb-3">
-                    <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Cilindrada: </span></label>
-                    <input type="text" class="form-control"  formControlName="displacement" [ngClass]="{ 'is-invalid': submitted && f['displacement'].errors }">
-                    <div *ngIf="submitted && f['displacement'].errors" class="invalid-feedback">
-                      <div *ngIf="f['displacement'].errors['required']">Campo requerido
+                <div class="row">
+                  <div class="col-md-4">            
+                    <div class="mb-3">
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de combustibles </span><span style="color:blue;">({{carToSee.fuelType}}) </span></label>
+                      <select id="fuelType" class="form-control wide"[(ngModel)]="fuelType" (ngModelChange)="setFuelType(fuelType)" [ngModelOptions]="{standalone: true}">
+                          <option *ngFor="let type of fuelTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
+                      </select>
+                    </div>                 
+                  </div>
+                  <div class="col-md-4">            
+                    <div class="mb-3">
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de transmisión  </span><span style="color:blue;">({{carToSee.transmision}})</span></label>
+                      <select id="transmision" class="form-control wide"[(ngModel)]="transmision" (ngModelChange)="setTransmisionType(transmision)" [ngModelOptions]="{standalone: true}">
+                          <option *ngFor="let type of transmisionTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
+                      </select>
+                    </div>                 
+                  </div>
+                  <div class="col-md-4">            
+                    <div class="mb-3">
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Cilindrada: </span></label>
+                      <input type="text" class="form-control"  formControlName="displacement" [ngClass]="{ 'is-invalid': submitted2 && f['displacement'].errors }">
+                      <div *ngIf="submitted2 && f['displacement'].errors" class="invalid-feedback">
+                        <div *ngIf="f['displacement'].errors['required']">Campo requerido
+                        </div>
                       </div>
-                    </div>
-                  </div>                  
-                </div>
-                
-              </div>           
-            </form>
+                    </div>                  
+                  </div>
+                  
+                </div>           
+              </form>
             </div>
             <div class="chat-body" [perfectScrollbar] [hidden]="!showDetail">
               <div class="card rounded" [hidden]="!showDetail">
