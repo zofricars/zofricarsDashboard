@@ -507,7 +507,7 @@ function getMonthlySalesChartOptions(obj: any) {
         show: false
       },
     },
-    colors: [obj.primary],  
+    colors: [obj.warning],  
     fill: {
       opacity: .9
     } , 

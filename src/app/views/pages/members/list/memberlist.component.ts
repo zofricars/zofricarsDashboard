@@ -2,22 +2,51 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
 import{NgxUiLoaderService} from 'ngx-ui-loader';
+import {VEHICLES} from '@services/vehicles.service';
 import { AbstractControl, FormBuilder, UntypedFormGroup, UntypedFormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2'
+import { stringify } from 'querystring';
+import { json } from 'ngx-custom-validators/src/app/json/validator';
 @Component({
   selector: 'app-memberlist',
   templateUrl: './memberlist.component.html',
   styleUrls: ['./memberlist.component.scss']
 })
 export class MemberlistComponent implements OnInit, AfterViewInit {
+  fuelTypes:any=[
+    {name:"Bencina",idFuelType:"0001"},
+    {name:"Diesel",idFuelType:"0002"}
+    ];  
+  transmisionTypes:any=[
+    {name:"Manual",idTransmisionType:"0001"},
+    {name:"Automatica",idTransmisionType:"0002"}
+    ];  
+  vehicleStatusArray:any=[
+    {name:"Nuevo",vehicleStatus:"0001"},
+    {name:"Usado",vehicleStatus:"0002"}
+    ];
+    vehiclePreview:any=[];
+    public carToSee:any={};
+   carType="Seleccione una!";
+   fuelType="Seleccione una!";
+   transmision="Seleccione una!";
+   vehicleStatus="Seleccione una!";
+   prev:any=[];
+   prev2:any=[];
+   prev3:any=[];
+   prev4:any=[];
+  vehicles: any;
+  carImageEditing:any="";
   idSelected:any;
   looking:any=999999999;
+  iEditing:any=0;
   show:any=false;
   editing2:boolean=false;
   editingProduct:boolean=false;
   editing:any=false;
   showDetail:any=false;
   showProductDetail:any=true;
+  editingCar:any=false;
   cards$:any=[];
   cardToSee:any={};
   parts$:any=[];
@@ -36,13 +65,43 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     instagram: new FormControl(''),
     facebook: new FormControl(''),
   });
+
+  form: FormGroup = new FormGroup({
+    brand: new FormControl(''),
+    carType: new FormControl(''),
+    cod: new FormControl(''),
+    description: new FormControl(''),
+    displacement: new FormControl(''),
+    fuelType: new FormControl(''),
+    mileage: new FormControl(''),
+    name: new FormControl(''),
+    vehicleStatus: new FormControl(''),
+    model: new FormControl(''),
+    price: new FormControl(''),
+    transmision: new FormControl(''),
+    year: new FormControl(''),
+  });
   constructor(
     private ngxService: NgxUiLoaderService,
     public _butler:Butler,
+    
     public dataApiService: DataApiService,
     public formBuilder: UntypedFormBuilder
-    ) { }
-  
+    ) { this.vehicles=VEHICLES}
+    public onSubmit(): void {
+      this.submitted = true;
+      if (this.form.invalid) {
+        return;
+      }
+      // this.carImages=this._butler.carImages; 
+      // this.newCar=this.form.value; 
+      // this.newCar.transmision=this.vehiclePreview.transmision;
+      // this.newCar.fuelType=this.vehiclePreview.fuelType;
+      // this.newCar.carType=this.vehiclePreview.carType;
+      // this.newCar.vehicleStatus=this.vehiclePreview.vehicleStatus;
+      // this.newCar.images=this.carImages;; 
+      // this.newCar.userId=this._butler.userd; 
+    }
 delete(){}
 cancelDelete(){}
   mostrar(indice:any) {
@@ -50,11 +109,37 @@ cancelDelete(){}
     this.looking=i;
     this.mostrarDiv = true;
   }
-
+cancelEditingCar(){
+  console.log("el prev que traigo: "+JSON.stringify(this.prev[0]));
+  this.editingCar=!this.editingCar;
+  this.cars$[this.iEditing].vehicleStatus=this.prev[0];
+  console.log("el que hay: "+JSON.stringify(this.cars$[this.iEditing].vehicleStatus)+" el que debe haber: "+JSON.stringify(this.prev[0]));
+  this.cars$[this.iEditing].fuelType=this.prev2[0];
+  this.cars$[this.iEditing].carType=this.prev3[0];
+  this.cars$[this.iEditing].transmision=this.prev4[0];
+  
+}
   ocultar(indice:any) {
     let i=indice;
     this.looking=i;
     this.mostrarDiv = false;
+  }
+
+  setVehicle(selected:any){
+    this.vehiclePreview.carType=this.vehicles[selected];
+    console.log("selected: "+this.vehiclePreview.carType.name);
+  }
+  setFuelType(selected:any){
+    this.vehiclePreview.fuelType=this.fuelTypes[selected];
+    console.log("selected: "+this.vehiclePreview.fuelType.name);
+  }
+  setTransmisionType(selected:any){
+    this.vehiclePreview.transmision=this.transmisionTypes[selected];
+    console.log("selected: "+this.vehiclePreview.transmision.name);
+  }
+  setVehicleStatus(selected:any){
+    this.vehiclePreview.vehicleStatus=this.vehicleStatusArray[selected];
+    console.log("selected: "+this.vehiclePreview.vehicleStatus.name);
   }
   getCards(){
 
@@ -76,7 +161,7 @@ cancelDelete(){}
   }
   cancel(){}
   memberEdit(){
-  
+    
     this.editing=!this.editing;
     this.infoProfile=this.cardToSee;
     this.editForm = this.formBuilder.group({
@@ -125,7 +210,49 @@ cancelDelete(){}
       });
     }
   }
-  setEditing(){}
+  setEditing(i:any){
+    this.prev=[];
+    this.prev2=[];
+    this.prev3=[];
+    this.prev4=[];
+    this.iEditing=i;
+    this.prev.push(this.cars$[i].vehicleStatus);
+    this.prev2.push(this.cars$[i].fuelType);
+    this.prev3.push(this.cars$[i].carType);
+    this.prev4.push(this.cars$[i].transmision);
+    console.log("editando el estado"+JSON.stringify(this.cars$[i].vehicleStatus));
+    console.log("stado de vehiculo previo: "+JSON.stringify(this.prev));
+    this.carToSee=this.cars$[i];
+
+    this.carImageEditing=this.carToSee.images[0];
+    console.log("car editandoar: "+JSON.stringify(this.carToSee));
+    
+    this.carToSee.vehicleStatus=this.cars$[i].vehicleStatus.name;
+   
+ 
+    this.carToSee.fuelType=this.cars$[i].fuelType.name;
+   
+    this.carToSee.carType=this.cars$[i].carType.name;
+ 
+    this.carToSee.transmision=this.cars$[i].transmision.name;
+
+    this.form = this.formBuilder.group({
+      brand : [this.cars$[i].brand, Validators.required],
+      carType : [this.cars$[i].carType, Validators.required],
+      cod : [this.cars$[i].cod, Validators.required],
+      description : [this.cars$[i].description, ],
+      displacement : [this.cars$[i].displacement, ],
+      mileage:[this.cars$[i].mileage,],
+      name : [this.cars$[i].name, ],
+      vehicleStatus : [this.cars$[i].vehicleStatus, ],  
+      model : [this.cars$[i].model, ],
+      price : [this.cars$[i].price, ],
+       transmision : [this.cars$[i].transmision, ],
+      year : [this.cars$[i].year, ]
+    });
+    console.log(JSON.stringify(this.cars$[i].transmision));
+    this.editingCar=true;
+  }
   loadCarsById(){
 //    this.cards$=[];
 
@@ -143,6 +270,9 @@ cancelDelete(){}
   deleteMember(){};
   cancelDeleteMember(){};
   loadCarsById2(card:any){  
+
+    this.editing=false;
+    this.showDetail=false;
     this._butler.memberPrev=false;
 
     this.idSelected=card.userd;

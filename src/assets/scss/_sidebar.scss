@@ -346,19 +346,22 @@
         }
         &:hover {
           .nav-link {
-            color: $info;
+            color: #ff9800;
+            // color: $info;
             .link-title {
               margin-left: 31px;
             }
             .link-icon {
-              color: $info;
+              color: #ff9800;
+              // color: $info;
               fill: rgba(239, 243, 255, .5);
             }
           }
         }
         &.mm-active {
           > .nav-link {
-            color: $info;
+            // color: $info;
+            color: #ff9800;
             .link-arrow {
               -webkit-transform: rotate(90deg);
               transform: rotate(180deg);
@@ -367,13 +370,15 @@
               content: '';
               width: 3px;
               height: 26px;
-              background: $info;
+              background: #ff9800;
+              // background: $info;
               position: absolute;
               left: -25px;
             }
             .link-icon {
               fill: rgba(239, 243, 255, .5);
-              color: $info;
+              color: #ff9800;
+              // color: $info; icono
             }
           }
         }
@@ -502,12 +507,14 @@
           &:hover,
           &.mm-active {
             > .nav-link {
-              color: $info;
+              color: #ff9800;
+              // color: $info;
               svg {
                 fill: rgba($info, .2);
               }
               .link-title {
-                color: $info;
+                color: #ff9800;
+                // color: $info;
               }
             }
           }
