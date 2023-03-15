@@ -9,7 +9,7 @@ import { DataApiService } from '@services/data-api.service';
 export class OrderlistComponent implements OnInit, AfterViewInit {
   
   show:any=false;
-  cards$:any=[];
+  orders$:any=[];
   cardToSee:any={};
   parts$:any=[];
   defaultNavActiveId = 1;
@@ -18,9 +18,9 @@ export class OrderlistComponent implements OnInit, AfterViewInit {
     public _butler:Butler,
     public dataApiService: DataApiService,
     ) { }
-  getCards(){
-    this.dataApiService.getAllCards().subscribe(response => {
-    this.cards$ = response
+  getOrders(){
+    this.dataApiService.getAllOrders().subscribe(response => {
+    this.orders$ = response
     });
   }
   loadPartsById(card:any){
@@ -32,7 +32,7 @@ export class OrderlistComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit(): void { 
-    this.getCards();
+    this.getOrders();
   }
   setCars(){
     console.log("seteado a cars");

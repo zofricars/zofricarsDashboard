@@ -73,12 +73,14 @@
                     <button _ngcontent-iec-c96="" [hidden]="!editingCar" type="button" class="btn btn-outline-primary  btn-xs btn-icon-text mb-2 mb-md-0"style="margin-right:10%;"  (click)="cancelEditingCar()"  >
                        Cancelar  
                      </button>
-                     <button _ngcontent-iec-c96="" type="button" [hidden]="!editingCar" (click)="saveInfo()" class="btn btn-info btn-icon-text btn-xs  mb-2 mb-md-0 text-dark"  style="margin-right:10%;" >
+                     <button _ngcontent-iec-c96="" type="button" [hidden]="!editingCar" (click)="save()" class="btn btn-info btn-icon-text btn-xs  mb-2 mb-md-0 text-dark"  style="margin-right:10%;" >
                      <i class="feather icon-check"></i>
                        Guardar 
                      </button>       
                    </div>
-
+                   <button _ngcontent-iec-c96=""   [hidden]="(!showDetail && !editing) || (!showDetail || !editing)"type="button" class="btn btn-outline-primary  btn-xs btn-icon-text mb-2 mb-md-0"style="margin-right:10%;"  (click)="cancelMemberEdit()"  >
+                    Cancelar  
+                  </button>
                   <button _ngcontent-iec-c96="" type="button"  class="btn btn-primary btn-icon-text btn-xs  mb-2 mb-md-0 text-white"  style="margin-right:10%;" [hidden]="!showDetail || editing" (click)="memberEdit()">
                     <i class="feather icon-edit"></i>
                       Editar
@@ -195,10 +197,10 @@
                           </div>
                           <div [hidden]="i!=looking" [ngStyle]="{ display: mostrarDiv ? 'block' : 'none' }" >
                             <div _ngcontent-iec-c96="" class="d-flex align-items-center  text-nowrap"  >
-                              <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-xs btn-icon-text mb-2 mb-md-0" style="margin-right:10%;"(click)="setEditing(i)" >
+                              <!-- <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-xs btn-icon-text mb-2 mb-md-0" style="margin-right:10%;"(click)="setEditing(i)" >
                                 <i class="feather icon-edit"></i>
-                                Editar
-                              </button>
+                                Editar oculto
+                              </button> -->
 
                               <!-- <button [hidden]=" !showDetail || editing" [swal]=" -->
                               <button  [swal]="
@@ -214,7 +216,7 @@
                               cancelButtonText: ' Cancelar',
                               cancelButtonAriaLabel: 'Thumbs down'
                               }"
-                              (confirm)="delete()"
+                              (confirm)="delete(i)"
                               (dismiss)="cancelDelete()"
                               class="btn btn-danger btn-xs" style="margin-right:10%;">
                               <i class="feather icon-trash"></i>Borrar
@@ -240,9 +242,9 @@
                   <div class="col-md-4">
                     <div class="mb-3">
                       <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Nombre: </span></label>
-                      <input type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted2 && f['name'].errors }">
-                      <div *ngIf="submitted2 && f['name'].errors" class="invalid-feedback">
-                        <div *ngIf="f['name'].errors['required']">Campo requerido
+                      <input type="text" class="form-control"  formControlName="name" [ngClass]="{ 'is-invalid': submitted2 && g['name'].errors }">
+                      <div *ngIf="submitted2 && g['name'].errors" class="invalid-feedback">
+                        <div *ngIf="g['name'].errors['required']">Campo requerido
                         </div>
                       </div>
                     </div>   
@@ -260,9 +262,9 @@
                       <label  class="form-label">
                         <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Kilometraje: </span>
                       </label>
-                      <input type="number"class="form-control" formControlName="mileage" [ngClass]="{ 'is-invalid': submitted2 && f['mileage'].errors }">
-                      <div *ngIf="submitted2 && f['mileage'].errors " class="invalid-feedback">
-                        <div *ngIf="f['mileage'].errors['required']">Campo requerido
+                      <input type="number"class="form-control" formControlName="mileage" [ngClass]="{ 'is-invalid': submitted2 && g['mileage'].errors }">
+                      <div *ngIf="submitted2 && g['mileage'].errors " class="invalid-feedback">
+                        <div *ngIf="g['mileage'].errors['required']">Campo requerido
                         </div>
                       </div>
                     </div>
@@ -270,9 +272,9 @@
                   <div class="col-md-2">             
                     <div class="mb-3">
                       <label  class="form-label">  <span style="font-weight: bold; font-size: 20px; color:#0c1427;">Precio: </span></label>
-                      <input type="number" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted2 && f['price'].errors }">
-                      <div *ngIf="submitted2 && f['price'].errors" class="invalid-feedback">
-                        <div *ngIf="f['price'].errors['required']">Campo requerido
+                      <input type="number" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted2 && g['price'].errors }">
+                      <div *ngIf="submitted2 && g['price'].errors" class="invalid-feedback">
+                        <div *ngIf="g['price'].errors['required']">Campo requerido
                         </div>
                       </div>
                     </div>
@@ -281,10 +283,10 @@
                           
                 <div class="mb-3">
                   <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Descripción: </span></label>
-                  <textarea class="form-control" placeholder="Descipcion larga del vehiculo" rows="7"  formControlName="description" [ngClass]="{ 'is-invalid': submitted2 && f['description'].errors }"></textarea>
+                  <textarea class="form-control" placeholder="Descipcion larga del vehiculo" rows="7"  formControlName="description" [ngClass]="{ 'is-invalid': submitted2 && g['description'].errors }"></textarea>
 
-                  <div *ngIf="submitted2 && f['description'].errors" class="invalid-feedback">
-                    <div *ngIf="f['description'].errors['required']">Campo requerido
+                  <div *ngIf="submitted2 && g['description'].errors" class="invalid-feedback">
+                    <div *ngIf="g['description'].errors['required']">Campo requerido
                     </div>
                   </div>
                 </div>
@@ -292,9 +294,9 @@
                   <div class="col-md-4">
                     <div class="mb-3">
                       <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Marca: </span></label>
-                      <input type="text" class="form-control" formControlName="brand" [ngClass]="{ 'is-invalid': submitted2 && f['brand'].errors }">
-                      <div *ngIf="submitted2 && f['brand'].errors" class="invalid-feedback">
-                        <div *ngIf="f['brand'].errors['required']">Campo requerido
+                      <input type="text" class="form-control" formControlName="brand" [ngClass]="{ 'is-invalid': submitted2 && g['brand'].errors }">
+                      <div *ngIf="submitted2 && g['brand'].errors" class="invalid-feedback">
+                        <div *ngIf="g['brand'].errors['required']">Campo requerido
                         </div>
                       </div>
                     </div>   
@@ -310,9 +312,9 @@
                   <div class="col-md-4">
                     <div class="mb-3">
                       <label for="exampleInputUsername1" class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Año: </span></label>
-                      <input type="text" class="form-control" formControlName="year" [ngClass]="{ 'is-invalid': submitted2 && f['year'].errors }">
-                      <div *ngIf="submitted2 && f['year'].errors" class="invalid-feedback">
-                        <div *ngIf="f['year'].errors['required']">Campo requerido
+                      <input type="text" class="form-control" formControlName="year" [ngClass]="{ 'is-invalid': submitted2 && g['year'].errors }">
+                      <div *ngIf="submitted2 && g['year'].errors" class="invalid-feedback">
+                        <div *ngIf="g['year'].errors['required']">Campo requerido
                         </div>
                       </div>
                     </div>   
@@ -338,9 +340,9 @@
                   <div class="col-md-4">            
                     <div class="mb-3">
                       <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Cilindrada: </span></label>
-                      <input type="text" class="form-control"  formControlName="displacement" [ngClass]="{ 'is-invalid': submitted2 && f['displacement'].errors }">
-                      <div *ngIf="submitted2 && f['displacement'].errors" class="invalid-feedback">
-                        <div *ngIf="f['displacement'].errors['required']">Campo requerido
+                      <input type="text" class="form-control"  formControlName="displacement" [ngClass]="{ 'is-invalid': submitted2 && g['displacement'].errors }">
+                      <div *ngIf="submitted2 && g['displacement'].errors" class="invalid-feedback">
+                        <div *ngIf="g['displacement'].errors['required']">Campo requerido
                         </div>
                       </div>
                     </div>                  

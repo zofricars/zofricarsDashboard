@@ -36,6 +36,7 @@ export class Butler {
     deal:any={};
     userActive:any={};
     infoProfile:any={};
+    memberToDelete:any={};
     totalProducts:number=0;
     imagePreviewProduct:string="";
     memberIdPrev:string="";

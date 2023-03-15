@@ -3,6 +3,7 @@ import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
 import{NgxUiLoaderService} from 'ngx-ui-loader';
 import {VEHICLES} from '@services/vehicles.service';
+import { Router,ActivatedRoute } from '@angular/router';
 import { AbstractControl, FormBuilder, UntypedFormGroup, UntypedFormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { stringify } from 'querystring';
@@ -13,6 +14,12 @@ import { json } from 'ngx-custom-validators/src/app/json/validator';
   styleUrls: ['./memberlist.component.scss']
 })
 export class MemberlistComponent implements OnInit, AfterViewInit {
+  
+  // toUpdate:any;
+  fuelTypeBackup:any;
+  carTypeBackup:any; 
+   transmisionBackup:any;
+  vehicleStatusBackup:any;
   fuelTypes:any=[
     {name:"Bencina",idFuelType:"0001"},
     {name:"Diesel",idFuelType:"0002"}
@@ -27,6 +34,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     ];
     vehiclePreview:any=[];
     public carToSee:any={};
+    public memberToDelete:any={};
    carType="Seleccione una!";
    fuelType="Seleccione una!";
    transmision="Seleccione una!";
@@ -52,6 +60,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
   parts$:any=[];
   cars$:any=[];
   toUpdate:any={};
+  carToUpdate:any={};
   infoProfile:any={};
   partsSize:number=0;
   carsSize:number=0;
@@ -85,7 +94,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
   constructor(
     private ngxService: NgxUiLoaderService,
     public _butler:Butler,
-    
+    private router: Router,
     public dataApiService: DataApiService,
     public formBuilder: UntypedFormBuilder
     ) { this.vehicles=VEHICLES}
@@ -104,7 +113,22 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
       // this.newCar.images=this.carImages;; 
       // this.newCar.userId=this._butler.userd; 
     }
-delete(){}
+    delete(i:any){
+      let ident=this.cars$[i].id;
+      this.ngxService.start("loader-01");
+      this.dataApiService.deleteCar(ident).subscribe(responde=>{
+        if (this._butler.type=='admin'){  
+          // this.ngxService.start("loader-01");
+          // this.getCars();
+          this.loadCarsById3(this._butler.userd);
+        }
+      
+        this.editingCar=false;
+        this.showDetail=false;
+        this.ngxService.stop("loader-01");
+      });
+    }
+
 cancelDelete(){}
   mostrar(indice:any) {
     let i=indice;
@@ -156,6 +180,10 @@ cancelEditingCar(){
   get f(): { [key: string]: AbstractControl } {
     return this.editForm.controls;
   }
+
+  get g(): { [key: string]: AbstractControl } {
+    return this.editForm.controls;
+  }
   showProductDetailR(indice:any){
     let i=indice;
     this.looking=i;
@@ -166,6 +194,7 @@ cancelEditingCar(){
     
     this.editing=true;
     this.infoProfile=this.cardToSee;
+   
     this.editForm = this.formBuilder.group({
       name : [this.infoProfile.name, Validators.required],
       direction : [this.infoProfile.direction, Validators.required],
@@ -236,19 +265,22 @@ cancelEditingCar(){
     this.carToSee.carType=this.cars$[i].carType.name;
  
     this.carToSee.transmision=this.cars$[i].transmision.name;
-
+    this.vehicleStatusBackup=this.cars$[i].vehicleStatus;
+    this.carTypeBackup=this.cars$[i].carType;
+    this.fuelTypeBackup=this.cars$[i].fuelType;
+    this.transmisionBackup=this.cars$[i].transmision;
     this.form = this.formBuilder.group({
       brand : [this.cars$[i].brand, Validators.required],
-      carType : [this.cars$[i].carType, Validators.required],
-      cod : [this.cars$[i].cod, Validators.required],
+      // carType : [this.cars$[i].carType, Validators.required],
+      // cod : [this.cars$[i].cod, Validators.required],
       description : [this.cars$[i].description, ],
       displacement : [this.cars$[i].displacement, ],
       mileage:[this.cars$[i].mileage,],
       name : [this.cars$[i].name, ],
-      vehicleStatus : [this.cars$[i].vehicleStatus, ],  
-      model : [this.cars$[i].model, ],
+      // vehicleStatus : [this.cars$[i].vehicleStatus, ],  
+      // model : [this.cars$[i].model, ],
       price : [this.cars$[i].price, ],
-       transmision : [this.cars$[i].transmision, ],
+      //  transmision : [this.cars$[i].transmision, ],
       year : [this.cars$[i].year, ]
     });
     console.log(JSON.stringify(this.cars$[i].transmision));
@@ -268,10 +300,27 @@ cancelEditingCar(){
     });
   }
 
-  deleteMember(){};
+  deleteMember(){
+  this.memberToDelete=this.cards$[this.iEditing];
+  console.log("a eliminar: "+JSON.stringify(this._butler.memberToDelete));
+  let id = this._butler.memberToDelete.id;
+  this.dataApiService.deleteMember(id).subscribe(response=>{
+    Swal.fire('Miembro borrado con éxito','presione Ok para continuar','success')
+    // this._butler.totalNotifications=this._butler.totalNotifications-1;
+    // this._butler.totalRequest=this._butler.totalRequest-1;
+    this.getCards();
+    this.show=false;
+  })
+}
+
+  cancelMemberEdit(){
+    this.editing=false;
+  }
+
+  // deleteMember(){};
   cancelDeleteMember(){};
   loadCarsById2(card:any){  
-
+    this._butler.memberToDelete=card;
     this.editing=false;
     this.showDetail=false;
     this._butler.memberPrev=false;
@@ -279,7 +328,10 @@ cancelEditingCar(){
     this.idSelected=card.userd;
     let id=card.userd;
     this.cardToSee=card;
-    this.cardToSee.image=card.images[0];
+    if (card.images[0]!==undefined){
+      this.cardToSee.image=card.images[0];
+
+    }
     if(!this.showDetail){
       this._butler.carsSelected=true;
       this._butler.partsSelected=false;
@@ -292,6 +344,72 @@ cancelEditingCar(){
         this.show=true;
       });
     }
+  }
+
+  loadCarsById3(card:any){  
+    this._butler.memberToDelete=card;
+    this.editing=false;
+    this.showDetail=false;
+    this._butler.memberPrev=false;
+
+    this.idSelected=card.userd;
+    let id=card.userd;
+    this.dataApiService.getCarsById(id).subscribe(response =>{
+      this.ngxService.stop("loader-01");
+      this.cars$=response;  
+      this.carsSize=this.cars$.length;
+      this.show=true;
+    });
+  }
+  save(){
+    this.submitted2 = true;
+    if (this.form.invalid) {
+      return;
+    }
+    this.ngxService.start("loader-01");
+    this.carToUpdate=this.form.value; 
+    this.carToUpdate.images=this.carToSee.images;
+    if (this.fuelType!="Seleccione una!"){
+      this.carToUpdate.fuelType=this.vehiclePreview.fuelType;
+    }else{
+      this.carToUpdate.fuelType=this.fuelTypeBackup;
+    } 
+    if (this.carType!="Seleccione una!"){
+      this.carToUpdate.carType=this.vehiclePreview.carType;
+    }else{
+      this.carToUpdate.carType=this.carTypeBackup;
+    }
+    if (this.vehicleStatus!="Seleccione una!"){
+      this.carToUpdate.vehicleStatus=this.vehiclePreview.vehicleStatus;
+    }else{
+      this.carToUpdate.vehicleStatus=this.vehicleStatusBackup;
+    }
+    if (this.transmision!="Seleccione una!"){
+      this.carToUpdate.transmision=this.vehiclePreview.transmision;
+    }else{
+      this.carToUpdate.transmision=this.transmisionBackup;
+    }
+    this.carToUpdate.userId=this.carToSee.userId;
+    let id =this.carToSee.id;
+ console.log("id to update:" +id);
+    this.dataApiService.carUpdate(this.carToUpdate,id).subscribe(response=>{
+        this.ngxService.start("loader-01");
+        this.editingCar=false;
+
+        if (this._butler.type=='admin'){  
+          this.ngxService.stop("loader-01");
+          // this.getCars();
+        }
+        // if (this._butler.type=='member'){  
+        //   this.ngxService.start("loader-01");
+        //   this.getMyCars();
+        // }
+
+
+        // this.getMyCars();
+        Swal.fire('Vehículo editado con éxito','presione Ok para continuar','success');
+        // this.router.navigate(['cars/carslist']);
+      });
   }
   ngOnInit(): void { 
     this.getCards();
@@ -330,10 +448,10 @@ cancelEditingCar(){
     document.querySelector('.chat-content')!.classList.toggle('show');
   }
 
-  save() {
-    console.log('passs');
+  // save() {
+  //   console.log('passs');
     
-  }
+  // }
   saveInfo(){
     this.submitted = true;
 
