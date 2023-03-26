@@ -51,4 +51,14 @@ export const MENU: MenuItem[] = [
     icon: 'shopping-cart',
     link: '/orders/orderlist',
   },
+  {
+    label: 'Centro de soporte',
+    isTitle: true
+  },
+  {
+    label: 'Chat',
+    icon: 'headphones',
+    link: '/support/chat',
+  },
+  
 ];

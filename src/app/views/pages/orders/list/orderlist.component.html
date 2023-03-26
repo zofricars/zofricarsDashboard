@@ -27,13 +27,13 @@
                 <td>{{order.orderNumber}}</td>
                 <td>
                     <span *ngFor='let car of order.car; let i = index' >
-                      {{car.name}} {{car.price}}
+                      {{car.name}} 
                     </span>
                     <span>
 
                     </span>
                </td>
-               <td>{{order.amount}}</td>
+               <td>$ CLP {{order.amount | number :'1.0'}}</td>
                <td>   {{order.email}}</td>
                 <td>{{order.customer.name}}</td>
                 <td>{{order.status}}</td>

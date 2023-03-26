@@ -41,6 +41,11 @@ const routes: Routes = [
         path: 'apps',
         loadChildren: () => import('./views/pages/apps/apps.module').then(m => m.AppsModule)
       },
+
+      {
+        path: 'support',
+        loadChildren: () => import('./views/pages/support/support.module').then(m => m.SupportModule)
+      },
       {
         path: 'ui-components',
         loadChildren: () => import('./views/pages/ui-components/ui-components.module').then(m => m.UiComponentsModule)

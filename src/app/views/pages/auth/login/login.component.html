@@ -17,14 +17,14 @@
             <h5 class="text-muted fw-normal mb-4"> Ingrese a su cuenta.</h5>
             <form class="forms-sample" class="form"[formGroup]="ngFormLogin" (ngSubmit) ="onLogin()">
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email </label>
+                <label for="email" class="form-label">Email </label>
                 <input type="email" class="form-control"  id="email" placeholder="Email" formControlName="email" [(ngModel)]="user.email"required [ngClass]="{ 'is-invalid': submitted && fval.email.errors }">
                               <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
                               <div *ngIf="fval.email.errors.required">El email es requerido</div>
                       <div *ngIf="fval.email.errors.email">Ingrese un email válido</div>
                       </div>              </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                <label for="password" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" id="password" placeholder="*******" formControlName="password" [(ngModel)]="user.password" [ngClass]="{ 'is-invalid': submitted && fval.password.errors}"  required>
                       <div *ngIf="submitted && fval.password.errors"class="invalid-feedback">
                               <div ngClass="fval.password.errors.required">
