@@ -8,6 +8,12 @@ import { AuthRESTService } from '@services/authREST.service';
 export interface PartInterface {
 
 }
+export interface MessageInterface {
+
+}
+export interface ChatInterface {
+
+}
 export interface CarInterface {
 }
 export interface MemberInterface {
@@ -29,6 +35,9 @@ export interface SerialInterface {
 export class DataApiService {
 	ticket: Observable<any>;
 	cards:any;
+	chat:any;
+	messages:any;
+	chats:any;
 	cars:any;
 	parts:any;
 	branch:any;
@@ -79,6 +88,19 @@ export class DataApiService {
 		const url_api = 'https://db.buckapi.us:9001/api/cars';
 		return this.http.get(url_api);
 	}
+
+	getAllChats(){
+		const url_api = 'https://db.buckapi.us:9001/api/chats';
+		return this.http.get(url_api);
+	}
+	getMessagesBy(idChat: string){
+		const url_api = `https://db.buckapi.us:9001/api/messages?filter[where][idChat]=${idChat}`;
+		this.messages = this.http.get(url_api);
+		return ( this.http.get(url_api));		
+	}
+
+
+	
 	getAllCards(){
 		const url_api = 'https://db.buckapi.us:9001/api/cards';
 		return this.http.get(url_api);
@@ -173,6 +195,12 @@ export class DataApiService {
 		const url_api='https://db.buckapi.us:9001/api/cards';
 		return this.http
 		.post<CardInterface>(url_api, card)
+		.pipe(map(data => data));
+	}
+	saveMessage(message:MessageInterface){
+		const url_api='https://db.buckapi.us:9001/api/messages';
+		return this.http
+		.post<MessageInterface>(url_api, message)
 		.pipe(map(data => data));
 	}
 

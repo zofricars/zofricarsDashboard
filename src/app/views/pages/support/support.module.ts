@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, UntypedFormGroup, UntypedFormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -51,7 +53,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [ ChatComponent,  SupportComponent],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
+    
     RouterModule.forChild(routes),
     FormsModule,
     FullCalendarModule, // import the FullCalendar module! will make the FullCalendar component available

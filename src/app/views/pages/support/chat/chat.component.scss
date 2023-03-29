@@ -1,0 +1,11 @@
+.containerPie {
+    position: relative;
+    min-height: 100vh; /* Fuerza al contenedor a tener como mínimo el alto de la ventana del navegador */
+  }
+  
+  .bottom-div {
+    position: fixed;
+    bottom: 5%;
+    width:-webkit-fill-available;
+
+  }
