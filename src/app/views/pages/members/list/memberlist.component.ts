@@ -8,6 +8,7 @@ import { AbstractControl, FormBuilder, UntypedFormGroup, UntypedFormBuilder, For
 import Swal from 'sweetalert2'
 import { stringify } from 'querystring';
 import { json } from 'ngx-custom-validators/src/app/json/validator';
+import { throws } from 'assert';
 @Component({
   selector: 'app-memberlist',
   templateUrl: './memberlist.component.html',
@@ -78,17 +79,17 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
 
   form: FormGroup = new FormGroup({
     brand: new FormControl(''),
-    carType: new FormControl(''),
+    carType: new FormControl('Seleccione una!'),
     cod: new FormControl(''),
     description: new FormControl(''),
     displacement: new FormControl(''),
-    fuelType: new FormControl(''),
+    fuelType: new FormControl('Seleccione una!'),
     mileage: new FormControl(''),
     name: new FormControl(''),
-    vehicleStatus: new FormControl(''),
+    vehicleStatus: new FormControl('Seleccione una!'),
     model: new FormControl(''),
     price: new FormControl(''),
-    transmision: new FormControl(''),
+    transmision: new FormControl('Seleccione una!'),
     year: new FormControl(''),
   });
   constructor(
@@ -153,18 +154,22 @@ cancelEditingCar(){
 
   setVehicle(selected:any){
     this.vehiclePreview.carType=this.vehicles[selected];
+    this.carType=this.vehiclePreview.carType.name;
     console.log("selected: "+this.vehiclePreview.carType.name);
   }
   setFuelType(selected:any){
+    this.fuelType=this.vehiclePreview.fuelType.name;
     this.vehiclePreview.fuelType=this.fuelTypes[selected];
     console.log("selected: "+this.vehiclePreview.fuelType.name);
   }
   setTransmisionType(selected:any){
+    this.transmision=this.vehiclePreview.transmision.name;
     this.vehiclePreview.transmision=this.transmisionTypes[selected];
     console.log("selected: "+this.vehiclePreview.transmision.name);
   }
   setVehicleStatus(selected:any){
     this.vehiclePreview.vehicleStatus=this.vehicleStatusArray[selected];
+   this.vehicleStatus= this.vehiclePreview.vehicleStatus.name;
     console.log("selected: "+this.vehiclePreview.vehicleStatus.name);
   }
   getCards(){
@@ -182,7 +187,7 @@ cancelEditingCar(){
   }
 
   get g(): { [key: string]: AbstractControl } {
-    return this.editForm.controls;
+    return this.form.controls;
   }
   showProductDetailR(indice:any){
     let i=indice;
@@ -191,10 +196,8 @@ cancelEditingCar(){
   }
   cancel(){}
   memberEdit(){
-    
     this.editing=true;
     this.infoProfile=this.cardToSee;
-   
     this.editForm = this.formBuilder.group({
       name : [this.infoProfile.name, Validators.required],
       direction : [this.infoProfile.direction, Validators.required],
@@ -204,6 +207,7 @@ cancelEditingCar(){
     });
   }
   guardar(){}
+
   showDetailChange(){   
     this._butler.partsSelected=false;
     this._butler.carsSelected=false;
@@ -218,11 +222,10 @@ cancelEditingCar(){
         this.carsSize=this.cars$.length;
         this.show=true;
       });
-
-      
     }
     this.showDetail=!this.showDetail;
   }
+
   loadPartsById(card:any){
     this.idSelected=card.userd;
     let id=card.userd;
@@ -241,7 +244,10 @@ cancelEditingCar(){
       });
     }
   }
+
   setEditing(i:any){
+    this.vehiclePreview=[];
+    this.vehiclePreview=this.cars$[i];    
     this.prev=[];
     this.prev2=[];
     this.prev3=[];
@@ -251,24 +257,27 @@ cancelEditingCar(){
     this.prev2.push(this.cars$[i].fuelType);
     this.prev3.push(this.cars$[i].carType);
     this.prev4.push(this.cars$[i].transmision);
-    console.log("editando el estado"+JSON.stringify(this.cars$[i].vehicleStatus));
-    console.log("stado de vehiculo previo: "+JSON.stringify(this.prev));
+   // console.log("editando el estado"+JSON.stringify(this.cars$[i].vehicleStatus));
+    //console.log("stado de vehiculo previo: "+JSON.stringify(this.prev));
     this.carToSee=this.cars$[i];
-
     this.carImageEditing=this.carToSee.images[0];
-    console.log("car editandoar: "+JSON.stringify(this.carToSee));
+    console.log("car editandoar: "+JSON.stringify(this.carToSee.vehicleStatus));
+
+
+    this.vehicleStatusBackup=this.carToSee.vehicleStatus;
+    console.log("vehicle status backup: "+JSON.stringify(this.vehicleStatusBackup));
+    this.carTypeBackup=this.carToSee.carType;
+    this.fuelTypeBackup=this.carToSee.fuelType;
+    this.transmisionBackup=this.carToSee.transmision;
     
+    console.log("guardando "+JSON.stringify(this.cars$[i].vehicleStatus));
+
     this.carToSee.vehicleStatus=this.cars$[i].vehicleStatus.name;
-   
     this.carToSee.fuelType=this.cars$[i].fuelType.name;
-   
     this.carToSee.carType=this.cars$[i].carType.name;
- 
     this.carToSee.transmision=this.cars$[i].transmision.name;
-    this.vehicleStatusBackup=this.cars$[i].vehicleStatus;
-    this.carTypeBackup=this.cars$[i].carType;
-    this.fuelTypeBackup=this.cars$[i].fuelType;
-    this.transmisionBackup=this.cars$[i].transmision;
+
+ 
     this.form = this.formBuilder.group({
       brand : [this.cars$[i].brand, Validators.required],
       // carType : [this.cars$[i].carType, Validators.required],
@@ -288,10 +297,8 @@ cancelEditingCar(){
   }
   loadCarsById(){
 //    this.cards$=[];
-
     this.ngxService.start("loader-01");
     this.dataApiService.getCarsById(this.idSelected).subscribe(response =>{
-
       this.ngxService.stop("loader-01");
       this.cars$=response;
       this.carsSize=this.cars$.length;
@@ -324,13 +331,11 @@ cancelEditingCar(){
     this.editing=false;
     this.showDetail=false;
     this._butler.memberPrev=false;
-
     this.idSelected=card.userd;
     let id=card.userd;
     this.cardToSee=card;
     if (card.images[0]!==undefined){
       this.cardToSee.image=card.images[0];
-
     }
     if(!this.showDetail){
       this._butler.carsSelected=true;
@@ -351,7 +356,6 @@ cancelEditingCar(){
     this.editing=false;
     this.showDetail=false;
     this._butler.memberPrev=false;
-
     this.idSelected=card.userd;
     let id=card.userd;
     this.dataApiService.getCarsById(id).subscribe(response =>{
@@ -369,33 +373,42 @@ cancelEditingCar(){
     this.ngxService.start("loader-01");
     this.carToUpdate=this.form.value; 
     this.carToUpdate.images=this.carToSee.images;
+
+
     if (this.fuelType!="Seleccione una!"){
       this.carToUpdate.fuelType=this.vehiclePreview.fuelType;
     }else{
       this.carToUpdate.fuelType=this.fuelTypeBackup;
     } 
+
+
     if (this.carType!="Seleccione una!"){
       this.carToUpdate.carType=this.vehiclePreview.carType;
     }else{
       this.carToUpdate.carType=this.carTypeBackup;
     }
+
+
     if (this.vehicleStatus!="Seleccione una!"){
       this.carToUpdate.vehicleStatus=this.vehiclePreview.vehicleStatus;
     }else{
       this.carToUpdate.vehicleStatus=this.vehicleStatusBackup;
     }
+
+
     if (this.transmision!="Seleccione una!"){
       this.carToUpdate.transmision=this.vehiclePreview.transmision;
     }else{
       this.carToUpdate.transmision=this.transmisionBackup;
     }
+
+
     this.carToUpdate.userId=this.carToSee.userId;
     let id =this.carToSee.id;
- console.log("id to update:" +id);
+    console.log("id to update:" +id);
     this.dataApiService.carUpdate(this.carToUpdate,id).subscribe(response=>{
         this.ngxService.start("loader-01");
         this.editingCar=false;
-
         if (this._butler.type=='admin'){  
           this.ngxService.stop("loader-01");
           // this.getCars();
@@ -404,10 +417,14 @@ cancelEditingCar(){
         //   this.ngxService.start("loader-01");
         //   this.getMyCars();
         // }
-
-
         // this.getMyCars();
         Swal.fire('Vehículo editado con éxito','presione Ok para continuar','success');
+        this.loadCarsById();
+        // this.transmision="Seleccione una!";
+        this.carType="Seleccione una!";
+        this.fuelType="Seleccione una!";
+        this.transmision="Seleccione una!";
+        this.vehicleStatus="Seleccione una!";
         // this.router.navigate(['cars/carslist']);
       });
   }
@@ -415,14 +432,15 @@ cancelEditingCar(){
     this.getCards();
   }
   setCars(){
-
     this.showDetail=false;
     this.parts$=[];
     this.cars$=[];
     this.loadCarsById();
     console.log("seteado a cars");
     this._butler.carsSelected=true;
-    this._butler.partsSelected=false;}
+    this._butler.partsSelected=false;
+  }
+
   setParts(){
     this.showDetail=false;
     this.parts$=[];
@@ -430,10 +448,10 @@ cancelEditingCar(){
     this.loadPartsById(this.cardToSee);
     console.log("seteado a parts");
     this._butler.carsSelected=false;
-    this._butler.partsSelected=true;}
+    this._butler.partsSelected=true;
+  }
 
   ngAfterViewInit(): void {
-
     // Show chat-content when clicking on chat-item for tablet and mobile devices
     document.querySelectorAll('.chat-list .chat-item').forEach(item => {
       item.addEventListener('click', event => {
@@ -448,23 +466,16 @@ cancelEditingCar(){
     document.querySelector('.chat-content')!.classList.toggle('show');
   }
 
-  // save() {
-  //   console.log('passs');
-    
-  // }
   saveInfo(){
     this.submitted = true;
-
     console.log("se ejecuta");
     if (this.editForm.invalid) {
       console.log("error en el formulario");
       return;
     }
-   
     this.ngxService.start("loader-01");
     this.toUpdate=this.editForm.value; 
     this.toUpdate.images=this.infoProfile.images;
-   
     this.toUpdate.rut=this.infoProfile.rut;
     this.toUpdate.adminName=this.infoProfile.adminName;
     this.toUpdate.adminPhone=this.infoProfile.adminPhone;
@@ -475,54 +486,47 @@ cancelEditingCar(){
     this.toUpdate.userType=this.infoProfile.userType;
     this.toUpdate.profileStatus=this.infoProfile.profileStatus;
     let id =this.infoProfile.id;
-    
-
    if(this._butler.memberPrev==true){  
     console.log("entra cuando hay una carga previa de member");
     this.dataApiService.cardUpdate(this.toUpdate,this._butler.memberIdPrev).subscribe(response=>{
-    this.ngxService.stop("loader-01");
-      this.editing=false;
-      this.dataApiService.getCardByUserId(this._butler.userd).subscribe(
-        data =>{
-          this.cardToSee=this.toUpdate;
-          this.cardToSee.image=this.toUpdate.images[0];
-          this.editing=false;
-          this._butler.userActive=data;
-          // Swal.fire('Información editada con éxito','presione Ok para continuar','success');mages;
-          this._butler.name=this._butler.userActive[0].name;
-          this._butler.email=this._butler.userActive[0].email;
-          this._butler.profileStatus=this._butler.userActive[0].profileStatus;
-          this.getCards();
-      
-        });    
-    });
-  }
-  if(this._butler.memberPrev==false){  
-    console.log("id to update:" +id);
-     this.dataApiService.cardUpdate(this.toUpdate,id).subscribe(response=>{
-             Swal.fire('Información editada con éxito','presione Ok para continuar','success')
-      this._butler.memberIdPrev=id;
-      this._butler.memberPrev=true;
-      console.log("id de yeoman:" +this._butler.memberIdPrev +"flag:" +this._butler.memberPrev);
     this.ngxService.stop("loader-01");
     this.editing=false;
     this.dataApiService.getCardByUserId(this._butler.userd).subscribe(
       data =>{
         this.cardToSee=this.toUpdate;
         this.cardToSee.image=this.toUpdate.images[0];
-       
-        
+        this.editing=false;
         this._butler.userActive=data;
- 
+        // Swal.fire('Información editada con éxito','presione Ok para continuar','success');mages;
         this._butler.name=this._butler.userActive[0].name;
         this._butler.email=this._butler.userActive[0].email;
         this._butler.profileStatus=this._butler.userActive[0].profileStatus;
         this.getCards();
-    
       });    
-  });}
-
-  
+    });
+  }
+  if(this._butler.memberPrev==false){  
+    console.log("id to update:" +id);
+    this.dataApiService.cardUpdate(this.toUpdate,id).subscribe(response=>{
+      Swal.fire('Información editada con éxito','presione Ok para continuar','success')
+      this._butler.memberIdPrev=id;
+      this._butler.memberPrev=true;
+      console.log("id de yeoman:" +this._butler.memberIdPrev +"flag:" +this._butler.memberPrev);
+      this.ngxService.stop("loader-01");
+      this.editing=false;
+      this.dataApiService.getCardByUserId(this._butler.userd).subscribe(
+      data =>{
+        this.cardToSee=this.toUpdate;
+        this.cardToSee.image=this.toUpdate.images[0];
+        this._butler.userActive=data; 
+        this._butler.name=this._butler.userActive[0].name;
+        this._butler.email=this._butler.userActive[0].email;
+        this._butler.profileStatus=this._butler.userActive[0].profileStatus;
+        this.getCards();
+      });    
+    });
+  }
+ 
   }
   
   

@@ -197,10 +197,10 @@
                           </div>
                           <div [hidden]="i!=looking" [ngStyle]="{ display: mostrarDiv ? 'block' : 'none' }" >
                             <div _ngcontent-iec-c96="" class="d-flex align-items-center  text-nowrap"  >
-                              <!-- <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-xs btn-icon-text mb-2 mb-md-0" style="margin-right:10%;"(click)="setEditing(i)" >
+                              <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-xs btn-icon-text mb-2 mb-md-0" style="margin-right:10%;"(click)="setEditing(i)" >
                                 <i class="feather icon-edit"></i>
-                                Editar oculto
-                              </button> -->
+                                Editar
+                              </button>
 
                               <!-- <button [hidden]=" !showDetail || editing" [swal]=" -->
                               <button  [swal]="
@@ -251,7 +251,7 @@
                   </div>
                   <div class="col-md-3">            
                     <div class="mb-3">
-                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Estado del vehiculo </span><span style="color:blue;">({{carToSee.vehicleStatus}}) </span></label>
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Estado del vehiculo </span><span style="color:blue;">({{vehicleStatusBackup.name}}) </span></label>
                       <select id="vehicleStatus" class="form-control wide"[(ngModel)]="vehicleStatus" (ngModelChange)="setVehicleStatus(vehicleStatus)" [ngModelOptions]="{standalone: true}">
                           <option *ngFor="let vehicleStatus of vehicleStatusArray, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicleStatus.name}}</span></option>
                       </select>
@@ -303,7 +303,7 @@
                   </div>
                   <div class="col-md-4">            
                     <div class="mb-3">
-                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Modelo </span><span style="color:blue;">({{carToSee.carType}})</span></label>
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Modelo </span><span style="color:blue;">({{carTypeBackup.name}})</span></label>
                       <select id="carType" class="form-control wide"[(ngModel)]="carType" (ngModelChange)="setVehicle(carType)" [ngModelOptions]="{standalone: true}">
                           <option *ngFor="let vehicle of vehicles, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{vehicle.name}}</span></option>
                       </select>
@@ -323,7 +323,7 @@
                 <div class="row">
                   <div class="col-md-4">            
                     <div class="mb-3">
-                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de combustibles </span><span style="color:blue;">({{carToSee.fuelType}}) </span></label>
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de combustibles </span><span style="color:blue;">({{fuelTypeBackup.name}}) </span></label>
                       <select id="fuelType" class="form-control wide"[(ngModel)]="fuelType" (ngModelChange)="setFuelType(fuelType)" [ngModelOptions]="{standalone: true}">
                           <option *ngFor="let type of fuelTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
                       </select>
@@ -331,7 +331,7 @@
                   </div>
                   <div class="col-md-4">            
                     <div class="mb-3">
-                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de transmisión  </span><span style="color:blue;">({{carToSee.transmision}})</span></label>
+                      <label  class="form-label"><span style="font-weight: bold; font-size: 20px; color:#0c1427;">Tipo de transmisión  </span><span style="color:blue;">({{transmisionBackup.name}})</span></label>
                       <select id="transmision" class="form-control wide"[(ngModel)]="transmision" (ngModelChange)="setTransmisionType(transmision)" [ngModelOptions]="{standalone: true}">
                           <option *ngFor="let type of transmisionTypes, let i = index " [ngValue]="i"> <span   style="cursor:pointer;">{{type.name}}</span></option>
                       </select>
