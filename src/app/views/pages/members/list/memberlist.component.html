@@ -208,41 +208,48 @@
                           <div class="col-12 col-md-12 " [hidden]="!_butler.carsSelected">
                            
                             <div class="d-flex" style="position: relative;">
-                              <img src="{{car.images[0]}}" alt="image" style="max-width:160px; border-radius: 13px; cursor: pointer;" (click)="showProductDetailR(i)">
+                              <img src="{{car.images[0]}}" alt="image" style="max-width:160px; border-radius: 13px; cursor: pointer; transition: transform 0.2s ease-in-out;" (click)="showProductDetailR(i)">
                               <div id="ocultable" [hidden]="i!=looking" [ngStyle]="{ display: mostrarDiv ? 'block' : 'none', position: 'absolute', top: '0', right: '0' }">
-                                  <div class="d-flex flex-column align-items-end text-nowrap" style="margin-right: 3%; ">
-                                      <button type="button" class="btn btn-primary btn-xs btn-icon-text mb-2 mb-md-0" style="margin-top:10px;" (click)="setEditing(i)">
-                                          <i class="feather icon-edit"></i>
-                                      </button>
-                                      <button [swal]="{
-                                          title: '<strong>Borrar vehículo <u></u></strong>', 
-                                          icon: 'error',
-                                          html: 'Confirma que desea eliminar este vehículo ?',
-                                          showCloseButton: true,
-                                          showCancelButton: true,
-                                          cancelButtonColor: '#101554',
-                                          confirmButtonColor: '#ff3366',
-                                          focusConfirm: true,
-                                          confirmButtonText:' Borrar',
-                                          confirmButtonAriaLabel: 'Thumbs up, great!',
-                                          cancelButtonText: ' Cancelar',
-                                          cancelButtonAriaLabel: 'Thumbs down'
-                                      }"
-                                      (confirm)="delete(i)"
-                                      (dismiss)="cancelDelete()"
-                                      class="btn btn-danger btn-xs" style="margin-top:5px;">
-                                          <i class="feather icon-trash"></i>
-                                      </button>
-                                      <button type="button" class="btn btn-outline-primary btn-xs btn-icon-text mb-2 mb-md-0" style="margin-right:10%;" (click)="cancel()" [hidden]="!editingProduct">
-                                          Cancelar
-                                      </button>
-                                      <button type="button" (click)="saveInfo()" class="btn btn-info btn-icon-text btn-xs mb-2 mb-md-0" style="margin-right:10%;" [hidden]="!editingProduct">
-                                          <i class="feather icon-check"></i>
-                                          Guardar
-                                      </button>
-                                  </div>
+                                <div class="d-flex flex-column align-items-end text-nowrap" style="margin-right: 3%; ">
+                                  <button type="button" class="btn btn-primary btn-xs btn-icon-text mb-2 mb-md-0" style="margin-top:10px;" (click)="setEditing(i)">
+                                    <i class="feather icon-edit"></i>
+                                  </button>
+                                  <button [swal]="{
+                                    title: '<strong>Borrar vehículo <u></u></strong>', 
+                                    icon: 'error',
+                                    html: 'Confirma que desea eliminar este vehículo ?',
+                                    showCloseButton: true,
+                                    showCancelButton: true,
+                                    cancelButtonColor: '#101554',
+                                    confirmButtonColor: '#ff3366',
+                                    focusConfirm: true,
+                                    confirmButtonText:' Borrar',
+                                    confirmButtonAriaLabel: 'Thumbs up, great!',
+                                    cancelButtonText: ' Cancelar',
+                                    cancelButtonAriaLabel: 'Thumbs down'
+                                  }"
+                                  (confirm)="delete(i)"
+                                  (dismiss)="cancelDelete()"
+                                  class="btn btn-danger btn-xs" style="margin-top:5px;">
+                                    <i class="feather icon-trash"></i>
+                                  </button>
+                                  <button type="button" class="btn btn-outline-primary btn-xs btn-icon-text mb-2 mb-md-0" style="margin-right:10%;" (click)="cancel()" [hidden]="!editingProduct">
+                                    Cancelar
+                                  </button>
+                                  <button type="button" (click)="saveInfo()" class="btn btn-info btn-icon-text btn-xs mb-2 mb-md-0" style="margin-right:10%;" [hidden]="!editingProduct">
+                                    <i class="feather icon-check"></i>
+                                    Guardar
+                                  </button>
+                                </div>
                               </div>
-                          </div>
+                            </div>
+                            
+                            <style>
+                              .d-flex img:hover {
+                                transform: scale(1.1);
+                                transition: transform 0.5s ease-in-out;
+                              }
+                            </style>
                           
                             
 
