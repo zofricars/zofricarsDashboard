@@ -309,6 +309,7 @@ cancelEditingCar(){
     //console.log("stado de vehiculo previo: "+JSON.stringify(this.prev));
     this.carToSee=this.cars$[i];
     this.carImageEditing=this.carToSee.images[0];
+    this._butler.carImages=this.carToSee.images;
     console.log("car editandoar: "+JSON.stringify(this.carToSee.vehicleStatus));
 
 
