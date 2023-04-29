@@ -2,8 +2,9 @@ import { Component, EventEmitter,AfterViewInit,  Output, ViewChild ,ElementRef,H
 import { isError } from "util";
 import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
-
+import{NgxUiLoaderService} from 'ngx-ui-loader';
 import { AbstractControl, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { id } from '@swimlane/ngx-datatable';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -17,7 +18,9 @@ messageToSend:any={};
 idChat:any="";
 intervalRef:any;
 ind:string="";
+loadingMessages=true;
 submittedMessage = false;
+showMessages = false;
 public isError = false;
 messageForm: FormGroup = new FormGroup({
   text: new FormControl(''),
@@ -25,7 +28,7 @@ messageForm: FormGroup = new FormGroup({
 
 
   constructor( public _butler:Butler,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,  private ngxService: NgxUiLoaderService,
     public dataApiService: DataApiService,) {
       
      }
@@ -62,7 +65,14 @@ this.dataApiService.saveMessage(this.messageToSend).subscribe(response=>{
 });
 }
 
+deleteChat(){
 
+  this.dataApiService.deleteMessage( this.idChat).subscribe(Response=>{
+
+  });
+  this.dataApiService.deleteChat( this.ind).subscribe();
+}
+cancelDeleteChat(){}
 loadMessagesBy(ind:any){
 
   let indi ="m"+ind;
@@ -72,6 +82,7 @@ loadMessagesBy(ind:any){
     this.idChat=indi;
     this.dataApiService.getMessagesBy(indi).subscribe(response=>{
       this.messages=response;
+      this.showMessages=true;
     });
      }, 1000);
 
@@ -79,6 +90,7 @@ loadMessagesBy(ind:any){
 }
 
  detenerInterval() {
+  this.loadingMessages=false;
   clearInterval(this.intervalRef);
   console.log('setInterval detenido');
 }
@@ -87,14 +99,20 @@ seeChatseeMessages(i:any){
     this.messages=[];
     this.ind=this.chats[i].id;
     this.loadMessagesBy(this.ind);
+    this.loadingMessages=true;
 
 }
 get M ():{ [key: string]: AbstractControl } {
   return this.messageForm.controls;
 }
   ngAfterViewInit(): void {
+    this.showMessages = false;
     setInterval(() => {
-      this.loadChats();
+
+      if(this.loadingMessages){
+        this.loadChats();
+      }
+     
        }, 1000);
     // Show chat-content when clicking on chat-item for tablet and mobile devices
     document.querySelectorAll('.chat-list .chat-item').forEach(item => {

@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+.form-label{
+    font-family: Nunito;
+    // color:darkblue;
+}
+.entrada{
+    font-size: 25px;
+    border: none;
+}
+.file-browse-button {
+    background: aquamarine;
+
+}
+ .content-input input,
+ .content-select select{
+ 	appearance: none;
+ 	-webkit-appearance: none;
+ 	-moz-appearance: none;
+ }
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.image-container {
+    display: inline-block;
+    padding: 5px;
+  }
+  .image-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .edit-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .image-wrapper:hover .edit-button {
+    opacity: 1;
+  }

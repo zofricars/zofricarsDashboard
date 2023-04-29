@@ -67,6 +67,20 @@ export class DataApiService {
 		.delete<CarInterface>(url_api, {headers: this.headers})
 		.pipe(map(data => data));
 	}
+	deleteChat(id: string){
+		const token = this.AuthRESTService.getToken();
+		const url_api=`https://db.buckapi.us:9001/api/chats/${id}/?access_token$={token}`;
+		return this.http
+		.delete<ChatInterface>(url_api, {headers: this.headers})
+		.pipe(map(data => data));
+	}
+	deleteMessage(idChat: string){
+		const token = this.AuthRESTService.getToken();
+		const url_api=`https://db.buckapi.us:9001/api/messages?filter[where][idChat]=${idChat}/?access_token$={token}`;
+		return this.http
+		.delete<MessageInterface>(url_api, {headers: this.headers})
+		.pipe(map(data => data));
+	}
 	deleteMember(id: string){
 		const token = this.AuthRESTService.getToken();
 		const url_api=`https://db.buckapi.us:9001/api/cards/${id}/?access_token$={token}`;

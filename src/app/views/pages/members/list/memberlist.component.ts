@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit,Renderer2,ChangeDetectorRef } from '@angular/core';
 import { Butler } from '@services/butler.service';
 import { DataApiService } from '@services/data-api.service'; 
 import{NgxUiLoaderService} from 'ngx-ui-loader';
@@ -9,13 +9,18 @@ import Swal from 'sweetalert2'
 import { stringify } from 'querystring';
 import { json } from 'ngx-custom-validators/src/app/json/validator';
 import { throws } from 'assert';
+import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
+import {NgxGalleryImage} from '@kolkov/ngx-gallery';
+import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-memberlist',
   templateUrl: './memberlist.component.html',
   styleUrls: ['./memberlist.component.scss']
 })
 export class MemberlistComponent implements OnInit, AfterViewInit {
-  
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
   // toUpdate:any;
   fuelTypeBackup:any;
   carTypeBackup:any; 
@@ -51,6 +56,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
   iEditing:any=0;
   show:any=false;
   editing2:boolean=false;
+  editingImages:boolean=false;
   editingProduct:boolean=false;
   editing:any=false;
   showDetail:any=false;
@@ -92,7 +98,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     transmision: new FormControl('Seleccione una!'),
     year: new FormControl(''),
   });
-  constructor(
+  constructor(private renderer: Renderer2,private cdr: ChangeDetectorRef,
     private ngxService: NgxUiLoaderService,
     public _butler:Butler,
     private router: Router,
@@ -114,6 +120,18 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
       // this.newCar.images=this.carImages;; 
       // this.newCar.userId=this._butler.userd; 
     }
+    
+    change(){
+      
+      // this.renderer.addClass(document.body, 'sidebar-folded');
+      this.galleryImages=this.carToSee.images;
+      console.log("galerry:" +JSON.stringify(this.galleryImages));
+      this.editingImages=true;this.cdr.detectChanges();
+    }
+    addImages(){}
+    cancelEditingImages(){
+      this.editingImages=false;
+    }
     delete(i:any){
       let ident=this.cars$[i].id;
       this.ngxService.start("loader-01");
@@ -129,8 +147,12 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
         this.ngxService.stop("loader-01");
       });
     }
+    deleteImage(i: number){
+      this.carToSee.images.splice(i, 1);
+    }
 
 cancelDelete(){}
+cancelChange(){}
   mostrar(indice:any) {
     let i=indice;
     this.looking=i;
@@ -428,8 +450,70 @@ cancelEditingCar(){
         // this.router.navigate(['cars/carslist']);
       });
   }
+
+intercambiar(i:any){
+  console.log("indice: "+i);
+let prev:any;
+prev=this.carToSee.images[0];
+console.log("previo"+prev);
+this.carImageEditing=this.carToSee.images[i];
+  this.carToSee.images[0]=this.carToSee.images[i];
+  this.carToSee.images[i]=prev;
+}
+
   ngOnInit(): void { 
     this.getCards();
+
+  this.galleryOptions = [
+    {
+      width: '50%',
+      height: '400px',
+      thumbnailsColumns: 4,
+      previewCloseOnEsc:true,
+      previewKeyboardNavigation:true,
+      previewArrows:true,
+      thumbnailsSwipe: true,
+      previewSwipe:true,
+      previewZoom:true,
+      previewZoomStep:1.5,
+      previewZoomMax:5,
+      // previewCloseOnClick:true,
+      imageAnimation: NgxGalleryAnimation.Slide,
+      imageArrows: false,  thumbnailsArrows: true
+    },
+    // max-width 800
+    {
+      previewArrows:true,
+      arrowPrevIcon: "fa fa-arrow-circle-o-left", arrowNextIcon: "fa fa-arrow-circle-o-right", 
+      breakpoint: 800,
+      width: '100%',
+      height: '300px',
+      imageSize: 'contain',
+       imagePercent: 80,
+    thumbnailsPercent: 20,
+    thumbnailsMargin: 20,
+    previewSwipe:true,
+    previewCloseOnEsc:true,
+    previewKeyboardNavigation:true,
+    thumbnailMargin: 20
+      
+    },
+    {
+      width: '100%',
+      breakpoint: 400,
+      imagePercent: 100,
+      thumbnailsSwipe:true,
+      previewZoom: true,
+      previewCloseOnEsc:true,
+      previewCloseOnClick:true,
+      previewKeyboardNavigation:true,
+      previewFullscreen:true
+    }  
+  ];
+
+  this.galleryImages = [
+  
+  ];
   }
   setCars(){
     this.showDetail=false;
@@ -451,7 +535,15 @@ cancelEditingCar(){
     this._butler.partsSelected=true;
   }
 
+
+
+
+
+
+
+
   ngAfterViewInit(): void {
+  
     // Show chat-content when clicking on chat-item for tablet and mobile devices
     document.querySelectorAll('.chat-list .chat-item').forEach(item => {
       item.addEventListener('click', event => {

@@ -22,7 +22,7 @@ import { RequestComponent } from './request/request.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -91,8 +91,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [MemberlistComponent,MembersComponent, RequestComponent],
   imports: [
+    NgxGalleryModule,
     ReactiveFormsModule,
-    CommonModule,
+    CommonModule,  
 
   NgxUiLoaderModule,
     RouterModule.forChild(routes),

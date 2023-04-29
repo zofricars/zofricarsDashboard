@@ -33,8 +33,9 @@ export class DemoFilePickerAdapter extends FilePickerAdapter {
     );
    
   }
-  public removeFile(fileItem:any): Observable<any> {
-    const removeApi = 'https://db.buckapi.us/api/containers/tixsImages/upload';
-    return this.http.post(removeApi, {});
+  public removeFile(fileItem: any): Observable<any> {
+    console.log(fileItem);
+    const removeApi = 'https://db.buckapi.us/api/containers/tixsImages/' + fileItem.id;
+    return this.http.delete(removeApi);
   }
 }

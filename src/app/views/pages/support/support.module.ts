@@ -10,10 +10,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
-
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { NgbDropdownModule, NgbTooltipModule, NgbNavModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SupportComponent } from './support.component';
 import { ChatComponent } from './chat/chat.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -56,6 +56,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     
+  NgxUiLoaderModule,
     RouterModule.forChild(routes),
     FormsModule,
     FullCalendarModule, // import the FullCalendar module! will make the FullCalendar component available
@@ -66,6 +67,7 @@ const routes: Routes = [
     NgbCollapseModule,
     NgSelectModule,
     QuillModule.forRoot(), // ngx-quill
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     {

@@ -27,8 +27,8 @@ export class NewcarComponent implements OnInit, AfterViewInit {
       cancel: 'Cancelar',
     },
     previewCard: {
-      remove: 'Sil',
-      uploadError: 'Fayl yüklənmədi',
+      remove: 'Borrar',
+      uploadError: 'error',
     },
   };
   public cropperOptions = {
