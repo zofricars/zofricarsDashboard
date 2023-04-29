@@ -9,8 +9,11 @@ import Swal from 'sweetalert2'
 import { stringify } from 'querystring';
 import { json } from 'ngx-custom-validators/src/app/json/validator';
 import { throws } from 'assert';
+import { DemoFilePickerAdapter } from  './file-picker.adapter';
 import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
+import { HttpRequest, HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
+import { UploaderCaptions } from 'ngx-awesome-uploader';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
 import * as $ from 'jquery';
 @Component({
@@ -98,10 +101,32 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     transmision: new FormControl('Seleccione una!'),
     year: new FormControl(''),
   });
+
+  public captions: UploaderCaptions = {
+    dropzone: {
+      title: 'Imágenes del vehículo',
+      or: '.',
+      browse: 'Cargar',
+    },
+    cropper: {
+      crop: 'Cortar',
+      cancel: 'Cancelar',
+    },
+    previewCard: {
+      remove: 'Borrar',
+      uploadError: 'error',
+    },
+  };
+  public cropperOptions = {
+    minContainerWidth: '300',
+    minContainerHeight: '300',
+  };
+  adapter = new  DemoFilePickerAdapter(this.http,this._butler);
   constructor(private renderer: Renderer2,private cdr: ChangeDetectorRef,
     private ngxService: NgxUiLoaderService,
     public _butler:Butler,
     private router: Router,
+     private http: HttpClient,
     public dataApiService: DataApiService,
     public formBuilder: UntypedFormBuilder
     ) { this.vehicles=VEHICLES}
@@ -122,7 +147,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     }
     
     change(){
-      
+      this._butler.carImages=this.carToSee.images;
       // this.renderer.addClass(document.body, 'sidebar-folded');
       this.galleryImages=this.carToSee.images;
       console.log("galerry:" +JSON.stringify(this.galleryImages));
@@ -131,6 +156,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
     addImages(){}
     cancelEditingImages(){
       this.editingImages=false;
+      this._butler.newImage=false;
     }
     delete(i:any){
       let ident=this.cars$[i].id;
@@ -148,7 +174,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
       });
     }
     deleteImage(i: number){
-      this.carToSee.images.splice(i, 1);
+      this._butler.carImages.splice(i, 1);
     }
 
 cancelDelete(){}
@@ -394,7 +420,12 @@ cancelEditingCar(){
     }
     this.ngxService.start("loader-01");
     this.carToUpdate=this.form.value; 
+    if (this._butler.newImage){
+      this.carToUpdate.images=this._butler.carImages;
+    }
+    else{
     this.carToUpdate.images=this.carToSee.images;
+    }
 
 
     if (this.fuelType!="Seleccione una!"){
@@ -514,6 +545,9 @@ this.carImageEditing=this.carToSee.images[i];
   this.galleryImages = [
   
   ];
+  }
+  addImage(){
+    this._butler.newImage=true;
   }
   setCars(){
     this.showDetail=false;

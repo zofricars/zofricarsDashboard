@@ -15,7 +15,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-
+import { FilePickerModule } from  'ngx-awesome-uploader';
 import { MembersComponent } from './members.component';
 import { MemberlistComponent } from './list/memberlist.component';
 import { RequestComponent } from './request/request.component';
@@ -90,7 +90,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MemberlistComponent,MembersComponent, RequestComponent],
-  imports: [
+  imports: [  FilePickerModule,
     NgxGalleryModule,
     ReactiveFormsModule,
     CommonModule,  

@@ -41,6 +41,7 @@ export class Butler {
     imagePreviewProduct:string="";
     memberIdPrev:string="";
     memberPrev:boolean=false;
+    newImage:boolean=false;
     profileStatus:string="";
     subTotal:number=0;
     review:boolean=false;
