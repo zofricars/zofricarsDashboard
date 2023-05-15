@@ -9,7 +9,7 @@
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-striped">
+          <table class="table ">
             <thead>
               <tr>
                 <th>Nro de orden</th>
@@ -23,7 +23,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor='let order of orders$; let i = index'  style="cursor: pointer;" >
+              <tr *ngFor='let order of _butler.orders; let i = index'  style="cursor: pointer;" >
                 <td>{{order.orderNumber}}</td>
                 <td>
                     <span *ngFor='let car of order.car; let i = index' >

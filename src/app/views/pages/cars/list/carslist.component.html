@@ -31,9 +31,9 @@
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-striped">
+          <table class="table">
             <thead>
-              <tr>
+              <tr><th>#</th>
                 <th></th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
@@ -42,7 +42,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor='let car of cars$; let i = index'  (click)="detail(car)" style="cursor: pointer;" >
+              <tr *ngFor='let car of _butler.cars; let i = index'  (click)="detail(car)" style="cursor: pointer;" >
+                <td>{{car.pos+1}}</td>
                  <td class="py-1" sty>
                   <img src="{{car.images[0]}}" alt="image">
                 </td>

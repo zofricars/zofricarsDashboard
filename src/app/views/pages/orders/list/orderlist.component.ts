@@ -21,6 +21,9 @@ export class OrderlistComponent implements OnInit, AfterViewInit {
   getOrders(){
     this.dataApiService.getAllOrders().subscribe(response => {
     this.orders$ = response
+    this._butler.orders=this.orders$;
+    // this._butler.orders=this._butler.orders.filter(order => order.amount !== 0);
+    this._butler.orders=this._butler.orders.filter(order => order.amount !== 0);
     });
   }
   loadPartsById(card:any){

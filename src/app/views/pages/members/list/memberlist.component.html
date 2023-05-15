@@ -13,7 +13,11 @@
                       <div class="ps" [perfectScrollbar]>
                         <p class="text-muted mb-1">Miembros activos</p>
                         <ul class="list-unstyled chat-list px-1" >
-                          <li class="chat-item pe-1"  *ngFor='let card of cards$; let i = index'    [hidden]=" card.status!='activated' || card.userType=='admin'">
+                          <li class="chat-item pe-1"  *ngFor='let card of cards$; let i = index'    [hidden]=" card.status!='activated' || card.userType=='admin'"
+                          [ngStyle]="{'background-color': hoveredIndex === i ? '#1015540f' : '' }"
+                          (mouseenter)="hoveredIndex = i" 
+                          (mouseleave)="hoveredIndex = null"
+                          >
                             <a (click)="loadCarsById2(card)" class="d-flex align-items-center">
                               <figure class="mb-0 me-2">
                                 <img src="{{card.images[0]}}" class="img-xs rounded-circle" alt="user">

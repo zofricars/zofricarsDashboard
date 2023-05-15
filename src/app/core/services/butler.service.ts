@@ -68,6 +68,7 @@ export class Butler {
     type:string="none"; 
     placeholder:string="a donde deseas ir?"; 
 	  any:any[]=[]; 
+    cars:any[]=[]; 
     number:number=0;
     rides:boolean=false;
     admin:boolean=false;
@@ -84,6 +85,7 @@ export class Butler {
     userType:string=""; 
     email:string=""; 
     cards:any[]=[]; 
+    orders:any[]=[]; 
     serialT:number=0;
     constructor() { }
 }

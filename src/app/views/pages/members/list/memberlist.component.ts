@@ -48,6 +48,7 @@ export class MemberlistComponent implements OnInit, AfterViewInit {
    fuelType="Seleccione una!";
    transmision="Seleccione una!";
    vehicleStatus="Seleccione una!";
+   hoveredIndex:any;
    prev:any=[];
    prev2:any=[];
    prev3:any=[];
