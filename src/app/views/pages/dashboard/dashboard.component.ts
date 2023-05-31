@@ -487,7 +487,7 @@ function getMonthlySalesChartOptions(obj: any) {
 
     series: [{
       name: 'Visitas',
-      data: [30,10,87,0,0,0,0,0,0,0,0,0]
+      data: [30,10,34,54,0,0,0,0,0,0,0,0]
     }],
     chart: {
       defaultLocale: 'es',
