@@ -45,7 +45,10 @@ export class OrderlistComponent implements OnInit, AfterViewInit {
     console.log("seteado a parts");
     this._butler.carsSelected=false;
     this._butler.partsSelected=true;}
-
+setorder(order:any){
+  this._butler.orderdetailseted=true;
+  this._butler.orderdetail=order;
+}
   ngAfterViewInit(): void {
 
     // Show chat-content when clicking on chat-item for tablet and mobile devices

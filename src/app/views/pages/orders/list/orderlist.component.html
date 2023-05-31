@@ -23,7 +23,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor='let order of _butler.orders; let i = index'  style="cursor: pointer;" >
+              <tr *ngFor='let order of _butler.orders; let i = index'  style="cursor: pointer;" routerLink="../orderdetail"  (click)="setorder(order)">
                 <td>{{order.orderNumber}}</td>
                 <td>
                     <span *ngFor='let car of order.car; let i = index' >

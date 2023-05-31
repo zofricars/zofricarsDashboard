@@ -14,7 +14,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { OrdersComponent } from './orders.component';
-import { OrderlistComponent } from './list/orderlist.component';
+import { OrderlistComponent } from './list/orderlist.component';4
+import { OrderdetailComponent } from './detail/orderdetail.component';
 // import { RequestComponent } from './request/request.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -76,17 +77,17 @@ const routes: Routes = [
         path: 'orderlist',
         component: OrderlistComponent
       }
-      // ,
-      // {
-      //   path: 'calendar',
-      //   component: CalendarComponent
-      // },
+      ,
+       {
+         path: 'orderdetail',
+         component: OrderdetailComponent
+       }
     ]
   }
 ]
 
 @NgModule({
-  declarations: [OrderlistComponent,OrdersComponent],
+  declarations: [OrderlistComponent,OrdersComponent,OrderdetailComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

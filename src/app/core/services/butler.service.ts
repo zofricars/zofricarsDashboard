@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { AnyObject } from 'chart.js/types/basic';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Butler {
     car:any[]=[];
+    orderdetail:any={};
+    orderdetailseted:Boolean=false;
     ticket:any[]=[];
     images:any[]=[];
     partImages:any[]=[];
