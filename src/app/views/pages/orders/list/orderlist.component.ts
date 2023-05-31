@@ -18,12 +18,15 @@ export class OrderlistComponent implements OnInit, AfterViewInit {
     public _butler:Butler,
     public dataApiService: DataApiService,
     ) { }
+    deleteOrder(){}
+    cancelDeleteOrder(){}
   getOrders(){
     this.dataApiService.getAllOrders().subscribe(response => {
     this.orders$ = response
     this._butler.orders=this.orders$;
     // this._butler.orders=this._butler.orders.filter(order => order.amount !== 0);
     this._butler.orders=this._butler.orders.filter(order => order.amount !== 0);
+    this._butler.orders.reverse();
     });
   }
   loadPartsById(card:any){

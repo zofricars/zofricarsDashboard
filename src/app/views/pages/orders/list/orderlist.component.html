@@ -17,7 +17,7 @@
                 <th>Monto de la compra</th>
                 <th>Email</th>
                 <th>Nombre</th>
-                <th>Telefono</th>
+                <th></th>
                 <!-- <th>Precio</th>
                 <th>Stock</th> -->
               </tr>
@@ -36,7 +36,26 @@
                <td>$ CLP {{order.amount | number :'1.0'}}</td>
                <td>   {{order.email}}</td>
                 <td>{{order.customer.name}}</td>
-                <td>{{order.customer.phone}}</td>
+                <td>
+                  <button  [swal]="
+                  {title: '<strong>Borrar orden de compra <u></u></strong>', icon: 'error',
+                  html: 'Confirma que desea eliminar esta orden de compra?',
+                  showCloseButton: true,
+                  showCancelButton: true,
+                  cancelButtonColor: '#101554',
+                  confirmButtonColor: '#ff3366',
+                  focusConfirm: true,
+                  confirmButtonText:' Si, estoy seguro',
+                  confirmButtonAriaLabel: 'Thumbs up, great!',
+                  cancelButtonText: ' Cancelar',
+                  cancelButtonAriaLabel: 'Thumbs down'
+                  }"
+                  (confirm)="deleteOrder()"
+                  (dismiss)="cancelDeleteOrder()"
+                  class="btn btn-danger btn-xs" style="margin-right:10%;">
+                  <i class="feather icon-trash"></i>
+                </button>
+                </td>
                 <!-- <td>{{order.car.}}</td>
                 <td>{{order.stock}}</td> -->
               </tr>

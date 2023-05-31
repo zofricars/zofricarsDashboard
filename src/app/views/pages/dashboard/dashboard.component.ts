@@ -11,12 +11,14 @@ import { DataApiService } from '@services/data-api.service';
 })
 export class DashboardComponent implements OnInit,AfterViewInit {
   products$:any=[];
+  orders$:any=[];
   myProducts$:any=[];
   cards$:any=[];
   loading:boolean=true;
 
  productsProv$:any=[];
   partsSize:number=0;
+  ordersSize:number=0;
   myPartsSize:number=0;
   newMembersSize:number=0;
   activatedMembersSize:number=0;
@@ -65,8 +67,9 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     this.productsProv$=[];
     
     setTimeout (() => {
-      this.dataApiService.getAllProducts().subscribe(response => {
+      this.dataApiService.getAllCars().subscribe(response => {
         this.products$ = response;
+        this.products$.reverse();
         this.partsSize=this.products$.length;
         for (let i =0;i<this.partsSize;i++){
           if(i<6){
@@ -106,8 +109,20 @@ export class DashboardComponent implements OnInit,AfterViewInit {
       }
     });
  }
+ getOZ(){
+ 
+    this.dataApiService.getAllOrders().subscribe(response => {
+    this.orders$ = response
+    this._butler.orders=this.orders$;
+    // this._butler.orders=this._butler.orders.filter(order => order.amount !== 0);
+    this._butler.orders=this._butler.orders.filter(order => order.amount !== 0);
+    this._butler.orders.reverse();
+    this.ordersSize=this._butler.orders.length;
+    });
+  
+ }
   ngOnInit(): void {
-
+this.getOZ();
     this.currentDate = this.calendar.getToday();
     this.customersChartOptions = getCustomerseChartOptions(this.obj);
     this.ordersChartOptions = getOrdersChartOptions(this.obj);

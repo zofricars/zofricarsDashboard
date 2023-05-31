@@ -1,0 +1,17 @@
+/* Estilo para la animación de skeleton screen */
+.skeleton {
+    width: 100%;
+    height: 100px; /* Ajusta la altura según sea necesario */
+    background-color: #f3f3f3b9; /* Color de fondo del skeleton screen */
+    animation: skeleton-loading 1s infinite linear;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-position: -200px 0;
+    }
+    
+    100% {
+      background-position: 200px 0;
+    }
+  }
