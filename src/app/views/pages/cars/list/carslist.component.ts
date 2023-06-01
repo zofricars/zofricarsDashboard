@@ -14,6 +14,14 @@ import Swal from 'sweetalert2'
   styleUrls: ['./carslist.component.scss']
 })
 export class CarslistComponent implements OnInit, AfterViewInit {
+  p: number = 1;
+  page: number = 1;
+  count: number = 0;
+  itemsPP:number=30;
+  options: number[] = [30, 50, 100];
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
   cards$:any=[];
   cars$:any=[];
   editing=false;
@@ -84,6 +92,9 @@ export class CarslistComponent implements OnInit, AfterViewInit {
    
   get f(): { [key: string]: AbstractControl } {
       return this.form.controls;
+    }
+    changeItemsPerPage(value: number): void {
+      this.itemsPP = value;
     }
     noShowDetail(){
       this.showDetail=false;

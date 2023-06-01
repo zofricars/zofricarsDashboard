@@ -23,6 +23,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { FilePickerModule } from  'ngx-awesome-uploader';
+import { NgxPaginationModule } from 'ngx-pagination';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -94,7 +95,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [CarslistComponent,NewcarComponent, CarsComponent],
   imports: [
-
+    NgxPaginationModule,
   NgxUiLoaderModule,
   FilePickerModule,
     CommonModule,

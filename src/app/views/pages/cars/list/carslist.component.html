@@ -19,6 +19,16 @@
   <div _ngcontent-iec-c96="">
     <h4 _ngcontent-iec-c96="" class="mb-3 mb-md-0"></h4>
   </div>
+  <pagination-controls previousLabel="Atrás" class="my-pagination" nextLabel="Siguiente" (pageChange)="p = $event" [hidden]="showDetail"></pagination-controls>
+  
+  <span>
+    Mostrar:
+      <select [(ngModel)]="itemsPP" (change)="changeItemsPerPage(itemsPP)" [hidden]="showDetail" class="custom-select">
+        <option>{{itemsPP}}</option><option *ngFor="let option of options" [value]="option" [selected]="option === itemsPP">{{ option }}</option>
+      </select>
+      vehículos
+  </span>
+ 
   <div _ngcontent-iec-c96="" class="d-flex align-items-center flex-wrap text-nowrap">
     <button _ngcontent-iec-c96="" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" [routerLink]="['/cars/newcar']" [hidden]=" showDetail">
      <i class="feather icon-plus"></i>
@@ -30,6 +40,7 @@
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
+   
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -42,7 +53,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor='let car of _butler.cars; let i = index'  (click)="detail(car)" style="cursor: pointer;" >
+              <tr *ngFor='let car of _butler.cars | paginate: { itemsPerPage: itemsPP, currentPage: p }; let i = index '  (click)="detail(car)" style="cursor: pointer;" >
                 <td>{{car.pos+1}}</td>
                  <td class="py-1" sty>
                   <img src="{{car.images[0]}}" alt="image" style="border-radius: 3px;" >
@@ -55,6 +66,7 @@
             </tbody>
           </table>
         </div>
+       
       </div>
     </div>
   </div>
