@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     secondary      : "#7987a1",
     success        : "#05a34a",
     info           : "#66d1d1",
-    warning        : "#fbbc06",
+    warning        : "#f57a1f",
     danger         : "#ff3366",
     light          : "#e9ecef",
     dark           : "#060c17",
