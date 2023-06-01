@@ -10,7 +10,7 @@
 </ngx-ui-loader>
 <nav class="page-breadcrumb" [hidden]="showDetail">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a (click)="noshow()">Vehículos</a></li>
+    <li class="breadcrumb-item"><a (click)="noShowDetail()">Vehículos</a></li>
     <li class="breadcrumb-item active" aria-current="page">Listado</li>
   </ol>
 </nav>
@@ -61,7 +61,7 @@
                 <td>{{car.name}}</td>
                 <td>{{car.description | slice:0:30}} <span style="color:blue;font-weight: bold;">...</span></td>
                 <td>{{car.price | number:'1.2-2'}}</td>
-                <td>{{car.carType.name}}</td>
+                <td>{{car.carType?.name}}</td>
               </tr>
             </tbody>
           </table>
@@ -77,7 +77,7 @@
 
 <nav class="page-breadcrumb" [hidden]="!showDetail">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a (click)="noshow()" style="cursor: pointer;">Vehículos</a></li>
+    <li class="breadcrumb-item"><a (click)="noShowDetail()" style="cursor: pointer;">Vehículos</a></li>
     <li class="breadcrumb-item active" aria-current="page">Detalle del vehículo </li>
   </ol>
 </nav>
