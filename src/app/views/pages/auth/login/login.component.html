@@ -8,7 +8,7 @@
     <div class="card">
       <div class="row">
         <div class="col-md-4 pe-md-0">
-          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(assets/images/login.jpg)' }">
+          <div class="auth-side-wrapper" [ngStyle]="{ 'border-radius':'15px','background-image': 'url(assets/images/login.jpg)' }">
           </div>
         </div>
         <div class="col-md-8 ps-md-0">
@@ -42,10 +42,10 @@
               </div>
               <div  class="d-grid gap-2">
                 <!-- <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onLoggedin($event)">Entrar</button> -->
-                          <button type="submit" class="btn btn-primary ">Entrar</button>
+                          <button type="submit" class="btn btn-primary " style="border-radius: 15px;">Entrar</button>
               </div>
               
-              <a routerLink="/auth/register" class="d-block mt-3 text-muted">Aun no forma parte de ZOFRICARS? solicite su registro <span class="text-info" style="font-weight: bolder;">AQUI</span></a>
+              <a routerLink="/auth/register" class="d-block mt-3 text-muted">Aun no forma parte de ZOFRICARS? solicite su registro <span class="text-info" style="font-weight: bolder; color:#f57a1f !important;">AQUI</span></a>
             </form>
           </div>
         </div>

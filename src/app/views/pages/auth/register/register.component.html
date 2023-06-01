@@ -8,7 +8,7 @@
     <div class="card">
       <div class="row">
         <div class="col-md-4 pe-md-0">
-          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(assets/images/register.jpg)' }">
+          <div class="auth-side-wrapper" [ngStyle]="{ 'border-radius':'15px','background-image': 'url(assets/images/register.jpg)' }">
 
           </div>
         </div>
@@ -53,10 +53,10 @@
               <div class="d-grid gap-2">
                 <!-- <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onRegister($event)">Solicitar registro</button>  -->
                 <button  class=" btn btn-primary me-2 mb-2 mb-md-0"type="submit" 
-style="cursor: pointer;">Solicitar registro</button>
+style="cursor: pointer; border-radius: 15px;" >Solicitar registro</button>
 
               </div>
-              <a routerLink="/auth/login" class="d-block mt-3 text-muted">ya tiene cuenta? Entra <span class="text-info" style="font-weight: bolder;">AQUI</span></a>
+              <a routerLink="/auth/login" class="d-block mt-3 text-muted">ya tiene cuenta? Entra <span class="text-info" style="font-weight: bolder; color:#f57a1f !important;" >AQUI</span></a>
             </form>
 
 
