@@ -45,7 +45,7 @@
               <tr *ngFor='let car of _butler.cars; let i = index'  (click)="detail(car)" style="cursor: pointer;" >
                 <td>{{car.pos+1}}</td>
                  <td class="py-1" sty>
-                  <img src="{{car.images[0]}}" alt="image">
+                  <img src="{{car.images[0]}}" alt="image" style="border-radius: 3px;" >
                 </td>
                 <td>{{car.name}}</td>
                 <td>{{car.description | slice:0:30}} <span style="color:blue;font-weight: bold;">...</span></td>
@@ -114,7 +114,7 @@
            <div class="col-lg-3 chat-aside border-end-lg">
             <div class="aside-content">
               <div class="aside-body">
-               <img src="{{images[0]}}" class="img-lg rounded-circle" style="width: 100%; height: 100%;" *ngIf="showDetail">
+               <img src="{{images[0]}}" class="img-lg " style="width: 100%; height: 100%; border-radius: 15px;" *ngIf="showDetail">
               </div>
             </div>
           </div>
