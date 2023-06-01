@@ -10,7 +10,7 @@
 </ngx-ui-loader>
 <nav class="page-breadcrumb" [hidden]="showDetail">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink=".">Vehículos</a></li>
+    <li class="breadcrumb-item"><a (click)="noshow()">Vehículos</a></li>
     <li class="breadcrumb-item active" aria-current="page">Listado</li>
   </ol>
 </nav>
@@ -21,7 +21,7 @@
   </div>
   <pagination-controls previousLabel="Atrás" class="my-pagination" nextLabel="Siguiente" (pageChange)="p = $event" [hidden]="showDetail"></pagination-controls>
   
-  <span>
+  <span [hidden]="showDetail" >
     Mostrar:
       <select [(ngModel)]="itemsPP" (change)="changeItemsPerPage(itemsPP)" [hidden]="showDetail" class="custom-select">
         <option>{{itemsPP}}</option><option *ngFor="let option of options" [value]="option" [selected]="option === itemsPP">{{ option }}</option>
@@ -77,7 +77,7 @@
 
 <nav class="page-breadcrumb" [hidden]="!showDetail">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a (click)="noShowDetail()" style="cursor: pointer;">Vehículos</a></li>
+    <li class="breadcrumb-item"><a (click)="noshow()" style="cursor: pointer;">Vehículos</a></li>
     <li class="breadcrumb-item active" aria-current="page">Detalle del vehículo </li>
   </ol>
 </nav>

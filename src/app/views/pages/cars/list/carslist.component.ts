@@ -96,6 +96,10 @@ export class CarslistComponent implements OnInit, AfterViewInit {
     changeItemsPerPage(value: number): void {
       this.itemsPP = value;
     }
+    noshow(){
+      this.showDetail=false;
+    
+    }
     noShowDetail(){
       this.showDetail=false;
       if (this._butler.type=='admin'){  
