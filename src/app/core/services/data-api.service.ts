@@ -55,60 +55,60 @@ export class DataApiService {
 	});
 	deletePart(id: string){
 		const token = this.AuthRESTService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/products/${id}/?access_token$={token}`;
+		const url_api=`https://db.zofricars.com:9001/api/products/${id}/?access_token$={token}`;
 		return this.http
 		.delete<PartInterface>(url_api, {headers: this.headers})
 		.pipe(map(data => data));
 	}
 	deleteCar(id: string){
 		const token = this.AuthRESTService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/cars/${id}/?access_token$={token}`;
+		const url_api=`https://db.zofricars.com:9001/api/cars/${id}/?access_token$={token}`;
 		return this.http
 		.delete<CarInterface>(url_api, {headers: this.headers})
 		.pipe(map(data => data));
 	}
 	deleteChat(id: string){
 		const token = this.AuthRESTService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/chats/${id}/?access_token$={token}`;
+		const url_api=`https://db.zofricars.com:9001/api/chats/${id}/?access_token$={token}`;
 		return this.http
 		.delete<ChatInterface>(url_api, {headers: this.headers})
 		.pipe(map(data => data));
 	}
 	deleteMessage(idChat: string){
 		const token = this.AuthRESTService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/messages?filter[where][idChat]=${idChat}/?access_token$={token}`;
+		const url_api=`https://db.zofricars.com:9001/api/messages?filter[where][idChat]=${idChat}/?access_token$={token}`;
 		return this.http
 		.delete<MessageInterface>(url_api, {headers: this.headers})
 		.pipe(map(data => data));
 	}
 	deleteMember(id: string){
 		const token = this.AuthRESTService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/cards/${id}/?access_token$={token}`;
+		const url_api=`https://db.zofricars.com:9001/api/cards/${id}/?access_token$={token}`;
 		return this.http
 		.delete<MemberInterface>(url_api, {headers: this.headers})
 		.pipe(map(data => data));
 	}
 	getTransationByBranch(branch: string){
-		const url_api = `https://db.buckapi.us:9001/api/transactions?filter[where][idBranch]=${branch}`;
+		const url_api = `https://db.zofricars.com:9001/api/transactions?filter[where][idBranch]=${branch}`;
 		this.transactions = this.http.get(url_api);
 		return ( this.http.get(url_api));		
 	}
 
 	getAllProducts(){
-		const url_api = 'https://db.buckapi.us:9001/api/products';
+		const url_api = 'https://db.zofricars.com:9001/api/products';
 		return this.http.get(url_api);
 	}
 	getAllCars(){
-		const url_api = 'https://db.buckapi.us:9001/api/cars';
+		const url_api = 'https://db.zofricars.com:9001/api/cars';
 		return this.http.get(url_api);
 	}
 
 	getAllChats(){
-		const url_api = 'https://db.buckapi.us:9001/api/chats';
+		const url_api = 'https://db.zofricars.com:9001/api/chats';
 		return this.http.get(url_api);
 	}
 	getMessagesBy(idChat: string){
-		const url_api = `https://db.buckapi.us:9001/api/messages?filter[where][idChat]=${idChat}`;
+		const url_api = `https://db.zofricars.com:9001/api/messages?filter[where][idChat]=${idChat}`;
 		this.messages = this.http.get(url_api);
 		return ( this.http.get(url_api));		
 	}
@@ -116,25 +116,25 @@ export class DataApiService {
 
 	
 	getAllCards(){
-		const url_api = 'https://db.buckapi.us:9001/api/cards';
+		const url_api = 'https://db.zofricars.com:9001/api/cards';
 		return this.http.get(url_api);
 	}
 
 	getAllOrders(){
-		const url_api = 'https://db.buckapi.us:9001/api/orders';
+		const url_api = 'https://db.zofricars.com:9001/api/orders';
 		return this.http.get(url_api);
 	}
 	getAllTransactions(){
-		const url_api = 'https://db.buckapi.us:9001/api/transactions';
+		const url_api = 'https://db.zofricars.com:9001/api/transactions';
 		return this.http.get(url_api);
 	}
 	getProduct(id: string){
-		const url_api = `https://db.buckapi.us:9001/api/products/${id}`;
+		const url_api = `https://db.zofricars.com:9001/api/products/${id}`;
 		return this.http.get(url_api);
 	}
 
 	getCierresByBranch(branch: string){
-		const url_api = `https://db.buckapi.us:9001/api/infos?filter[where][idBranch]=${branch}`;
+		const url_api = `https://db.zofricars.com:9001/api/infos?filter[where][idBranch]=${branch}`;
 		this.cierre = this.http.get(url_api);
 		return ( this.http.get(url_api));		
 	}
@@ -142,21 +142,21 @@ export class DataApiService {
 
 	carUpdate(car :CarInterface, id: string){
 		// let token = this.authService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/cars/${id}`;
+		const url_api=`https://db.zofricars.com:9001/api/cars/${id}`;
 		return this.http
 		.put<CarInterface>(url_api, car)
 		.pipe(map(data => data));
 	}
 	partUpdate(part :PartInterface, id: string){
 		// let token = this.authService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/products/${id}`;
+		const url_api=`https://db.zofricars.com:9001/api/products/${id}`;
 		return this.http
 		.put<PartInterface>(url_api, part)
 		.pipe(map(data => data));
 	}
 	cardUpdate(card :CardInterface, id: string){
 		// let token = this.authService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/cards/${id}`;
+		const url_api=`https://db.zofricars.com:9001/api/cards/${id}`;
 		return this.http
 		.put<CardInterface>(url_api, card)
 		.pipe(map(data => data));
@@ -164,41 +164,41 @@ export class DataApiService {
 
 	memberUpdate(member :MemberInterface, id: string){
 		// let token = this.authService.getToken();
-		const url_api=`https://db.buckapi.us:9001/api/cards/${id}`;
+		const url_api=`https://db.zofricars.com:9001/api/cards/${id}`;
 		return this.http
 		.put<MemberInterface>(url_api, member)
 		.pipe(map(data => data));
 	}
 	getPartsById(userId: string){
-		const url_api = `https://db.buckapi.us:9001/api/products?filter[where][userId]=${userId}`;
+		const url_api = `https://db.zofricars.com:9001/api/products?filter[where][userId]=${userId}`;
 		this.parts = this.http.get(url_api);
 		return ( this.http.get(url_api));		
 	}
 	getCarsById(userId: string){
-		const url_api = `https://db.buckapi.us:9001/api/cars?filter[where][userId]=${userId}`;
+		const url_api = `https://db.zofricars.com:9001/api/cars?filter[where][userId]=${userId}`;
 		this.cars = this.http.get(url_api);
 		return ( this.http.get(url_api));		
 	}
 	getCardByUserId(userId: string){
-		const url_api = `https://db.buckapi.us:9001/api/cards?filter[where][userd]=${userId}`;
+		const url_api = `https://db.zofricars.com:9001/api/cards?filter[where][userd]=${userId}`;
 		this.cards = this.http.get(url_api);
 		return ( this.http.get(url_api));		
 	}
 	getSerialT(branch: string){
-		const url_api = `https://db.buckapi.us:9001/api/branchs/${branch}`;
+		const url_api = `https://db.zofricars.com:9001/api/branchs/${branch}`;
 		this.branch = this.http.get(url_api);
 		this.butler.serialT=this.branch.serialT;
 		return ( this.branch);		
 	}
 	// setSerialT(branch: string){
-	// 	const url_api = `https://db.buckapi.us:9001/api/branchs/${branch}`;
+	// 	const url_api = `https://db.zofricars.com:9001/api/branchs/${branch}`;
 	// 	this.branch = this.http.get(url_api);
 	// 	this.butler.serialT=this.branch.serialT;
 	// 	return ( this.branch);		
 	// }
 	setSerialT(serial:SerialInterface, branch: string){
 		// let token = this.authService.getToken();
-		const url_api = `https://db.buckapi.us:9001/api/branchs/${branch}`;
+		const url_api = `https://db.zofricars.com:9001/api/branchs/${branch}`;
 		return this.http
 		.put<SerialInterface>(url_api, serial)
 		.pipe(map(data => data));
@@ -206,32 +206,32 @@ export class DataApiService {
 
 
 	saveCard(card :CardInterface){
-		const url_api='https://db.buckapi.us:9001/api/cards';
+		const url_api='https://db.zofricars.com:9001/api/cards';
 		return this.http
 		.post<CardInterface>(url_api, card)
 		.pipe(map(data => data));
 	}
 	saveMessage(message:MessageInterface){
-		const url_api='https://db.buckapi.us:9001/api/messages';
+		const url_api='https://db.zofricars.com:9001/api/messages';
 		return this.http
 		.post<MessageInterface>(url_api, message)
 		.pipe(map(data => data));
 	}
 
 	saveCar(car :CarInterface){
-		const url_api='https://db.buckapi.us:9001/api/cars';
+		const url_api='https://db.zofricars.com:9001/api/cars';
 		return this.http
 		.post<CarInterface>(url_api, car)
 		.pipe(map(data => data));
 	}
 	savePart(part :PartInterface){
-		const url_api='https://db.buckapi.us:9001/api/products';
+		const url_api='https://db.zofricars.com:9001/api/products';
 		return this.http
 		.post<PartInterface>(url_api, part)
 		.pipe(map(data => data));
 	}
 	saveTicket(ticket :TicketInterface){
-		const url_api='https://db.buckapi.us:9001/api/transactions';
+		const url_api='https://db.zofricars.com:9001/api/transactions';
 		return this.http
 		.post<TicketInterface>(url_api, ticket)
 		.pipe(map(data => data));
