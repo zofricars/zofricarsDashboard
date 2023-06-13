@@ -53,6 +53,14 @@ export class DataApiService {
   	headers : HttpHeaders = new HttpHeaders({  		
 		  "Content-Type":"application/json"	
 	});
+
+	deleteOrder(id: string){
+		const token = this.AuthRESTService.getToken();
+		const url_api=`https://db.zofricars.com:9001/api/orders/${id}/?access_token$={token}`;
+		return this.http
+		.delete<PartInterface>(url_api, {headers: this.headers})
+		.pipe(map(data => data));
+	}
 	deletePart(id: string){
 		const token = this.AuthRESTService.getToken();
 		const url_api=`https://db.zofricars.com:9001/api/products/${id}/?access_token$={token}`;

@@ -18,7 +18,16 @@ export class OrderlistComponent implements OnInit, AfterViewInit {
     public _butler:Butler,
     public dataApiService: DataApiService,
     ) { }
-    deleteOrder(){}
+    deleteOrder(i:any){
+      let id = this._butler.orders[i].id;
+      console.log("order id deleted: "+id);
+      this.dataApiService.deleteOrder(id).subscribe(response=>{
+        // this.dataApiService.getAllOrders().subscribe(response=>{
+        //   this._butler.orders=response;
+        // });
+        this.getOrders();
+      });
+    }
     cancelDeleteOrder(){}
   getOrders(){
     this.dataApiService.getAllOrders().subscribe(response => {
