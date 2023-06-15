@@ -217,6 +217,14 @@ export class CarslistComponent implements OnInit, AfterViewInit {
       this.dataApiService.getCarsById(this._butler.userd).subscribe(response => {
         this.ngxService.stop("loader-01");
       this.cars$ = response
+      this.cars$ = response
+      this._butler.cars=this.cars$;
+      // this._butler.cars=this._butler.cars.filter(order => order.amount !== 0);
+      this._butler.cars=this._butler.cars.filter(car => car.amount !== 0);
+      this._butler.cars = this._butler.cars.map((car, index) => {
+        return { ...car, pos: index };
+      });
+      this._butler.cars.reverse();
       });
   }
   ngOnInit(): void {   
