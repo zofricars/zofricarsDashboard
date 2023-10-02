@@ -53,7 +53,7 @@ export class AuthRESTService {
   		}
 	 logoutUser(){
 	  	let accessToken = localStorage.getItem('accessToken');
-		  	const url_api = 'https://db.buckapi.us:9001/api/users/logout?access_token=${accessToken}';
+		  	const url_api = 'https://db.buckapi.com:9001/api/users/logout?access_token=${accessToken}';
 		   	localStorage.removeItem('accessToken');
 		  	localStorage.removeItem('currentUser');
 		  	return this.http.post<UserInterface>(url_api,{headers: this.headers});
