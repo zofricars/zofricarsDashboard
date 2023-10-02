@@ -17,7 +17,7 @@ export class AuthRESTService {
 
 	//registerUser( email: string, password: string,status :string,userType :string){
 	registerUser( email: string, password: string){
-		const url_api ='https://db.buckapi.us:9001/api/Users';
+		const url_api ='https://db.buckapi.com:9001/api/Users';
 		return this.http
 		//.post<UserInterface>(url_api,{email,password,status,userType},{headers:this.headers})
 		.post<UserInterface>(url_api,{email,password},{headers:this.headers})
@@ -25,7 +25,7 @@ export class AuthRESTService {
 	}
 
 	loginUser(email:string, password:string):Observable<any>{
-		const url_api ='https://db.buckapi.us:9001/api/Users/login?include=user';
+		const url_api ='https://db.buckapi.com:9001/api/Users/login?include=user';
 		return this.http
 		.post<UserInterface>(url_api,{email,password},{headers:this.headers})
 		.pipe(map(data => data));

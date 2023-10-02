@@ -16,13 +16,13 @@ export class DemoFilePickerAdapter extends FilePickerAdapter {
     
     const form = new FormData();
     form.append('file', fileItem.file);
-    const api = 'https://db.buckapi.us:3333/api/containers/tixsImages/upload';
+    const api = 'https://db.buckapi.com:3333/api/containers/tixsImages/upload';
     const req = new HttpRequest('POST', api, form, {reportProgress: true});
     return this.http.request(req)
     .pipe(
       map( (res: HttpEvent<any>) => {
           if (res.type === HttpEventType.Response) {
-          this._butler.partImages.push('https://db.buckapi.us/api/server/local-storage/tixsImages/'+res.body.result.files.file[0].name);
+          this._butler.partImages.push('https://db.buckapi.com/api/server/local-storage/tixsImages/'+res.body.result.files.file[0].name);
           this._butler.newPartImage=true;
           return res.body.id.toString();
         } else if (res.type ===  HttpEventType.UploadProgress ) {
@@ -34,7 +34,7 @@ export class DemoFilePickerAdapter extends FilePickerAdapter {
    
   }
   public removeFile(fileItem:any): Observable<any> {
-    const removeApi = 'https://db.buckapi.us/api/containers/tixsImages/upload';
+    const removeApi = 'https://db.buckapi.com/api/containers/tixsImages/upload';
     return this.http.post(removeApi, {});
   }
 }
