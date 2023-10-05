@@ -22,7 +22,7 @@ export class DemoFilePickerAdapter extends FilePickerAdapter {
     .pipe(
       map( (res: HttpEvent<any>) => {
           if (res.type === HttpEventType.Response) {
-          this._butler.carImages.push('https://www.buckapi.com/api/server/local-storage/cars/'+res.body.result.files.file[0].name);
+          this._butler.carImages.push('https://www.buckapi.com/api/server/local-storage/tixsImages/'+res.body.result.files.file[0].name);
           this._butler.newCarImage=true;
           return res.body.id.toString();
         } else if (res.type ===  HttpEventType.UploadProgress && res.total  !== undefined) {
@@ -35,7 +35,7 @@ export class DemoFilePickerAdapter extends FilePickerAdapter {
   }
   public removeFile(fileItem: any): Observable<any> {
     console.log(fileItem);
-    const removeApi = 'https://db.buckapi.com/api/containers/cars/' + fileItem.id;
+    const removeApi = 'https://db.buckapi.com/api/containers/tixsImages/' + fileItem.id;
     return this.http.delete(removeApi);
   }
 }
